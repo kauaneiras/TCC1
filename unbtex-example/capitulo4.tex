@@ -1,0 +1,95 @@
+% ----------------------------------------------------------
+\chapter{Ambientes do UnB\TeX}
+% ----------------------------------------------------------
+
+A classe UnB\TeX\ disponibiliza alguns ``ambientes'', ou seja, caixas de texto com formatação especial para certos tipos de elementos, que podem ser automaticamente numerados (por exemplo, \cref{def:WYSIWYG}, \cref{thm:WYSIWYG}, \cref{alg:ex}, etc.).
+
+\section{Estilo teorema}
+
+Criados com auxílio do pacote \textsf{mdframed}\footnote{Disponível em \url{https://mirrors.ctan.org/macros/latex/contrib/mdframed/mdframed.pdf}} e inspirados no modelo de \citeonline{Castro2019}, estão disponíveis os ambientes: \texttt{theorem}, \texttt{lemma}, \texttt{proposition}, \texttt{corollary}, \texttt{definition}, \texttt{as\-sumption}, \texttt{axiom}, \texttt{conjecture}, \texttt{property}, \texttt{example}, \texttt{exercise}, \texttt{problem}, \texttt{remark}, \texttt{proof} e \texttt{solution}. Alguns exemplos de uso são apresentados a seguir.
+
+\begin{definition}\label{def:WYSIWYG}
+O WYSIWYG (ou ``What You See Is What You Get - O que você vê é o formato final'') é um tipo de editor HTML que permite editar sua página da Web em uma visualização simplificada e sem código de aparência semelhante à do layout da página real.
+\end{definition}
+
+\begin{theorem}[Teorema LaTeX-WYSIWYG]\label{thm:WYSIWYG}
+    Todo físico prefere usar código \LaTeX\ puro que qualquer editor WYSIWYG.
+\end{theorem}
+
+\begin{proof}
+    Físicos gostam de equações bonitas. Editores What-You-See-Is-What-You-Get não são apropriados para fazer equações bonitas\footnote{É certo que há editores WYSIWYG baseados em \LaTeX, mas eles não nos dão o mesmo nível de controle.}. Logo, se algum físico preferisse usar um editor WYSIWYG no lugar de \LaTeX, não seria muito inteligente. Como todo físico é inteligente, o teorema está demonstrado \textit{ad absurdum}.
+\end{proof}
+
+\begin{proposition}\label{prop:WYSIWYG}
+    \LaTeX\ produz equações mais bonitas que qualquer editor WYSIWYG.
+\end{proposition}
+
+\begin{lemma}
+    Teste.
+\end{lemma}
+
+\begin{corollary}
+    Teste.
+\end{corollary}
+
+\begin{remark}
+    \LaTeX\ produz equações mais bonitas que qualquer editor WYSIWYG.
+\end{remark}
+
+\begin{exercise}\label{exc:in}
+    Explique como Isaac Newton usaria cada um dos pacotes seguintes, se vivesse no tempo presente:
+    \begin{enumerate}[label=(\alph*)]
+        \item Metapost
+        \item TikZ
+        \item PGFPlots
+        \item PSTricks
+    \end{enumerate}
+\end{exercise}
+
+%\begin{example}\label{exp:ae}
+%    Einstein usaria um editor WYSIWYG ou \LaTeX? \\
+%    Einstein era físico. Portanto, usando o teorema LaTeX-WYSIWYG, concluímos que ele usaria \LaTeX.
+%\end{example}
+
+\section{Pseudocódigos}
+
+O \cref{alg:ex} é um exemplo de pseudocódigo, inserido com auxílio do pacote \textsf{algorithm2e}. Mais opções de uso (e de comandos) podem ser encontradas em seu manual\footnote{Disponível em \url{https://mirrors.ctan.org/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf}}.
+
+\begin{algorithm}[htb]
+\caption{Exemplo de pseudocódigo}\label{alg:ex}
+\KwData{$n \geq 0$}
+\KwResult{$y = x^n$}
+$y \gets 1$\;
+$X \gets x$\;
+$N \gets n$\;
+%\While{$N \neq 0$}{
+\While(\tcc*[f]{Isso é um comentário}){$N \neq 0$}{
+  \eIf{$N$ for par}{
+    $X \gets X \times X$\;
+    $N \gets \frac{N}{2}$ \tcc*[r]{Isso é outro comentário}
+  }{\If{$N$ for ímpar}{
+      $y \gets y \times X$\;
+      $N \gets N - 1$\;
+    }
+  }
+}
+\end{algorithm}
+
+A lista com todos os algoritmos é um elemento pré-textual não obrigatório de trabalhos acadêmicos e pode ser gerada e incluída utilizando-se o comando \verb|\listofalgorithms| no arquivo \texttt{tex} principal.
+
+\section{Códigos-fonte}
+
+O \cref{cod:exemplo} é um exemplo de código-fonte, inserido com auxílio do pacote \textsf{listings}. Para mais exemplos e comandos, confira o \cref{apd:cdg} e o manual do pacote\footnote{Disponível em \url{https://mirrors.ctan.org/macros/latex/contrib/listings/listings.pdf}}. A lista com todos os códigos-fonte é um elemento pré-textual não obrigatório de trabalhos acadêmicos e pode ser gerada e incluída utilizando-se o comando \verb|\lstlistoflistings| no arquivo \texttt{tex} principal.
+
+\begin{lstlisting}[float=htb,caption={Exemplo de código-fonte},label={cod:exemplo}]
+/**
+* MSO: ativa o servo cujo eixo eh descrito
+* por drive_axis; informacoes de controle
+* sao gravadas em MSO_1
+*/
+  MSO(drive_axis,MSO_1);
+/* Atribui o valor 0.0 ao primeiro elemento do array speed */
+  speed[0] := 0.0; 
+/* Atribui 1 para dataInitialized */
+  dataInitialized := 1;
+\end{lstlisting}
