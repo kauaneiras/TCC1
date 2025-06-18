@@ -65,7 +65,7 @@
 % ---
 % Título
 % ---
-\titulo{Modelo de trabalho\\ acadêmico com UnB\TeX} % No idioma principal do texto
+\titulo{Provisionamento Dinâmico de Máquinas Virtuais em Nuvem Privada Acadêmica com OpenStack} % No idioma principal do texto
 % Insira \\ caso queira forçar quebras de linha no título
 % Não utilize caixa alta para o título do trabalho e nem das seções (com exceção de siglas)
 % ---
@@ -75,7 +75,7 @@
 % ---
 % Autores
 % ---
-\autori[]{Carlos}{Lisboa} % \autori[]{Nome}{Sobrenome}
+\autori[]{Kauan}{de Torres Eiras} % \autori[]{Nome}{Sobrenome}
 % No caso de nomes como Carlos de Souza, utilize \autori[]{Carlos de}{Souza} (e não \autori[]{Carlos}{de Souza})
 % ---
 \autorii[]{}{} % Deixe os argumentos vazios se não tiver segundo autor
@@ -92,7 +92,7 @@
 % ---
 % Orientadores
 % ---
-\orientador[Orientador]{Prof. Dr.}{Lourenço Nassib}{Chehab} % Para alterar o gênero, basta trocar Orientador por Orientadora
+\orientador[Orientador]{Prof. Dr.}{Sébastien}{Roland Marie Joseph Rondineau} % Ajustado conforme orientação
 %\orientador[Orientadora]{Profa. Dra.}{Sylla Helena}{Ortegosa da Cunha}
 % ---
 \coorientador[Coorientador]{Prof. Dr.}{}{} % Deixe os argumentos para nome e sobrenome vazios se não tiver coorientador 
@@ -104,7 +104,7 @@
 \tipotrabalho{Trabalho de Conclusão de Curso} % Dissertação de Mestrado; Tese de Doutorado (em português, mesmo que o trabalho seja em inglês)
 %\tipotrabalho{Tese de Doutorado}
 % ---
-\tipocurso{Engenharia Elétrica} % Nome do curso de graduação ou do programa de pós-graduação, em português
+\tipocurso{Engenharia de Software} % Nome do curso de graduação ou do programa de pós-graduação, em português
 %\tipocurso{Programa de Pós-Graduação em Engenharia Elétrica}
 % ---
 % Texto que aparece na folha de rosto e na folha de aprovação
@@ -192,15 +192,20 @@ This document demonstrates the preparation of academic works (such as final pape
 
 % Primeiro autor
 \begin{AgradecimentosAutorI}
-Agradecemos ao Dr. Lauro César Araujo e equipe que desenvolveram a classe \abnTeX\ para escrita de trabalhos acadêmicos condizentes as normas da ABNT. A classe UnB\TeX\ a toma como base para atender necessidades específicas de cursos de graduação e pós-graduação da Universidade de Brasília.
+Gostaria de expressar minha profunda gratidão a todas as pessoas que tornaram possível a realização deste trabalho e que estiveram ao meu lado durante esta jornada acadêmica.
 
-Agradecemos também ao Prof. Dr. Leonardo Luiz e Castro pelo modelo em \LaTeX\ para livro para editora UnB, que teve alguns recursos adaptados para o UnB\TeX.
+À minha mãe, por todo o apoio incondicional que me ofereceu ao longo de toda a minha vida. Seu amor, dedicação e incentivo foram fundamentais para que eu chegasse até aqui. Sem sua força e presença constante, nada disso seria possível.
+
+À Sheyla, que me acolheu como um filho em sua casa e se tornou uma segunda mãe para mim. Sua generosidade, carinho e apoio durante toda a minha trajetória universitária foram essenciais para minha formação. Sou eternamente grato por todo apoio que recebi e por ter ganhado uma segunda mãe.
+
+Aos meus amigos, especialmente à Nathália e ao Gabriel, companheiros inseparáveis de jornada. Vocês estiveram presentes em todos os momentos importantes da minha graduação, compartilhando as alegrias, os desafios e as conquistas. A amizade sincera e o apoio mútuo que construímos tornaram esta caminhada mais leve e significativa.
+
+Ao Professor Sebastien, por ter confiado em mim a responsabilidade pela parte de software do Laboratório de Telecomunicações. Sua orientação, ensinamentos e instruções valiosas ao longo dos últimos anos foram fundamentais para meu crescimento profissional e acadêmico. Agradeço pela oportunidade de aprender e me desenvolver sob sua supervisão.
+
+A todos aqueles que acreditaram em mim e confiaram no meu potencial, mesmo quando eu mesmo duvidava. Cada palavra de incentivo, cada gesto de apoio e cada demonstração de confiança foram combustível para que eu persistisse e chegasse até este momento.
+
+Este trabalho é resultado não apenas do meu esforço individual, mas também do amor, apoio e confiança de cada uma dessas pessoas especiais. Minha eterna gratidão a todos vocês.
 \end{AgradecimentosAutorI}
-
-% Segundo autor
-\begin{AgradecimentosAutorII}
-Agradecimentos do segundo autor.
-\end{AgradecimentosAutorII}
 
 \end{otherlanguage*}
 % ---
@@ -307,19 +312,19 @@ Dedicatória do segundo autor.
 %\part{Nome da parte}
 
 % Capítulo de introdução
-\include{unbtex-example/capitulo1}
+\include{unbtex-example/textuais/01-introducao}
 
 % Capítulo de fundamentos teóricos ou técnicos
-\include{unbtex-example/capitulo2}
+\include{unbtex-example/textuais/02-revisao-bibliografica}
 
 % Capítulo com a proposta desenvolvida
-\include{unbtex-example/capitulo3}
+\include{unbtex-example/textuais/03-metodologia}
 
 % Capítulo de resultados
-\include{unbtex-example/capitulo4}
+\include{unbtex-example/textuais/04-resultados}
 
 % Capítulo de conclusões
-\include{unbtex-example/capitulo5}
+\include{unbtex-example/textuais/05-conclusao}
 
 % ------------------------------------------------------------------------
 % ELEMENTOS PÓS-TEXTUAIS
@@ -332,7 +337,7 @@ Dedicatória do segundo autor.
 % ---
 % Arquivo com as referências bibliográficas
 \bibhang{2.2em} % Recuo da margem esquerda da lista de referências
-\bibliography{unbtex-example/referencias} % O estilo de citação é selecionado automaticamente
+\bibliography{unbtex-example/pos_textuais/referencias} % O estilo de citação é selecionado automaticamente
 % ---
 
 % ---

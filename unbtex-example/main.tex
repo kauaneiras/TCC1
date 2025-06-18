@@ -1,0 +1,47 @@
+% ------------------------------------------------------------
+% Arquivo mestre do TCC
+% ------------------------------------------------------------
+\input{config/preambulo}
+
+% ------------------------------------------------------------
+\begin{document}
+% -------------------- Elementos pré-textuais ----------------
+\pretextual
+
+\input{pre_textuais/capa}
+\input{pre_textuais/folha_rosto}
+\input{pre_textuais/ficha_catalografica}
+\input{pre_textuais/folha_aprovacao}
+\input{pre_textuais/dedicatoria} % opcional
+\input{pre_textuais/agradecimentos} % opcional
+\input{pre_textuais/resumo}
+\input{pre_textuais/abstract}
+\input{pre_textuais/epigrafe} % opcional
+\input{pre_textuais/listas}
+
+% ----------------------- Texto principal --------------------
+\textual
+\include{chapters/01-introducao}
+\include{chapters/02-fundamentacao}
+\include{chapters/03-metodologia}
+\include{chapters/04-implementacao}
+\include{chapters/05-avaliacao}
+\include{chapters/06-conclusao}
+
+% -------------------- Elementos pós-textuais ----------------
+\postextual
+
+% Bibliografia
+
+% (Altere o estilo/nome do arquivo caso use BibLaTeX)
+\bibliography{pos_textuais/referencias}
+
+% Apêndices e anexos
+\input{pos_textuais/apendices}
+\input{pos_textuais/anexos}
+
+% Glossário e índice (opcionais)
+\input{pos_textuais/glossario}
+\input{pos_textuais/indice}
+
+\end{document}
