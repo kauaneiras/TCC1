@@ -3,17 +3,17 @@
 
 \section{Contextualização}
 
-Nos últimos anos, a computação em nuvem se assentou como um modelo para o acesso flexível de recursos computacionais. De acordo com o National Institute of Standards and Technology (NIST), a computação em nuvem pode ser definida como um paradigma que possibilita o acesso sob demanda a um conjunto compartilhado de recursos de computação configuráveis. A ideia de concentrar o hardware e software "na nuvem", em outros termos, em data centers acessíveis remotamente, traz benefícios como o gerenciamento mais eficiente dos recursos computacionais \cite{mell2011}. Ao aproveitar mecanismos de multi-tenancy e elasticidade, as nuvens permitem que um cluster computacional seja compartilhado por diversos usuários, cada um isolado em um ambiente virtual próprio, enquanto a alocação de CPU, memória e armazenamento cresce ou encolhe automaticamente de acordo com a carga de trabalho. Essas técnicas adaptativas de alocação de recursos ajudam a manter a eficiência de utilização dos recursos em ambientes de nuvem \cite{dai2015, ray2013}. 
+Nos últimos anos, a computação em nuvem se assentou como um modelo para o acesso flexível de recursos computacionais. De acordo com o \textit{National Institute of Standards and Technology} (NIST), a computação em nuvem pode ser definida como um paradigma que possibilita o acesso sob demanda a um conjunto compartilhado de recursos de computação configuráveis. A ideia de concentrar o hardware e software "\textit{na nuvem}", em outros termos, em \textit{data centers} acessíveis remotamente, traz benefícios como o gerenciamento mais eficiente dos recursos computacionais \cite{mell2011}. Ao aproveitar mecanismos de \textit{multi-tenancy} e elasticidade, as nuvens permitem que um \textit{cluster} computacional seja compartilhado por diversos usuários, cada um isolado em um ambiente virtual próprio, enquanto a alocação de CPU, memória e armazenamento cresce ou encolhe automaticamente de acordo com a carga de trabalho. Essas técnicas adaptativas de alocação de recursos ajudam a manter a eficiência de utilização dos recursos em ambientes de nuvem \cite{dai2015, ray2013}. 
 
-Organizações que buscam dinamismo, mas não desejam transferir dados sensíveis para provedores públicos, encontram em nuvens privadas uma solução viável. O uso de nuvens privadas permite que empresas mantenham controle sobre a segurança e a privacidade de suas informações, combinando a escalabilidade e a flexibilidade do ambiente em nuvem. Nesse contexto, destaca-se o OpenStack, um framework de código aberto que possibilita a construção de nuvens privadas escaláveis, com capacidade de atender demandas específicas de instituições acadêmicas e departamentos de engenharia que executam simulações de alto desempenho \cite{heuchert2021}. 
+Organizações que buscam dinamismo, mas não desejam transferir dados sensíveis para provedores públicos, encontram em nuvens privadas uma solução viável. O uso de nuvens privadas permite que empresas mantenham controle sobre a segurança e a privacidade de suas informações, combinando a escalabilidade e a flexibilidade do ambiente em nuvem. Nesse contexto, destaca-se o OpenStack, um \textit{framework} de código aberto que possibilita a construção de nuvens privadas escaláveis, com capacidade de atender demandas específicas de instituições acadêmicas e departamentos de engenharia que executam simulações de alto desempenho \cite{heuchert2021}. 
 
-A computação em nuvem se caracteriza pelo modelo de multi-tenancy, onde múltiplos inquilinos compartilham a mesma infraestrutura física, ao mesmo tempo que detêm de um ambiente isolado de trabalho e sem compartilhamento de dados. Essa abordagem pode ser um fator significativo para organizações que buscam maximizar a utilização de recursos disponíveis. O modelo de multi-tenancy permite que instituições acadêmicas e empresas atendam a distintas demandas e usuários simultaneamente, proporcionando uma maneira eficiente de gerenciar recursos computacionais mantendo isolamento de cada usuário e sistema \cite{heuchert2021}.
+A computação em nuvem se caracteriza pelo modelo de \textit{multi-tenancy}, onde múltiplos inquilinos compartilham a mesma infraestrutura física, ao mesmo tempo que detêm de um ambiente isolado de trabalho e sem compartilhamento de dados. Essa abordagem pode ser um fator significativo para organizações que buscam maximizar a utilização de recursos disponíveis. O modelo de \textit{multi-tenancy} permite que instituições acadêmicas e empresas atendam a distintas demandas e usuários simultaneamente, proporcionando uma maneira eficiente de gerenciar recursos computacionais mantendo isolamento de cada usuário e sistema \cite{heuchert2021}.
 
-Outro ganho obtido da computação em nuvem é a elasticidade de recursos, que refere -se à capacidade de aumentar ou reduzir a alocação de recursos dinamicamente, aumentando ou diminuindo CPU, memória e armazenamento, de acordo com a quantidade de cargas de trabalho. A elasticidade faz com que a infraestrutura se adapte a picos de demanda, proporcionando aumento temporário na alocação de recursos \cite{armbrust2010}. Essa característica certifica que durante períodos de alta demanda, aplicações poderão receber recursos computacionais em níveis adequados à necessidade \cite{oliveira2015}, otimizando o throughput do sistema ao permitir que a capacidade ociosa seja redistribuída, e consequentemente, melhorando a experiência do usuário.
+Outro ganho obtido da computação em nuvem é a elasticidade de recursos, que refere -se à capacidade de aumentar ou reduzir a alocação de recursos dinamicamente, aumentando ou diminuindo CPU, memória e armazenamento, de acordo com a quantidade de cargas de trabalho. A elasticidade faz com que a infraestrutura se adapte a picos de demanda, proporcionando aumento temporário na alocação de recursos \cite{armbrust2010}. Essa característica certifica que durante períodos de alta demanda, aplicações poderão receber recursos computacionais em níveis adequados à necessidade \cite{oliveira2015}, otimizando o \textit{throughput} do sistema ao permitir que a capacidade ociosa seja redistribuída, e consequentemente, melhorando a experiência do usuário.
 
-Em ambientes que exigem alto poder de processamento, como laboratórios de pesquisa onde discentes executam simulações científicas intensivas, a capacidade de compartilhar recursos computacionais de forma eficiente é pode ter grande relevância. Zhang e Zhang destacam a eficácia das plataformas de nuvem em simulações científicas intensivas, permitindo alocação otimizada de recursos computacionais e reduzindo custos operacionais \cite{xu2021}. Análises comparativas entre a computação em nuvem e os clusters convencionais indicam que instâncias em nuvem podem igualar ou até superar o desempenho de servidores potentes. A capacidade de alocar dinamicamente o processamento e a memória conforme a demanda torna essa alternativa interessante para ambientes acadêmicos e organizacionais com necessidade de alta performance e elasticidade computacional \cite{roloff2012}. 
+Em ambientes que exigem alto poder de processamento, como laboratórios de pesquisa onde discentes executam simulações científicas intensivas, a capacidade de compartilhar recursos computacionais de forma eficiente é pode ter grande relevância. Zhang e Zhang destacam a eficácia das plataformas de nuvem em simulações científicas intensivas, permitindo alocação otimizada de recursos computacionais e reduzindo custos operacionais \cite{xu2021}. Análises comparativas entre a computação em nuvem e os \textit{clusters} convencionais indicam que instâncias em nuvem podem igualar ou até superar o desempenho de servidores potentes. A capacidade de alocar dinamicamente o processamento e a memória conforme a demanda torna essa alternativa interessante para ambientes acadêmicos e organizacionais com necessidade de alta performance e elasticidade computacional \cite{roloff2012}. 
 
-O provisionamento dinâmico de máquinas virtuais (MVs) em nuvens privadas é uma estratégia prática de elasticidade e escalabilidade capaz de suprir a crescente demanda por eficiência, segurança e controle. O OpenStack, um dos frameworks de nuvem privada mais utilizados, suporta esse provisionamento dinâmico, permitindo que as organizações ajustem suas infraestruturas virtuais em resposta a variações nas cargas de trabalho \cite{callegati2016}. Por meio de algoritmos para alocação e distribuição de máquinas virtuais, é viável criar uma infraestrutura para laboratórios onde múltiplos usuários precisam ter máquinas virtuais individuais para simulações de alto desempenho, onde os recursos são utilizados de forma inteligente, alocando e desalocando recursos conforme a necessidade.
+O provisionamento dinâmico de máquinas virtuais (MVs) em nuvens privadas é uma estratégia prática de elasticidade e escalabilidade capaz de suprir a crescente demanda por eficiência, segurança e controle. O OpenStack, um dos \textit{framework}s de nuvem privada mais utilizados, suporta esse provisionamento dinâmico, permitindo que as organizações ajustem suas infraestruturas virtuais em resposta a variações nas cargas de trabalho \cite{callegati2016}. Por meio de algoritmos para alocação e distribuição de máquinas virtuais, é viável criar uma infraestrutura para laboratórios onde múltiplos usuários precisam ter máquinas virtuais individuais para simulações de alto desempenho, onde os recursos são utilizados de forma inteligente, alocando e desalocando recursos conforme a necessidade.
 
 \section{Justificativa}
 O Lab Telecom é um laboratório de excelência da Universidade de Brasília (UnB) que contribuiu com a formação de mais de 100 alunos desde a sua existência. Atualmente atende cerca de 30 alunos ativos que frequentemente precisam rodar softwares de alto desempenho, como o Ansys HFSS, Keysight ADS, AWR Microwave Office e Altium Designer. Porém, o laboratório dispõe de apenas três estações licenciadas, criando filas e atrasos nas atividades acadêmicas. Ao reativar servidores descontinuados e convertê-los em uma nuvem privada baseada em imagens padronizadas desses aplicativos, cada estudante poderá receber uma máquina própria isolada e personalizada, sob demanda.
@@ -28,13 +28,13 @@ Implantar uma nuvem privada flexível que utilize os servidores ociosos do Lab T
     \item \textbf{Reativar o hardware}
     \begin{itemize}
         \item Inventariar e restaurar os servidores legados.
-        \item Criar arranjos RAID nos hosts para aumentar resiliência e desempenho de I/O.
+        \item Criar arranjos RAID nos hosts para aumentar resiliência e desempenho de \textit{I/O}.
     \end{itemize}
     
     \item \textbf{Implantar a plataforma de virtualização}
     \begin{itemize}
-        \item Instalar Ubuntu Server com KVM/OpenStack, habilitando serviços-núcleo (Nova, Neutron, Glance) e configurando o Keystone.
-        \item Desenvolver playbooks Ansible que adicionem novos nós ao cluster em poucos cliques.
+        \item Instalar \textit{Ubuntu Server} com \textit{KVM/OpenStack}, habilitando serviços-núcleo (\textit{Nova}, \textit{Neutron}, \textit{Glance}) e configurando o \textit{Keystone}.
+        \item Desenvolver \textit{playbooks} \textit{Ansible} que adicionem novos nós ao \textit{cluster} em poucos cliques.
     \end{itemize}
     
     \item \textbf{Padronizar imagens}
@@ -44,13 +44,13 @@ Implantar uma nuvem privada flexível que utilize os servidores ociosos do Lab T
     
     \item \textbf{Automatizar o ciclo de vida das VMs}
     \begin{itemize}
-        \item Criar scripts/APIs que provisionam VMs para cada aluno ingressante.
-        \item Criar scripts/API para arquivar ou excluir VMs de usuários que encerraram seu vínculo com o laboratório.
+        \item Criar \textit{scripts}/\textit{APIs} que provisionam VMs para cada aluno ingressante.
+        \item Criar \textit{scripts}/API para arquivar ou excluir VMs de usuários que encerraram seu vínculo com o laboratório.
     \end{itemize}
     
     \item \textbf{Gerir recursos de forma elástica}
     \begin{itemize}
-        \item Ativar CPU/RAM ballooning e políticas de fair-share, permitindo:
+        \item Ativar CPU/RAM \textit{ballooning} e políticas de \textit{fair-share}, permitindo:
         \begin{itemize}
             \item uso exclusivo de 100\% dos recursos quando houver só um usuário;
             \item divisão dinâmica de CPU e memória conforme a quantidade de VMs ativas.
@@ -59,7 +59,7 @@ Implantar uma nuvem privada flexível que utilize os servidores ociosos do Lab T
     
     \item \textbf{Monitorar desempenho e uso}
     \begin{itemize}
-        \item Implementar dashboards com métricas de CPU, RAM, I/O, rede e licenças, além de alertas preventivos para saturação ou falhas de hardware.
+        \item Implementar \textit{dashboards} com métricas de CPU, RAM, \textit{I/O}, rede e licenças, além de alertas preventivos para saturação ou falhas de hardware.
     \end{itemize}
     
     \item \textbf{Documentar e treinar}
@@ -69,7 +69,7 @@ Implantar uma nuvem privada flexível que utilize os servidores ociosos do Lab T
     
     \item \textbf{Planejar a expansão futura}
     \begin{itemize}
-        \item Definir um checklist para integrar novos servidores (rede, storage, energia) e uma política de atualização periódica das imagens à medida que evoluem as versões dos softwares.
+        \item Definir um \textit{checklist} para integrar novos servidores (rede, \textit{storage}, energia) e uma política de atualização periódica das imagens à medida que evoluem as versões dos softwares.
     \end{itemize}
 \end{enumerate}
 
@@ -82,9 +82,9 @@ O conteúdo do trabalho é dividido em 8 capítulos:
     
     \item O capítulo 3 descreve detalhadamente a solução proposta, apresentando a arquitetura da nuvem privada dinâmica, os componentes envolvidos, os fluxos de provisionamento automático de VMs e as políticas de escalonamento adotadas.
     
-    \item O capítulo 4 explica a implementação prática da infraestrutura no LabTelcom, incluindo a preparação dos servidores físicos, a instalação e configuração dos serviços do OpenStack e a criação das redes, imagens e flavours utilizados.
+    \item O capítulo 4 explica a implementação prática da infraestrutura no LabTelcom, incluindo a preparação dos servidores físicos, a instalação e configuração dos serviços do OpenStack e a criação das redes, imagens e \textit{flavours} utilizados.
     
-    \item O capítulo 5 aborda o desenvolvimento do mecanismo de provisionamento dinâmico, detalhando os scripts, APIs e automações que criam, ajustam e encerram máquinas virtuais conforme a demanda dos discentes.
+    \item O capítulo 5 aborda o desenvolvimento do mecanismo de provisionamento dinâmico, detalhando os \textit{scripts}, \textit{APIs} e automações que criam, ajustam e encerram máquinas virtuais conforme a demanda dos discentes.
     
     \item O capítulo 6 apresenta os cenários de teste definidos, a execução dos experimentos no ambiente real e a coleta de dados sobre tempo de instância, uso de recursos e persistência de dados dos usuários.
     
