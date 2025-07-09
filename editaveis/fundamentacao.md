@@ -1,0 +1,459 @@
+# Capítulo 2 – Fundamentação Teórica
+
+## 2.1 Computação em Nuvem (\\textit{Cloud Computing})
+
+2.1.1 Definição e Paradigma
+
+A computação em nuvem (\\textit{_cloud computing}_) é definida na publicação especial 800-145 pelo \\textit{National Institute of Standards and Technology}(NIST), como um modelo que permite acesso a um conjunto compartilhado de recursos computacionais configuráveis, como redes, servidores, armazenamento, aplicações e serviços, sob demanda e via rede. Esses recursos podem ser rapidamente provisionados e liberados com mínimo esforço de gerenciamento ou interação com o provedor de serviços (MELL; GRANCE, 2011). Essa definição enfatiza características essenciais da computação em nuvem, dentre as quais destacam-se:
+
+1. **\\textbf{Autoatendimento sob demanda (\\textit{On-demand self-service}):}** o usuário pode provisionar recursos computacionais, como tempo de servidor e armazenamento em rede, conforme a necessidade, automaticamente e sem necessidade de interação humana com cada provedor de serviço (MELL; GRANCE, 2011).
+2. **\\textbf{Acesso amplo à rede (\\textit{Broad network access}):}** Os serviços da nuvem podem ser acessados pela grande maioria de aparelhos que possuem acesso à internet, com interfaces padronizadas que facilitam a experiência dos usuários que já estão acostumados com algum serviço na nuvem (MELL; GRANCE, 2011).
+3. **\\textbf{Agrupamento de recursos (\\textit{Resource pooling}):}** Os recursos computacionais, como processamento, memória, armazenamento e largura de banda de rede, são agrupados pelo provedor para atender múltiplos inquilinos usando um modelo de multilocação (\\textit{multi-tenant}), com diferentes recursos sendo distribuídos dinamicamente e redistribuídos conforme a demanda do inquilino (MELL; GRANCE, 2011).
+4. **\\textbf{Elasticidade rápida (\\textit{Rapid elasticity}):}** Os recursos podem ser provisionados e liberados elasticamente, em alguns casos automaticamente, para escalar rapidamente conforme a demanda. Para o usuário, as capacidades disponíveis para provisionamento parecem ser ilimitadas, a depender da quantidade de hardware que o provedor possui, e podem ser utilizadas em qualquer quantidade, a qualquer momento (MELL; GRANCE, 2011).
+5. **\\textbf{Serviço mensurado (\\textit{Measured service}):}** Sistemas de nuvem controlam e otimizam automaticamente o uso de recursos utilizando recursos de medição. Devido a isso, o uso dos recursos pode ser monitorado, controlado e reportado, proporcionando transparência tanto para o provedor quanto para o consumidor do serviço utilizado (MELL; GRANCE, 2011).
+
+Além dessas características essenciais, os serviços oferecidos por provedores de nuvem são classificados em modelos de serviço:
+
+1. **\\textbf{Software como Serviço (SaaS)}**: é um modelo de distribuição de software onde o software é hospedado na nuvem e disponibilizado aos usuários através da internet. Essa infraestrutura de nuvem é formada por uma camada física, composta por servidores, armazenamento e componentes de rede, e uma camada de abstração, que seria um software implantado sobre essa infraestrutura física (MELL; GRANCE, 2011).
+2. **\\textbf{Plataforma como Serviço (PaaS)}:** é um modelo que fornece ao consumidor a possibilidade de implantar, sobre a infraestrutura de nuvem, aplicações criadas ou adquiridas usando linguagens de programação, bibliotecas, serviços e ferramentas compatíveis com o ambiente oferecido pelo provedor. O consumidor não gerencia nem controla a infraestrutura subjacente da nuvem, como redes, servidores, sistemas operacionais ou armazenamento, mas possui controle sobre as aplicações implantadas e, possivelmente, sobre as configurações do ambiente onde essas aplicações serão hospedadas (MELL; GRANCE, 2011).
+3. **\\textbf{Infraestrutura como Serviço (IaaS)}**. é um modelo que fornece ao consumidor a capacidade de provisionar recursos computacionais, como processamento, armazenamento, redes e outros, permitindo que ele implante e execute softwares, incluindo sistemas operacionais e aplicações. O consumidor também não gerencia nem controla a infraestrutura física da nuvem, mas tem controle sobre os sistemas operacionais, o armazenamento, as aplicações implantadas e, em alguns casos, controle limitado de componentes específicos de rede, como firewalls do host (MELL; GRANCE, 2011).
+
+![](data:image/png;base64,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)
+
+Figura 1 - Comparação entre os modelos de serviço IaaS, PaaS e SaaS. Adaptado de Rizvi et al., 2024
+
+Para facilitar o entendimento desses serviços, a Figura 1 compara os modelos de serviço
+
+da nuvem. Em sistemas de SaaS, o software é hospedado na nuvem e acessível ao usuário pela internet. O usuário não possui nenhum controle sobre a aplicação, nem sobre a infraestrutura. Grande parte dos serviços oferecidos à usuários da internet utilizam esse modelo (Rizvi et al., 2024). Dentre eles, pode-se listar, as redes sociais, como o \\textit{Instagram}, \\textit{TikTok} e \\textit{Whatsapp}, e serviços de transmissão contínua de conteúdo multimídia (\\textit{streaming}), como o \\textit{Youtube}, \\textit{Netflix} e \\textit{Spotify}. O modelo PaaS, em contrapartida, fornece um ambiente de desenvolvimento e implantação pré-construído na nuvem, onde o usuário tem controle sobre a aplicação, incluindo códigos e bancos de dados. Nesse modelo encontram-se os serviços de desenvolvimento e hospedagem de software, como \\textit{Microsoft Azure}, \\textit{Google App Engine} e \\textit{Heroku} (Rizvi et al., 2024). Já no IaaS, o usuário pode solicitar uma quantidade de recursos, e tem controle sobre o sistema operacional. Nesse modelo estão as máquinas virtuais e serviços de armazenamento, como \\textit{Amazon Web Services (AWS) EC2 e S3}, \\textit{Microsoft Azure Virtual Machines} e \\textit{Google Compute Engine} (Rizvi et al., 2024).
+
+## 2.1.2 Modelos de Implantação
+
+A implantação de sistemas de computação em nuvem pode ser realizada por meio de diferentes modelos. Cada modelo possui características peculiares que determinam sua adequação a contextos específicos. Os modelos mais conhecidos são a nuvem pública, privada, comunitária e híbrida, os quais se diferenciam pelo nível de controle, segurança, escalabilidade e custo de implantação (MELL; GRANCE, 2011).
+
+1. **\\textbf{Nuvem Pública (\\textit{Public cloud})}:** As nuvem pública são gerenciadas por provedores terceirizados que disponibilizam recursos computacionais por meio da internet (Carroll et al., 2011). Esses provedores costumam oferecer capacidades elevadas de escalabilidade e custos iniciais mais acessíveis, o que os torna atrativos para diferentes perfis de organizações (Amajuoyi et al., 2024). Além disso, esse modelo de nuvem pode ser particularmente vantajoso para instituições que não contam com equipes internas especializadas no assunto ou que optam por não direcionar recursos à aquisição e manutenção de infraestrutura física própria. Em função desses benefícios, a adoção da nuvem pública tem apresentado um crescimento contínuo nos últimos anos (Amajuoyi et al., 2024). Entretanto, as nuvens privadas podem apresentar desafios relevantes em termos de segurança e controle sobre a infraestrutura física. A nuvem pública é aberta a todos e sem garantia de alto nível de segurança, podendo trazer riscos à confidencialidade dos dados, à proteção de informações estratégicas e à perda ou roubo de dados, sendo uma opção mais adequada para empresas com "baixas preocupações de segurança" (Sathya, 2023).
+2. **\\textbf{Nuvem Privada (\\textit{Private cloud})}:** A infraestrutura é fornecida para uso exclusivo de uma única organização. Essa infraestrutura pode ser de propriedade, de terceiros, ou uma combinação de ambos, e pode estar localizada dentro ou fora das instalações da organização (MELL; GRANCE, 2011). Para organizações que desejam um grau elevado de controle, personalização e alto nível de segurança, as nuvens privadas podem se destacar como uma solução adequada (Swapna & Archana, 2023). Isso possibilita o desenvolvimento de um ambiente seguro e adaptado às exigências particulares de instituições que necessitam resguardar pesquisas sigilosas e proteger a propriedade intelectual. Dessa forma, a nuvem privada se mostra a alternativa ideal para operações que demandam um rigoroso gerenciamento de dados e confidencialidade, assegurando a integridade de informações estratégicas e o cumprimento de normativas internas.
+3. **\\textbf{Nuvem Comunitária (\\textit{Community cloud})}.** A infraestrutura é fornecida para uso exclusivo de uma comunidade específica de clientes, pertencentes a diferentes organizações que compartilham interesses comuns. A infraestrutura pode ser de propriedade, de terceiros, ou uma combinação desses, e pode estar localizada dentro ou fora das instalações das organizações envolvidas (MELL; GRANCE, 2011).
+4. **\\textbf{Nuvem Híbrida (\\textit{Hybrid cloud})}.** Essa infraestrutura é uma composição de duas ou mais infraestruturas distintas (privada, comunitária ou pública) (MELL; GRANCE, 2011).
+
+## 2.2 Virtualização e Hipervisores
+
+A virtualização é uma técnica de grande importância na computação moderna, uma vez abstrai o hardware de máquinas físicas, agrupando logicamente os recursos de servidores. Esses agrupamentos lógicos, também conhecido como (\\textit{_pools}_), permite a criação de máquinas virtuais (VMs) isoladas em um único sistema computacional físico (CARISSIMI, 2008; KOMINOS; et al., 2017). Cada VM funciona como um ambiente de execução completo e autônomo, com sistema operacional próprio, aplicações, configurações e serviços de rede, como se fosse uma máquina física independente (CARISSIMI, 2008; SMITH; NAIR, 2005). Esta capacidade de particionamento lógico de recursos de hardware é um dos fundamentos da computação em nuvem, viabilizando a elasticidade, a multilocação e a eficiência de custos (CHAWLA et al., 2025).
+
+#### 2.2.1 Tipos de Virtualização
+
+A implementação de máquinas virtuais de sistema pode ser realizada através de duas técnicas principais: a virtualização total e a paravirtualização (CARISSIMI, 2008).
+
+- **Virtualização Total (**\\textit{**Full Virtualization}):** Também conhecida como \\textit{Máquina Virtual de Hardware (HVM)}, esse tipo de virtualização provê uma réplica virtual completa do hardware subjacente. Isso permite rodar qualquer sistema operacional usando sua imagem de instalação padrão (ISO) sem alterar o kernel (CARISSIMI, 2008).
+
+O desafio da virtualização total reside no tratamento de comandos que precisam de acesso direto ao hardware, as instruções privilegiadas. Em princípio, a camada de virtualização precisava interceptar e emular essas instruções em software, gerando uma sobrecarga (\\textit{_overhead}_) de desempenho (CARISSIMI, 2008).
+
+Contudo, a introdução de extensões de hardware pelos fabricantes de processadores, como o \\textit{Intel VT-x} e o \\textit{AMD-V}, revolucionou essa técnica (CARISSIMI, 2008). Essas extensões permitem que o sistema operacional virtualizado execute instruções privilegiadas diretamente no processador de forma segura, eliminando a necessidade de emulação e tornando o desempenho da máquina virtual mais próximo ao do hardware nativo (CHAWLA et al., 2025).
+
+- **Paravirtualização (PV)**
+
+Essa é a técnica em que o sistema operacional é modificado para melhor se adaptar a um ambiente virtual. O \\textit{kernel} do sistema é alterado para incluir \\textit{drivers} especiais que realizam chamadas diretas ao hipervisor (_hypercalls),_ em vez de tentar executar instruções privilegiadas, (CARISSIMI, 2008).
+
+A principal vantagem desta abordagem é o **desempenho**. Ao eliminar a necessidade de interceptar e emular instruções, a paravirtualização apresenta um \\textit{_overhead}_ menor e um desempenho superior em comparação à virtualização total sem assistência de hardware (CARISSIMI, 2008).
+
+Para facilitar o entendimento dos conceitos da Virtualização Total e Paravirtualização, a Tabela 1 compara os dois tipos. com suas vantagens e desvantagens:
+
+Tabela 1 – Comparativo entre Virtualização Total e Paravirtualização,
+
+\\begin{table}\[htb\]
+
+\\centering % Centraliza a tabela na página
+
+% Legenda (título) da tabela, conforme ABNT
+
+\\caption{Comparativo entre Virtualização Total e Paravirtualização}
+
+\\label{tab:comparativo_virtualizacao} % Rótulo para referenciar a tabela no texto com \\ref{...}
+
+% Inicia o ambiente da tabela com 3 colunas.
+
+% A primeira (l) é alinhada à esquerda.
+
+% As outras duas (X) ocupam o espaço restante de forma flexível e justificam o texto.
+
+% O comando >{\\RaggedRight} alinha o texto à esquerda dentro das colunas flexíveis.
+
+\\begin{tabularx}{\\textwidth}{ l >{\\RaggedRight}X >{\\RaggedRight}X }
+
+\\toprule % Linha superior da tabela
+
+% Cabeçalho da tabela em negrito
+
+\\textbf{Característica} & \\textbf{Virtualização Total} & \\textbf{Paravirtualização} \\\\
+
+\\midrule % Linha que separa o cabeçalho do conteúdo
+
+Visão do \\textit{Guest} & Hardware virtual idêntico ao físico. & API/hardware simplificado, exposto pelo hipervisor. \\\\
+
+\\addlinespace % Adiciona um pequeno espaço vertical para melhor legibilidade
+
+Modificação do SO & Não é necessária. & Sim, o \\textit{kernel} precisa de drivers e \\textit{hypercalls} especiais. \\\\
+
+\\addlinespace
+
+Instruções Privilegiadas & Interceptadas pelo hipervisor ou tratadas via hardware (\\textit{Intel VT-x/AMD-V}). & O \\textit{guest} realiza \\textit{hypercalls} diretas ao hipervisor. \\\\
+
+\\addlinespace
+
+Desempenho & Historicamente mais lento, mas hoje quase nativo graças à assistência de hardware. & Menor sobrecarga e desempenho superior, especialmente em I/O. \\\\
+
+\\addlinespace
+
+Principal Vantagem & Compatibilidade universal com qualquer sistema operacional. & Velocidade e eficiência, sobretudo antes da popularização do \\textit{Intel VT-x}. \\\\
+
+\\addlinespace
+
+Principal Desvantagem & Maior sobrecarga sem assistência de hardware. & Requer suporte e modificação no sistema operacional convidado. \\\\
+
+\\bottomrule % Linha inferior da tabela
+
+\\end{tabularx}
+
+% Fonte da tabela
+
+\\fonte{Elaborado pelo autor, com base em Carissimi (2008).}
+
+\\end{table}
+
+###
+
+Fonte: Elaborado com base em Carissimi (2008).
+
+#### 2.2.2 Definição e tipos de hipervisores
+
+O componente de software responsável por criar e gerenciar as máquinas virtuais é denominado hipervisor, ou Monitor de Máquina Virtual (VMM — \\textit{_Virtual Machine Monitor}_) (CHAWLA et al., 2025; CARISSIMI, 2008). O hipervisor é a camada de software que fica entre o hardware e os sistemas operacionais, e é responsável por orquestrar o acesso aos recursos físicos e manter o isolamento entre as diferentes VMs (CHAWLA et al., 2025). Os hipervisores são classificados em dois tipos principais, conforme ilustrado na Figura 2.
+
+Figura 2 – Arquitetura de Hipervisores Tipo 1 e Tipo 2 Imagem adaptada de Chawla et al. (2025) e Kominos, Seyvet e Vandikas (2017).
+
+- **Tipo 1 (Bare-Metal):** Executa diretamente sobre o hardware do servidor, atuando como um sistema operacional leve e especializado para executar VMs (CHAWLA et al., 2025). Exemplos notáveis incluem \\textit{Xen}, \\textit{VMware ESXi} e \\textit{Microsoft Hyper-V} (CHAWLA et al., 2025; CARISSIMI, 2008). Por ter acesso direto ao hardware, esta arquitetura geralmente oferece maior desempenho e segurança.
+- **Tipo 2 (Hosted):** Opera como uma aplicação de software sobre um sistema operacional convencional (hospedeiro), que gerencia o hardware (CHAWLA et al., 2025). Exemplos incluem \\textit{KVM}, \\textit{Oracle VirtualBox} e \\textit{VMware Player} (CHAWLA et al., 2025; CARISSIMI, 2008). Esta abordagem é mais simples de instalar e gerenciar, mas pode introduzir uma sobrecarga de desempenho devido à camada extra do sistema operacional hospedeiro.
+
+Para melhor compreendimento sobre as diferenças entre os tipos de hipervisores, a tabela abaixo resume as principais características de cada tipo.
+
+Tabela 2 – Comparativo entre Hipervisores Tipo 1 e Tipo 2
+
+\\begin{table}\[htb\]
+
+\\centering % Centraliza a tabela na página
+
+% Legenda (título) da tabela. A ABNT exige que a legenda fique na parte superior.
+
+\\caption{Comparativo entre Hipervisores Tipo 1 e Tipo 2}
+
+\\label{tab:comparativo_hipervisores} % Rótulo para referenciar a tabela no texto com \\ref{...}
+
+% O ambiente 'tabularx' ajusta a largura da tabela para a largura do texto (\\textwidth).
+
+% >{\\bfseries}l -> Primeira coluna alinhada à esquerda e em negrito.
+
+% >{\\RaggedRight}X -> As outras duas colunas terão largura flexível e texto alinhado à esquerda.
+
+\\begin{tabularx}{\\textwidth}{ >{\\bfseries}l >{\\RaggedRight}X >{\\RaggedRight}X }
+
+\\toprule % Linha superior da tabela (padrão booktabs/ABNT)
+
+% Cabeçalho da tabela
+
+& \\textbf{Hipervisor Tipo 1 (Bare-Metal)} & \\textbf{Hipervisor Tipo 2 (Hosted)} \\\\
+
+\\midrule % Linha que separa o cabeçalho do conteúdo
+
+Posicionamento Arquitetural & Executa diretamente sobre o hardware físico. & Executa como uma aplicação sobre um Sistema Operacional hospedeiro. \\\\
+
+\\addlinespace % Adiciona um pequeno espaço vertical para melhor legibilidade
+
+Desempenho & Maior, com menor sobrecarga de virtualização. & Menor, pois há uma camada extra (SO hospedeiro) que pode gerar \\textit{overhead}. \\\\
+
+\\addlinespace
+
+Isolamento e Segurança & Considerado mais seguro devido ao acesso direto e controlado ao hardware e menor superfície de ataque. & A segurança depende criticamente do Sistema Operacional hospedeiro subjacente. \\\\
+
+\\addlinespace
+
+Instalação e Gestão & Geralmente mais complexo, exigindo um servidor dedicado para sua instalação. & Instalação simples, similar a qualquer outro software de desktop. \\\\
+
+\\addlinespace
+
+Caso de Uso Principal & Ambientes de produção, \\textit{datacenters} e nuvens que exigem alto desempenho e escalabilidade. & Desenvolvimento de software, testes, e uso em \\textit{desktops} para executar múltiplos sistemas operacionais. \\\\
+
+\\addlinespace Exemplos & VMware ESXi, Microsoft Hyper-V, Xen. & Oracle VirtualBox, VMware Player, KVM. \\\\
+
+\\bottomrule % Linha inferior da tabela
+
+\\end{tabularx}
+
+% Fonte da tabela, usando o comando \\fonte{} definido no preâmbulo
+
+\\fonte{Elaborada com base em Chawla et al. (2025), Kominos et al. (2017) e Carissimi (2008).}
+
+\\end{table}
+
+#### 2.2.3 Análise Comparativa de Hipervisores
+
+A seleção de um hipervisor é uma decisão crítica que impacta diretamente o desempenho, a segurança e a escalabilidade de uma infraestrutura de nuvem. A Tabela 3 apresenta uma comparação entre os principais hipervisores do mercado, destacando suas características de desempenho dentro das seguintes métricas:
+
+\\textit{**CPU Overhead}:** mede a porcentagem de ciclos que são consumidos no processador pelo hipervisor durante o gerenciamento das VMs. Essa sobrecarga é particularmente notável em cargas de trabalho intensivas em Entrada/Saída (E/S), pois o hipervisor precisa de poder de processamento para gerenciar as solicitações de rede e disco das VMs. Um valor menor é melhor, indicando que mais poder de CPU está disponível para as aplicações. O \\textit{VMware ESXi} apresentou o menor.
+
+\\textit{**Memory Overhead}:** mede a quantidade de memória RAM que o hipervisor reserva para seu próprio funcionamento e para gerenciar o mapeamento de memória das máquinas virtuais. Um \\textit{_overhead}_ menor significa que uma porção maior da RAM física pode ser alocada diretamente para as cargas de trabalho. Neste quesito, \\textit{VMware ESXi} e \\textit{KVM} demonstram alta eficiência, com sobrecargas de 2,9% e 3,0%, respectivamente.
+
+\\textit{**Disk I/O Overhead}:** mede a perda de desempenho nas operações de acesso ao armazenamento. Quando uma VM solicita acesso ao disco, o hipervisor intercepta essa requisição, a traduz e a encaminha ao dispositivo físico, o que introduz latência e reduz o número de operações por segundo. Um \\textit{_overhead}_ menor indica um acesso a disco mais rápido e eficiente para as VMs. O \\textit{VMware ESXi} se destacou com o menor  
+\\textit{_overhead_} (2,8%), indicando otimizações avançadas em seu subsistema de armazenamento.
+
+\\textit{**Network Overhead}:** mede a queda na taxa de transferência e latência da rede, causada pela camada de virtualização de rede do hipervisor. O processamento de pacotes por essa camada virtual adiciona um pequeno atraso em comparação com uma conexão direta ao _hardware_. Um valor menor indica uma comunicação de rede mais próxima da velocidade nativa. O \\textit{VMware ESXi} apresentou a menor sobrecarga (2,5%), seguido do KVM (3,5%).
+
+**Desempenho Geral:** pontuação que representa a média ponderada do desempenho do hipervisor em todos os testes realizados (CPU, memória, E/S e rede). Este índice oferece uma visão simplificada para uma comparação direta, onde uma pontuação mais alta significa um melhor equilíbrio de desempenho e eficiência em diversas cargas de trabalho. Nesse escore, o VMware ESXi foi classificado com o melhor desempenho geral, seguido pelo KVM.
+
+Tabela 3 – Comparativo de Desempenho entre Hipervisores
+
+**% No preâmbulo (se ainda não tiver):**
+
+**% \\usepackage{tabularx}**
+
+**% \\usepackage{array}**
+
+**% \\usepackage{ragged2e}**
+
+**\\begin{table}\[h!\]**
+
+**\\centering**
+
+**\\renewcommand{\\arraystretch}{1.3} % espaçamento nas linhas**
+
+**\\begin{tabularx}{\\textwidth}{|**
+
+**\>{\\raggedright\\arraybackslash}p{4cm}|**
+
+**\>{\\centering\\arraybackslash}p{2.5cm}|**
+
+**\>{\\centering\\arraybackslash}p{2.5cm}|**
+
+**\>{\\centering\\arraybackslash}p{2.5cm}|**
+
+**\>{\\centering\\arraybackslash}p{2.5cm}|}**
+
+**\\hline**
+
+**\\textbf{Métrica} & \\textbf{KVM} & \\textbf{VMware ESXi} & \\textbf{Xen} & \\textbf{Hyper-V} \\\\ \\hline**
+
+**CPU Overhead (\\%) & 4.0 & 2.5 & 6.5 & 9.5 \\\\ \\hline**
+
+**Memory Overhead (\\%) & 3.0 & 2.9 & 6.8 & – \\\\ \\hline**
+
+**Disk I/O Overhead (\\%) & 4.2 & 2.8 & 7.1 & 9.5 \\\\ \\hline**
+
+**Network Overhead (\\%) & 3.5 & 2.5 & 6.2 & 9.0 \\\\ \\hline**
+
+**Desempenho Geral (Score) & 9.2/10 & 9.6/10 & 8.4/10 & 7.9/10 \\\\ \\hline**
+
+**\\end{tabularx}**
+
+**\\caption{Comparação de overhead e desempenho entre hipervisores.}**
+
+**\\label{tab:overhead}**
+
+**\\end{table}**
+
+_Fonte: Adaptado de Chawla et al. (2025)._
+
+A Tabela 2.5.2 resume as principais características, vantagens e desvantagens de cada solução, com foco em sua aplicabilidade em ambientes de nuvem.
+
+Tabela 2.5.2 – Análise Qualitativa de Hipervisores
+
+_\\begin{table}\[h!\]_
+
+_\\centering_
+
+_\\renewcommand{\\arraystretch}{1.3} % mais espaço nas linhas_
+
+_\\begin{tabularx}{\\textwidth}{|>{\\raggedright\\arraybackslash}p{3cm}|X|X|X|}_
+
+_\\hline_
+
+_\\textbf{Característica} & \\textbf{KVM} & \\textbf{VMware ESXi} & \\textbf{Xen} \\\\ \\hline_
+
+_\\textbf{Tipo} &_
+
+_Tipo 2, mas com comportamento de Tipo 1 &_
+
+_Tipo 1 &_
+
+_Tipo 1 \\\\ \\hline_
+
+_\\textbf{Licença} &_
+
+_Código Aberto &_
+
+_Proprietário &_
+
+_Código Aberto \\\\ \\hline_
+
+_\\textbf{Vantagens} &_
+
+_\\begin{itemize}_
+
+_\\item Desempenho próximo ao nativo._
+
+_\\item Custo zero de licenciamento._
+
+_\\item Amplo suporte da comunidade \\textit{open-source}._
+
+_\\end{itemize} &_
+
+_\\begin{itemize}_
+
+_\\item Desempenho de E/S superior._
+
+_\\item Ecossistema de gerenciamento maduro._
+
+_\\item Segurança robusta._
+
+_\\end{itemize} &_
+
+_\\begin{itemize}_
+
+_\\item Arquitetura de segurança superior._
+
+_\\item Bom isolamento entre VMs._
+
+_\\item Ampla adoção em nuvens públicas (AWS)._
+
+_\\end{itemize} \\\\ \\hline_
+
+_\\textbf{Desvantagens} &_
+
+_\\begin{itemize}_
+
+_\\item A segurança depende do \\textit{kernel} Linux._
+
+_\\item Gerenciamento menos centralizado que outras soluções._
+
+_\\end{itemize} &_
+
+_\\begin{itemize}_
+
+_\\item Custo de licenciamento elevado._
+
+_\\end{itemize} &_
+
+_\\begin{itemize}_
+
+_\\item Maior sobrecarga de desempenho em alguns cenários._
+
+_\\item Configuração pode ser mais complexa._
+
+_\\end{itemize} \\\\ \\hline_
+
+_\\end{tabularx}_
+
+_\\caption{Comparação entre hipervisores KVM, VMware ESXi e Xen.}_
+
+_\\label{tab:hipervisores}_
+
+_\\end{table}_
+
+_Fonte: baseado em Chawla et al. (2025), Kominos, Seyvet e Vandikas (2017) e Arora et al. (2014)._
+
+#### 2.2.4 KVM como Solução de Hipervisor
+
+O \\textit{_Kernel-based Virtual Machine}_ (KVM) é a solução de virtualização que integra um hipervisor diretamente ao \\textit{kernel} do \\textit{Linux} (CARISSIMI, 2008). Embora seja classificado como um hipervisor Tipo 2, pois opera sobre um sistema operacional, sua integração com o \\textit{kernel} lhe confere características de desempenho e eficiência que se aproximam de soluções Tipo 1 (CHAWLA et al., 2025; KOMINOS et al., 2017). No KVM, cada máquina virtual (VM) é gerenciada como um processo regular do \\textit{Linux}, agendado pelo escalonador padrão do sistema, o que otimiza a gestão de recursos e a alocação de memória (ANAND; LAKSHMI; NANDY, 2013).
+
+Para minimizar a sobrecarga da tradução binária, o KVM explora as extensões de virtualização de hardware presentes nos processadores modernos, como Intel VT-x e AMD-V, (CHAWLA et al., 2025; CARISSIMI, 2008). Essa abordagem permite que o código do sistema operacional seja executado diretamente no processador, resultando em um desempenho muito próximo ao de uma máquina \\textit{_bare-metal}_ (KOMINOS et al., 2017). Estudos comparativos indicam uma sobrecarga do processador de apenas 4,0% para o KVM, valor competitivo frente a outras soluções (CHAWLA et al., 2025). Além disso, em virtude de se integrar com o \\textit{kernel} \\textit{Linux}, o KVM se favorece das otimizações e avanços do próprio \\textit{kernel}, como gerenciamento de memória, escalonamento de processos e suporte a hardware (ANAND et al., 2013; ARORA et al., 2014).
+
+Apesar de suas vantagens, a segurança do KVM é intrinsecamente ligada ao kernel Linux, e dessa forma, vulnerabilidades no kernel podem expor o hipervisor a ataques como \\textit{_VM escape}_ ou \\textit{_hyperjacking}_ (CHAWLA et al., 2025). Soluções como o \\textit{VMware ESXi} e o Xen possuírem um \\textit{microkernel} próprio, e consequentemente, apresentam uma superfície de ataque menor. Em função disso, são frequentemente consideradas mais resilientes em ambientes corporativos que exigem conformidade com padrões de segurança rigorosos (CHAWLA et al., 2025).
+
+## 2.3. OpenStack
+
+#### 2.3.1 Definição e Características
+
+O \\textit{OpenStack} é uma plataforma de _software_ de código aberto (\\textit{_open-source})_ utilizada para criar e gerenciar nuvens no modelo \\textit{IaaS}. Sua história começou em 2010 como um projeto conjunto entre a \\textit{Rackspace Inc.} e a Administração Nacional da Aeronáutica e Espaço dos Estados Unidos \\textit{NASA}. A NASA, buscando uma plataforma de nuvem robusta para suas vastas necessidades computacionais e de dados, desenvolveu a plataforma de computação "Nebula". Em paralelo, a Rackspace desenvolveu uma solução de armazenamento de objetos altamente escalável. As duas organizações combinaram suas tecnologias e lançaram o código-fonte como OpenStack sob uma licença \\textit{Apache 2.0}, permitindo que qualquer pessoa o utilizasse, modificasse e distribuísse livremente (NASA, 2012), estimulando assim a criação de uma comunidade global de desenvolvedores.
+
+A fama do OpenStack deve-se principalmente à sua natureza aberta, flexibilidade e eficiência de custos. Por ser de código aberto, ele permite que empresas evitem altos custos de licenças proprietárias e dependência tecnológica. Sua arquitetura modular permite que os usuários implantem apenas os componentes desejados, como computação ( \\textit{Nova}), armazenamento ( \\textit{Swift}), rede ( \\textit{Neutron}) e personalizem a infraestrutura para atender a requisitos específicos (GRZONKA, 2015). Essa adaptabilidade, combinada com a capacidade de escalar massivamente e o forte apoio de uma comunidade global e de grandes empresas, tornou o OpenStack a plataforma de escolha para uma vasta gama de organizações, desde data centers e provedores de telecomunicações até instituições de pesquisa como a Organização Europeia para a Investigação Nuclear (CERN) (ROUSSEAU et al., 2019).
+
+#### 2.3.2 Módulos para configurações básicos do OpenStack
+
+Por ser um conjunto de projetos de código aberto, o OpenStack oferece uma variedade de módulos que podem ser incluídos no projeto conforme a necessidade. Porém, alguns módulos básicos costumam aparecer na maior parte das soluções:
+
+#### Keystone: Serviço de Identidade
+
+O \\textit{Keystone} é o serviço de identidade do OpenStack, responsável por fornecer autenticação de clientes da API, descoberta de serviços e autorização distribuída multi-inquilino. Ele implementa a API de Identidade do OpenStack (OPENSTACK, 2025).
+
+Funcionalidades Principais:
+
+- Autenticação: Gerencia a autenticação de usuários e serviços, permitindo o acesso aos recursos do OpenStack. Suporta diversos métodos de autenticação (OPENSTACK, 2025).
+- Autorização: Controla o acesso aos serviços e recursos do OpenStack, definindo permissões para usuários e grupos (OPENSTACK, 2025).
+- Catálogo de Serviços: Fornece um catálogo de todos os serviços do OpenStack disponíveis e seus respectivos endpoints (pontos de acesso), facilitando a descoberta de serviços pelos clientes (OPENSTACK, 2025).
+- Gerenciamento de Usuários e Grupos (User and Group Management): Permite a criação e gerenciamento de usuários, grupos e projetos (tenants) dentro do ambiente OpenStack (OPENSTACK, 2025).
+
+### **Nova: Serviço de Computação**
+
+O \\textit{Nova} é o módulo do OpenStack que provisiona instâncias de servidores virtuais. Ele suporta a criação de VMs e possui suporte para contêineres de sistema. O Nova opera como um conjunto de \\textit{daemons} em servidores Linux existentes para fornecer esse serviço (OPENSTACK, 2025).
+
+Funcionalidades Principais:
+
+- Gerenciamento de Instâncias: Permite a criação, inicialização, parada, reinicialização e exclusão de instâncias de computação.
+- Agendamento de Recursos: O agendador do Nova determina em qual host de computação uma nova instância deve ser provisionada, com base em critérios como recursos disponíveis e políticas de afinidade.
+- Gerenciamento de Ciclo de Vida: Gerencia o ciclo de vida completo das instâncias, desde o provisionamento até a terminação.
+- Integração com Hipervisores: Suporta diversos hipervisores, incluindo KVM, Xen, VMware ESXi e Hyper-V, permitindo a execução de VMs em diferentes tecnologias de virtualização.
+
+### **Neutron: Serviço de Rede**
+
+O \\textit{Neutron} é o módulo do OpenStack que fornece conectividade de rede entre dispositivos gerenciados pelo OpenStack, implementando uma API de Rede (OPENSTACK, 2025).
+
+Funcionalidades Principais:
+
+- Gerenciamento de Redes (Network Management): Permite a criação e gerenciamento de redes virtuais, sub-redes e portas para as instâncias do OpenStack (OPENSTACK, 2025).
+- Roteamento (Routing): Oferece capacidades de roteamento entre redes virtuais e para redes externas (OPENSTACK, 2025).
+- Firewall como Serviço (Firewall as a Service - FWaaS): Permite a configuração de regras de firewall para proteger as instâncias e redes virtuais (OPENSTACK, 2025).
+- Balanceamento de Carga como Serviço (Load Balancing as a Service - LBaaS): Distribui o tráfego de rede entre múltiplas instâncias para melhorar a disponibilidade e o desempenho (OPENSTACK, 2025).
+- Rede Definida por Software (Software-Defined Networking - SDN): Integra-se com diversas tecnologias SDN para fornecer uma infraestrutura de rede flexível e programáve (OPENSTACK, 2025)l.
+
+### **Horizon: Dashboard**
+
+O \\textit{**Horizon}** é a interface gráfica (\\textit{dashboard}) do OpenStack, que fornece uma visão unificada e uma ferramenta de gerenciamento para todos os serviços da plataforma (OPENSTACK, 2025). Através do Horizon, administradores podem monitorar recursos, criar e gerenciar instâncias, configurar redes, gerenciar volumes de armazenamento e realizar diversas tarefas operacionais de forma intuitiva, facilitando a administração da nuvem.
+
+Funcionalidades Principais:
+
+- Interface Gráfica: Proporciona uma interface intuitiva para que usuários e administradores possam interagir com os serviços do OpenStack sem a necessidade de usar a linha de comando (OPENSTACK, 2025).
+- Gerenciamento de Recursos: Permite gerenciar instâncias, redes, volumes de armazenamento, imagens e usuários de forma visual (OPENSTACK, 2025).
+- Monitoramento: Oferece visibilidade sobre o status e o desempenho dos recursos da nuvem (OPENSTACK, 2025).
+- Extensibilidade: É uma estrutura extensível, permitindo que desenvolvedores criem novos painéis e funcionalidades para atender a necessidades específicas (OPENSTACK, 2025).
+
+### **Glance: Serviço de Imagem**
+
+O \\textit{**Glance}** atua como um serviço de registro e entrega de imagens de VMs. Ele permite que usuários armazenem e descubram imagens de disco de VM, que podem ser usadas como modelos para lançar novas instâncias (OPENSTACK, 2024).
+
+Funcionalidades Principais:
+
+Registro e Entrega de Imagens: Permite o upload, registro e descoberta de imagens de VMs (OPENSTACK, 2024).
+
+Armazenamento de Imagens: Armazena as imagens de VMs como sistemas de arquivos (OPENSTACK, 2024).
+
+Metadados de Imagens: Gerencia metadados associados às imagens, facilitando a busca e categorização (OPENSTACK, 2024).
+
+•API RESTful: Oferece uma API RESTful para consulta de metadados de imagens e recuperação das imagens reais (OPENSTACK, 2024).
+
+### **Cinder: Serviço de Armazenamento em Bloco**
+
+O \\textit{**Cinder}** fornece armazenamento em bloco persistente para as instâncias OpenStack. Este módulo é crucial para garantir que todas as alterações feitas pelos usuários em suas máquinas virtuais sejam salvas. Cada máquina virtual de usuário teria um volume de boot do Cinder, garantindo que o sistema operacional e os dados do usuário permaneçam intactos mesmo após a VM ser desligada e reiniciada, atendendo ao requisito de ambiente persistente (OPENSTACK, 2021).
+
+Funcionalidades Principais:
+
+- Criação e Gerenciamento de Volumes: Permite criar, anexar, desanexar e excluir volumes de armazenamento para as instâncias (OPENSTACK, 2021).
+- Snapshots e Backups: Oferece a capacidade de criar \\textit{snapshots} de volumes para recuperação de dados e \\textit{backups} (OPENSTACK, 2021).
+- Tipos de Volume: Suporta diferentes tipos de volumes com características de desempenho e redundância variadas, permitindo que os usuários escolham o tipo de armazenamento mais adequado às suas necessidades (OPENSTACK, 2021).
+- Integração com soluções de terceiros: Pode se integrar com uma ampla gama de soluções de armazenamento de terceiros (OPENSTACK, 2021).
+
+### **Swift: Serviço de Armazenamento de Objetos**
+
+O \\textit{Swift} é um módulo para armazenamento de objetos altamente disponíveis. Organizações podem usar o Swift para armazenar grandes quantidades de dados de forma eficiente, segura e econômica (OPENSTACK, 2023).
+
+Funcionalidades Principais:
+
+- Armazenamento de Objetos: Permite armazenar e recuperar objetos de dados de forma escalável e durável, sem a estrutura hierárquica de um sistema de arquivos tradicional (OPENSTACK, 2023).
+- Alta Disponibilidade e Durabilidade: Garante a disponibilidade e a integridade dos dados através da replicação e distribuição de objetos em múltiplos nós de armazenamento (OPENSTACK, 2023).
+- Escalabilidade: Projetado para escalar horizontalmente, permitindo adicionar mais capacidade de armazenamento conforme a necessidade (OPENSTACK, 2023).
+- API RESTful: Oferece uma API RESTful simples para interagir com o serviço de armazenamento de objetos (OPENSTACK, 2023).

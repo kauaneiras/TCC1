@@ -1,5 +1,104 @@
 \chapter{Solução Proposta}
 
+Este capítulo descreve detalhadamente a solução proposta para otimizar o uso de recursos computacionais no \textit{Lab Telecom} (Laboratório Compartilhado de Ensino e Pesquisa em Telecomunicações) da Universidade de Brasília (UnB). A abordagem central envolve a implementação de uma nuvem privada baseada no OpenStack, utilizando servidores legados subutilizados e aplicando técnicas de provisionamento dinâmico de recursos para a entrega de um serviço IaaS (\textit{Infrastructure as a Service}). Serão apresentados o contexto do laboratório, os recursos de hardware disponíveis, a arquitetura da nuvem proposta, os detalhes de implementação e configuração, bem como as estratégias para provisionamento dinâmico, gerenciamento de imagens de máquinas virtuais (VMs) e políticas de escalonamento. O objetivo é demonstrar como essa solução pode fornecer ambientes capazes de suprir a falta de múltiplos servidores dedicados para simulações complexas e programas de alto desempenho, como Ansys, Cadence e SolidWorks. A proposta visa fornecer múltiplos ambientes isolados e eficientes para os discentes e pesquisadores do laboratório, aproveitando a infraestrutura existente e garantindo a segurança e a otimização dos recursos.
+
+\section{Contexto do Laboratório e Problemas}
+
+O cenário atual do Lab Telecom apresenta desafios significativos para o desenvolvimento de atividades que demandam alto poder computacional. Com um corpo discente de aproximadamente 30 alunos ativos, e tendo contribuído com a formação de mais de 100 profissionais formados em Engenharia Eletrônica, Aeroespacial, Automotiva, de Energia e de Software, o laboratório dispõe de apenas 3 máquinas dedicadas para a execução de simulações complexas e programas de alto desempenho, como Ansys, Cadence e SolidWorks. Essa limitação de recursos computacionais resulta em longas filas de espera, restrição no acesso simultâneo e, consequentemente, um gargalo no progresso das pesquisas e projetos acadêmicos dos alunos.
+
+Como parte de uma instituição pública, o laboratório enfrenta fluxo de caixa irregular, dependendo de editais de fomento que não garantem um fluxo financeiro constante. Essa realidade inviabiliza a contratação de nuvens públicas como alternativa para a alta demanda computacional. Adicionalmente, a natureza das pesquisas, que frequentemente envolvem o desenvolvimento de tecnologias patenteáveis, impõe uma barreira de segurança: o armazenamento de propriedade intelectual sensível em plataformas de terceiros. Esses obstáculos restringem a capacidade de expansão e a agilidade necessárias para a pesquisa de ponta.
+
+Este cenário inspirou o desenvolvimento deste trabalho, que busca a otimização dos recursos computacionais existentes. O laboratório possui servidores legados que, embora ociosos e antigos, mantêm capacidade computacional relevante. A proposta deste trabalho é a criação de uma nuvem privada utilizando essa infraestrutura subutilizada. Tal iniciativa visa desenvolver um ambiente dinâmico, seguro e escalável, que fornecerá estações de trabalho virtuais e isoladas para cada aluno, garantindo a continuidade das pesquisas do Lab Telecom.
+
+\section{Recursos Disponíveis}
+
+A solução proposta será implementada utilizando a infraestrutura de hardware existente e subutilizada no laboratório da UnB. Os recursos disponíveis consistem em 10 servidores Dell antigos, mas capazes de atender às necessidades de virtualização e computação em nuvem. Os modelos de servidores, listados na Tabela~\ref{tab:servidores}, incluem: PowerEdge~2950, PowerEdge~2900, PowerEdge~1950 e PowerEdge~R900. Embora sejam modelos mais antigos, esses servidores possuem capacidade de processamento e memória RAM que, quando combinadas e virtualizadas, podem oferecer um ambiente robusto para as simulações exigidas.
+
+\begin{table}[htb]
+\centering
+\caption{Modelos de Servidores Disponíveis}
+\label{tab:servidores}
+\begin{tabular}{l l l l}
+\toprule
+Modelo & Processador & Memória RAM & Armazenamento\\ \midrule
+PowerEdge 2950 & Intel Xeon E5-2650 v3 & 24~GB & 4~TB \\
+PowerEdge 2900 & Intel Xeon E5-2650 v3 & 64~GB & 1{,}088~TB \\
+PowerEdge 1950 & Intel Xeon E5-2650 v3 & 64~GB & 256~GB \\
+PowerEdge R900 & Intel Xeon E5-2650 v3 & 64~GB & 256~GB \\
+PowerEdge 2900 & Intel Xeon E5-2650 v3 & 64~GB & 256~GB \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Além dos servidores, o laboratório dispõe de \textbf{QUANTIDADE} switches Cisco \textbf{MODELO} com cabos Gigabit, que serão utilizados para a interconexão da infraestrutura de rede da nuvem privada. Para garantir a integridade e a disponibilidade dos dados, será implementada uma configuração de RAID~6 em todos os servidores, proporcionando alta tolerância a falhas e segurança de dados, caso um disco venha a falhar.
+
+\section{Arquitetura da Nuvem Privada Dinâmica}
+
+A arquitetura da nuvem privada proposta é projetada para maximizar a utilização dos recursos de hardware existentes, ao mesmo tempo em que oferece um ambiente flexível e escalável para os usuários. A estrutura da nuvem será organizada em camadas, garantindo a separação lógica e a modularidade dos componentes.
+
+Na base da arquitetura, encontram-se os \textbf{servidores físicos} Dell, que atuarão como nós de computação e armazenamento. Sobre esses servidores, será implementada a camada de \textbf{virtualização}, utilizando o KVM (\textit{Kernel-based Virtual Machine}) em conjunto com o Ubuntu Server. A escolha do KVM é justificada por ser um sistema de código aberto, evitando gastos com licenças proprietárias e dependência tecnológica de empresas privadas. Além disso, ao compará-lo com o Xen, o KVM mostrou desempenho superior, maior facilidade de uso e de gerenciamento. Sua integração profunda com o kernel Linux torna-o eficiente para ambientes de virtualização de alto desempenho. Como sistema operacional hospedeiro, será utilizado o Ubuntu Server, por ser uma plataforma estável e amplamente suportada para a execução do KVM e dos serviços do OpenStack.
+
+A camada de \textbf{orquestração} será provida pelo OpenStack, que atuará como o sistema operacional da nuvem, gerenciando e coordenando todos os recursos computacionais, de rede e de armazenamento. Os principais componentes do OpenStack que farão parte dessa arquitetura incluem:
+
+\begin{itemize}
+ \item \textbf{Keystone (Serviço de Identidade):} Responsável pela autenticação e autorização de usuários e serviços, garantindo a segurança do acesso à nuvem;
+ \item \textbf{Nova (Serviço de Computação):} Gerenciará o ciclo de vida das máquinas virtuais, incluindo o provisionamento, agendamento e alocação de recursos;
+ \item \textbf{Neutron (Serviço de Rede):} Proverá a conectividade de rede para as VMs, permitindo a criação de redes virtuais isoladas, roteamento e serviços de segurança;
+ \item \textbf{Cinder (Serviço de Armazenamento em Bloco):} Oferecerá volumes de armazenamento persistentes para as VMs, garantindo a integridade e a disponibilidade dos dados;
+ \item \textbf{Glance (Serviço de Imagem):} Gerenciará as imagens de máquinas virtuais, permitindo o armazenamento e a distribuição de imagens base para o rápido provisionamento de novas VMs;
+ \item \textbf{Horizon (Painel de Controle):} Fornecerá uma interface gráfica intuitiva para que os usuários e administradores possam interagir com a nuvem, gerenciar seus recursos e monitorar o ambiente.
+\end{itemize}
+
+Os usuários se conectarão às suas máquinas virtuais por meio de protocolos de acesso remoto, como SSH (\textit{Secure Shell}) para acesso via linha de comando ou RDP (\textit{Remote Desktop Protocol}) para acesso gráfico, garantindo que cada aluno tenha seu ambiente de trabalho isolado e personalizado.
+
+% Figura 5: Diagrama de arquitetura da nuvem privada proposta
+
+\section{Implementação e Configuração}
+
+A implementação da nuvem privada dinâmica seguirá uma abordagem faseada, garantindo a correta instalação e configuração de cada componente. Os passos detalhados para a implantação incluem:
+
+\begin{enumerate}
+ \item \textbf{Preparação dos Servidores Físicos:} Instalação do Ubuntu Server e configuração de RAID~6 em cada servidor Dell (PowerEdge~2950, 2900, 1950, R900), garantindo redundância e integridade dos dados.
+ \item \textbf{Instalação e Configuração do KVM:} Instalação do hipervisor KVM e otimização de parâmetros para cargas de trabalho intensivas.
+ \item \textbf{Implantação do OpenStack:} Instalação distribuída dos serviços (Keystone, Glance, Nova, Neutron, Cinder, Horizon), com nó de controle dedicado e nós de computação/armazenamento distribuídos.
+ \item \textbf{Configuração de Rede e Armazenamento:} Criação de redes virtuais no Neutron e integração do Cinder com o armazenamento físico configurado em RAID~6.
+\end{enumerate}
+
+% Figura 6: Screenshots do Horizon/Neutron
+
+\section{Provisionamento Dinâmico de Recursos}
+
+O provisionamento dinâmico de recursos visa otimizar a utilização da memória RAM e do processamento (CPU) nos servidores físicos, garantindo que os recursos sejam alocados e redistribuídos de forma eficiente conforme a demanda dos usuários.
+
+\subsection{Gerenciamento de Imagens de VMs}
+
+\begin{enumerate}
+ \item \textbf{Discos Diferenciais:} Ao provisionar uma nova VM a partir de uma imagem base, um disco diferencial (\textit{overlay} ou \textit{copy-on-write}) será criado. Este disco armazenará apenas as alterações feitas pelo usuário na VM, enquanto a imagem base permanece inalterada.
+ \item \textbf{Volumes Cinder Anexados:} Para dados críticos que exigem maior persistência, os usuários poderão anexar volumes de armazenamento persistentes providos pelo serviço Cinder, independentes do ciclo de vida da VM.
+\end{enumerate}
+
+O gerenciamento centralizado de imagens permitirá que os administradores criem e atualizem imagens base, garantindo que todos os usuários tenham acesso às versões mais recentes dos softwares e configurações.
+
+% Figura 9: Diagrama do ciclo de vida de uma imagem de VM
+
+\section{Políticas de Escalonamento}
+
+Para garantir que a nuvem privada se adapte dinamicamente às flutuações de demanda, serão implementadas políticas de escalonamento automático (\textit{autoscaling}). As políticas serão baseadas em métricas de desempenho, como uso de CPU e memória RAM.
+
+\begin{itemize}
+ \item \textbf{Escalonamento Vertical:} Aumento ou diminuição de CPU/RAM alocados a uma VM existente.
+ \item \textbf{Escalonamento Horizontal:} Inicialização de novas VMs a partir de imagens pré-configuradas ou parada de VMs ociosas.
+\end{itemize}
+
+A automatização do gerenciamento de recursos garantirá eficiência operacional e disponibilidade, otimizando o uso dos servidores antigos.
+
+% Figura 10: Exemplo de política de escalonamento baseada em uso de CPU
+
+\section{Escalabilidade e Automatização de Configurações}
+
+Recursos como \textit{Ansible} e \textit{Terraform} podem ser empregados para automatizar a configuração e facilitar a adição de novos servidores à nuvem privada.
+
+
 Este capítulo descreve detalhadamente a solução proposta, apresentando a arquitetura da nuvem privada dinâmica, os componentes envolvidos, os fluxos de provisionamento automático de VMs e as políticas de escalonamento adotadas.
 
 \section{Arquitetura da Nuvem Privada Dinâmica}

@@ -106,6 +106,22 @@ A virtualização é uma técnica de grande importância na computação moderna
 
 A virtualização é fundamental na computação moderna por abstrair o hardware de servidores físicos e agrupar logicamente seus recursos em \textit{pools}. Esse agrupamento permite a criação de máquinas virtuais (VMs) isoladas em um único host físico (\cite{carissimi2008}; \cite{kominos2017}). Cada VM opera como um sistema autônomo, com sistema operacional, aplicações e serviços de rede próprios, como se fosse um hardware independente (\cite{carissimi2008}; \cite{smith2005}). Esse particionamento lógico dos recursos viabiliza os pilares da computação em nuvem — elasticidade, multilocação e eficiência de custos (\cite{chawla2025}).
 
+% Classificação dos Hipervisores
+O componente de software responsável por criar e gerenciar as máquinas virtuais é denominado hipervisor, ou Monitor de Máquina Virtual (VMM — \textit{Virtual Machine Monitor}) (\cite{chawla2025}; \cite{carissimi2008}). O hipervisor é a camada de software que fica entre o hardware e os sistemas operacionais e é responsável por orquestrar o acesso aos recursos físicos e manter o isolamento entre as diferentes VMs (\cite{chawla2025}). Os hipervisores são classificados em dois tipos principais, conforme ilustrado na Figura~\ref{fig:arquitetura-hipervisores}.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figuras/Figura 2 - Arquitetura de Hipervisores.png}
+    \caption{Arquiteturas de hipervisores do Tipo 1 (bare-metal) e Tipo 2 (hosted).}
+        \fonte{Adaptado de Chawla et al. (2025).}
+    \label{fig:arquitetura-hipervisores}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Tipo 1 (Bare-metal)}: Executa diretamente sobre o hardware do servidor, atuando como um sistema operacional leve e especializado para executar VMs (\cite{chawla2025}). Exemplos notáveis incluem \textit{Xen}, \textit{VMware ESXi} e \textit{Microsoft Hyper-V} (\cite{chawla2025}; \cite{carissimi2008}). Por ter acesso direto ao hardware, esta arquitetura geralmente oferece maior desempenho e segurança.
+    \item \textbf{Tipo 2 (Hosted)}: Opera como uma aplicação de software sobre um sistema operacional convencional (hospedeiro), que gerencia o hardware (\cite{chawla2025}). Exemplos incluem \textit{KVM}, \textit{Oracle VirtualBox} e \textit{VMware Player} (\cite{chawla2025}; \cite{carissimi2008}). Esta abordagem é mais simples de instalar e gerenciar, mas pode introduzir uma sobrecarga de desempenho devido à camada extra do sistema operacional hospedeiro.
+\end{itemize}
+
 \subsection{Tipos de Virtualização}
 A implementação de máquinas virtuais de sistema pode ser realizada através de duas técnicas principais: a virtualização total e a paravirtualização (\cite{carissimi2008}).
 {{ ... }}
@@ -116,9 +132,6 @@ A implementação de máquinas virtuais de sistema pode ser realizada através d
 O \textit{Kernel-based Virtual Machine} (KVM) é a solução de virtualização que integra um hipervisor diretamente ao \textit{kernel} do \textit{Linux} (\cite{carissimi2008}). Embora seja classificado como um hipervisor Tipo 2, pois opera sobre um sistema operacional, sua integração com o \textit{kernel} lhe confere características de desempenho e eficiência que se aproximam de soluções Tipo 1 (\cite{chawla2025}; \cite{kominos2017}). No KVM, cada máquina virtual (VM) é gerenciada como um processo regular do \textit{Linux}, agendado pelo escalonador padrão do sistema, o que otimiza a gestão de recursos e a alocação de memória (\cite{anand2013}).
 Para minimizar a sobrecarga da tradução binária, o KVM explora as extensões de virtualização de hardware presentes nos processadores modernos, como Intel VT-x e AMD-V, (\cite{chawla2025}; \cite{carissimi2008}). Essa abordagem permite que o código do sistema operacional seja executado diretamente no processador, resultando em um desempenho muito próximo ao de uma máquina \textit{bare-metal} (\cite{kominos2017}). Estudos comparativos indicam uma sobrecarga do processador de apenas 4,0\% para o KVM, valor competitivo frente a outras soluções (\cite{chawla2025}). Além disso, em virtude de se integrar com o \textit{kernel} \textit{Linux}, o KVM se favorece das otimizações e avanços do próprio \textit{kernel}, como gerenciamento de memória, escalonamento de processos e suporte a hardware (\cite{anand2013}; \cite{arora2014}).
 Apesar de suas vantagens, a segurança do KVM é intrinsecamente ligada ao kernel Linux, e dessa forma, vulnerabilidades no kernel podem expor o hipervisor a ataques como \textit{VM escape} ou \textit{hyperjacking} (\cite{chawla2025}). Soluções como o \textit{VMware ESXi} e o Xen possuírem um \textit{microkernel} próprio, e consequentemente, apresentam uma superfície de ataque menor. Em função disso, são frequentemente consideradas mais resilientes em ambientes corporativos que exigem conformidade com padrões de segurança rigorosos (\cite{chawla2025}).
-
-
-
 Em contrapartida, a superfície de ataque do KVM está diretamente relacionada ao tamanho e à segurança do \textit{kernel} \textit{Linux}. Vulnerabilidades no \textit{kernel} podem levar a ataques como \textit{VM escape} ou \textit{hyperjacking}. Hipervisores com \textit{microkernel} próprio, como o \textit{VMware ESXi} e o Xen, apresentam uma base de código menor e, consequentemente, área de ataque reduzida, sendo preferidos em ambientes que demandam requisitos de segurança mais rigorosos (\cite{chawla2025}).
 {{ ... }}
 \section{Máquinas Virtuais \& Imagens}
