@@ -9,7 +9,7 @@ Este capítulo reúne a fundamentação teórica necessária, cobrindo conceitos
 
 \subsection{Definição e Paradigma}
 
-A computação em nuvem (\textit{cloud computing}) é definida na publicação especial\,800--145 do \textit{National Institute of Standards and Technology} (NIST) como um modelo que viabiliza o acesso, pela rede e sob demanda, a um conjunto compartilhado de recursos computacionais configuráveis — redes, servidores, armazenamento, aplicações e serviços. Esses recursos podem ser rapidamente provisionados ou liberados com mínimo esforço de gestão ou interação com o provedor de serviços \cite{mell2011}. Da definição derivam cinco características essenciais:
+A computação em nuvem (\textit{cloud computing}) é definida na publicação especial 800-145 pelo \textit{National Institute of Standards and Technology}(NIST), como um modelo que permite acesso a um conjunto compartilhado de recursos computacionais configuráveis, como redes, servidores, armazenamento, aplicações e serviços,  sob demanda e via rede. Esses recursos podem ser rapidamente provisionados e liberados com mínimo esforço de gerenciamento ou interação com o provedor de serviços \cite{mell2011}. Essa definição enfatiza características essenciais da computação em nuvem, dentre as quais destacam-se:
 
 \begin{itemize}
     \item \textbf{Autoatendimento sob demanda (\textit{On-demand self-service})}: o próprio usuário pode provisionar recursos, como tempo de CPU ou armazenamento, sempre que necessário, sem intervenção humana junto ao provedor \cite{mell2011};
@@ -29,14 +29,6 @@ Com base nessas características, o NIST classifica os serviços em três modelo
     \item[Infraestrutura como Serviço (IaaS)] disponibiliza recursos fundamentais — processamento, armazenamento e rede — permitindo ao usuário instalar sistemas operacionais e aplicações com controle limitado de rede \cite{mell2011}.
 \end{description}
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figuras/Figura 1 - Comparação entre os modelos de serviço.png}
-    \caption{Comparação entre os modelos de serviço \textit{IaaS}, \textit{PaaS} e \textit{SaaS}. Adaptado de \cite{rizvi2024}}
-    \label{fig:comparacao-modelos-servico}
-\end{figure}
-
-A Figura~\ref{fig:comparacao-modelos-servico} sintetiza os níveis de responsabilidade de usuário e provedor em cada modelo. Em SaaS, todo o ciclo da aplicação é responsabilidade do provedor, o que explica sua adoção massiva em redes sociais (\textit{Instagram}, \textit{TikTok}, \textit{WhatsApp}) e serviços de \textit{streaming} (\textit{YouTube}, \textit{Netflix}, \textit{Spotify}) \cite{rizvi2024}. Já o PaaS entrega um ambiente gerenciado de desenvolvimento e implantação, utilizado por soluções como \textit{Microsoft Azure}, \textit{Google App Engine} e \textit{Heroku} \cite{rizvi2024}. No modelo IaaS, o consumidor gerencia sistemas operacionais e middleware sobre recursos virtuais — exemplificados por \textit{AWS EC2/S3}, \textit{Azure Virtual Machines} e \textit{Google Compute Engine} \cite{rizvi2024}.
 
 
 A computação em nuvem (\textit{cloud computing}) é definida pelo \textit{National Institute of Standards and Technology}(NIST), como um modelo que permite acesso a um conjunto compartilhado de recursos computacionais configuráveis, como redes, servidores, armazenamento, aplicações e serviços,  sob demanda e via rede. Esses recursos podem ser rapidamente provisionados e liberados com mínimo esforço de gerenciamento ou interação com o provedor de serviços \cite{mell2011}. Essa definição enfatiza características essenciais da computação em nuvem, dentre as quais destacam-se: 
@@ -49,22 +41,52 @@ A computação em nuvem (\textit{cloud computing}) é definida pelo \textit{Nati
 
 Além dessas características essenciais, os serviços oferecidos por provedores de nuvem são classificados em modelos de serviço:
 
-\textbf{Software como Serviço (\textit{SaaS})}: é um modelo de distribuição de software onde o software é hospedado na nuvem e disponibilizado aos usuários através da internet. Essa infraestrutura de nuvem é formada por uma camada física, composta por servidores, armazenamento e componentes de rede, e uma camada de abstração, que seria um software implantado sobre essa infraestrutura física \cite{mell2011}. 
-
 \textbf{Plataforma como Serviço (\textit{PaaS})}: é um modelo que fornece ao consumidor a possibilidade de implantar, sobre a infraestrutura de nuvem, aplicações criadas ou adquiridas usando linguagens de programação, bibliotecas, serviços e ferramentas compatíveis com o ambiente oferecido pelo provedor. O consumidor não gerencia nem controla a infraestrutura subjacente da nuvem, como redes, servidores, sistemas operacionais ou armazenamento, mas possui controle sobre as aplicações implantadas e, possivelmente, sobre as configurações do ambiente onde essas aplicações serão hospedadas \cite{mell2011}.
 
 \textbf{Infraestrutura como Serviço (\textit{IaaS})}: é um modelo que fornece ao consumidor a capacidade de provisionar recursos computacionais, como processamento, armazenamento, redes e outros, permitindo que ele implante e execute softwares, incluindo sistemas operacionais e aplicações. O consumidor também não gerencia nem controla a infraestrutura física da nuvem, mas tem controle sobre os sistemas operacionais, o armazenamento, as aplicações implantadas e, em alguns casos, controle limitado de componentes específicos de rede, como firewalls do host \cite{mell2011}.
 
+
+
+
+
+
+
+
+ 
+
+
+
+Além dessas características essenciais, os serviços oferecidos por provedores de nuvem são classificados em modelos de serviço:
+
+ 
+
+
+
+
+
 \begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figuras/Figura 1 - Comparação entre os modelos de serviço.png}
-    \caption{Comparação entre os modelos de serviço \textit{IaaS}, \textit{PaaS} e \textit{SaaS}}
-    \label{fig:comparacao-modelos-servico}
+\centering
+\includegraphics[width=0.8\textwidth]{figuras/Figura 1 - Comparação entre os modelos de serviço.png}
+\caption{Comparação entre os modelos de serviço IaaS, PaaS e SaaS}
+    \fonte{Adaptado de Rizvi et al. (2024).}
+\label{fig:modelos-servico}
 \end{figure}
 
-Para facilitar o entendimento desses serviços, a Figura \ref{fig:comparacao-modelos-servico} compara os modelos entre si e quais partes da nuvem o usuário tem controle em cada um. Os quadrados verdes representam responsabilidades do usuário, enquanto os azuis são responsabilidades do provedor. Em sistemas de \textit{SaaS}, o usuário não tem responsabilidade nenhuma, mas, em compensação, não gerencia nem controla a infraestrutura da nuvem. Grande parte dos serviços oferecidos a usuários da internet utilizam esse modelo. Dentre eles, pode-se listar as redes sociais, como o \textit{Instagram}, \textit{TikTok} e \textit{Whatsapp}, e serviços de transmissão contínua de conteúdo multimídia (\textit{streaming}), como o \textit{Youtube}, \textit{Netflix} e \textit{Spotify}.  No \textit{PaaS}, o usuário tem controle sobre a aplicação, incluindo códigos e bancos de dados. Nesse modelo encontram-se os serviços de desenvolvimento e hospedagem de software, como \textit{AWS Elastic Beanstalk}, \textit{Google App Engine} e \textit{Heroku}. Já no \textit{IaaS}, o usuário pode solicitar uma quantidade de recursos e tem controle sobre o sistema operacional. Nesse modelo estão as máquinas virtuais e serviços de armazenamento, como  \textit{Amazon Web Services (AWS) EC2 e S3},  \textit{Microsoft Azure Virtual Machines} e  \textit{Google Compute Engine}.
+Para facilitar o entendimento dos conceitos da Virtualização Total e Paravirtualização, a Tabela 1 compara os dois tipos. com suas vantagens e desvantagens: de serviço
+ da nuvem. Em sistemas de SaaS, o software é hospedado na nuvem e acessível ao usuário pela internet. O usuário não possui nenhum controle sobre a aplicação, nem sobre a infraestrutura. Grande parte dos serviços oferecidos à usuários da internet utilizam esse modelo \cite{rizvi2024}. Dentre eles, pode-se listar, as redes sociais, como o \textit{Instagram}, \textit{TikTok} e \textit{Whatsapp}, e serviços de transmissão contínua de conteúdo multimídia (\textit{streaming}), como o \textit{Youtube}, \textit{Netflix} e \textit{Spotify}. O modelo PaaS, em contrapartida, fornece um ambiente de desenvolvimento e implantação pré-construído na nuvem, onde o usuário tem controle sobre a aplicação, incluindo códigos e bancos de dados. Nesse modelo encontram-se os serviços de desenvolvimento e hospedagem de software, como \textit{Microsoft Azure}, \textit{Google App Engine} e \textit{Heroku} \cite{rizvi2024}. Já no IaaS, o usuário pode solicitar uma quantidade de recursos, e tem controle sobre o sistema operacional. Nesse modelo estão as máquinas virtuais e serviços de armazenamento, como  \textit{Amazon Web Services (AWS) EC2 e S3},  \textit{Microsoft Azure Virtual Machines} e  \textit{Google Compute Engine}  \cite{rizvi2024}.
 
 \subsection{Modelos de Implantação}
+
+A implantação de sistemas de computação em nuvem pode ser realizada por meio de diferentes modelos. Cada modelo possui características peculiares que determinam sua adequação a contextos específicos. Os modelos mais conhecidos são a nuvem pública, privada, comunitária e híbrida, os quais se diferenciam pelo nível de controle, segurança, escalabilidade e custo de implantação \cite{mell2011}.
+
+\begin{itemize}
+\item \textbf{Nuvem Pública (\textit{Public cloud})}: As nuvem pública são gerenciadas por provedores terceirizados que disponibilizam recursos computacionais por meio da internet \cite{carroll2011}. Esses provedores costumam oferecer capacidades elevadas de escalabilidade e custos iniciais mais acessíveis, o que os torna atrativos para diferentes perfis de organizações \cite{amajuoyi2024}. Além disso, esse modelo de nuvem pode ser particularmente vantajoso para instituições que não contam com equipes internas especializadas no assunto ou que optam por não direcionar recursos à aquisição e manutenção de infraestrutura física própria. Em função desses benefícios, a adoção da nuvem pública tem apresentado um crescimento contínuo nos últimos anos \cite{amajuoyi2024}. Entretanto, as nuvens privadas podem apresentar desafios relevantes em termos de segurança e controle sobre a infraestrutura física. A nuvem pública é aberta a todos e sem garantia de alto nível de segurança, podendo trazer riscos à confidencialidade dos dados, à proteção de informações estratégicas e à perda ou roubo de dados, sendo uma opção mais adequada para empresas com "baixas preocupações de segurança" \cite{sathya2023}.
+
+\item \textbf{Nuvem Privada (\textit{Private cloud})}: A infraestrutura é fornecida para uso exclusivo de uma única organização. Essa infraestrutura pode ser de propriedade, de terceiros, ou uma combinação de ambos, e pode estar localizada dentro ou fora das instalações da organização \cite{mell2011}. Para organizações que desejam um grau elevado de controle, personalização e alto nível de segurança, as nuvens privadas podem se destacar como uma solução adequada \cite{swapna2023}. Isso possibilita o desenvolvimento de um ambiente seguro e adaptado às exigências particulares de instituições que necessitam resguardar pesquisas sigilosas e proteger a propriedade intelectual. Dessa forma, a nuvem privada se mostra a alternativa ideal para operações que demandam um rigoroso gerenciamento de dados e confidencialidade, assegurando a integridade de informações estratégicas e o cumprimento de normativas internas.
+
+\item \textbf{Nuvem Comunitária (\textit{Community cloud})}. A infraestrutura é fornecida para uso exclusivo de uma comunidade específica de clientes, pertencentes a diferentes organizações que compartilham interesses comuns. A infraestrutura pode ser de propriedade, de terceiros, ou uma combinação desses, e pode estar localizada dentro ou fora das instalações das organizações envolvidas \cite{mell2011}.
+
+\item \textbf{Nuvem Híbrida (\textit{Hybrid cloud})}. Essa infraestrutura é uma composição de duas ou mais infraestruturas distintas (privada, comunitária ou pública)  \cite{mell2011}.
 
 A implantação de sistemas de computação em nuvem pode ser realizada por meio de diferentes modelos, cada qual adequado a cenários específicos. Os modelos mais difundidos são as nuvens pública, privada, comunitária e híbrida, que se diferenciam em nível de controle, segurança, escalabilidade e custo de implantação \cite{mell2011}.
 
@@ -78,181 +100,27 @@ A implantação de sistemas de computação em nuvem pode ser realizada por meio
   \item[\textbf{Nuvem Híbrida} (\textit{Hybrid cloud})] \hfill \\ Combina duas ou mais infraestruturas (pública, privada ou comunitária), permitindo portabilidade de dados e aplicações entre ambientes \cite{mell2011}.
 \end{description}
  
-A implantação de sistemas de computação em nuvem pode ser realizada por meio de diferentes modelos. Cada modelo possui características peculiares que determinam sua adequação a contextos específicos. Os modelos mais conhecidos são a nuvem pública, privada, comunitária e híbrida, os quais se diferenciam pelo nível de controle, segurança, escalabilidade e custo de implantação \cite{mell2011}.
-
-As nuvens públicas são gerenciadas por provedores terceirizados que disponibilizam recursos computacionais por meio da internet \cite{carroll2011}. Esses provedores costumam oferecer capacidades elevadas de escalabilidade e custos iniciais mais acessíveis, o que os torna atrativos para diferentes perfis de organizações \cite{amajuoyi2024}. Além disso, esse modelo de nuvem pode ser particularmente vantajoso para instituições que não contam com equipes internas especializadas no assunto ou que optam por não direcionar recursos à aquisição e manutenção de infraestrutura física própria. Em função desses benefícios, a adoção da nuvem pública tem apresentado um crescimento contínuo nos últimos anos \cite{amajuoyi2024}. Entretanto, as nuvens privadas podem apresentar desafios relevantes em termos de segurança e controle sobre a infraestrutura física. A nuvem pública é aberta a todos e sem garantia de alto nível de segurança, podendo trazer riscos à confidencialidade dos dados, à proteção de informações estratégicas e à perda ou roubo de dados, sendo uma opção mais adequada para empresas com "baixas preocupações de segurança" \cite{sathya2023}.
-
-Para organizações que desejam um grau elevado de controle, personalização e alto nível de segurança, as nuvens privadas podem se destacar como uma solução adequada \cite{swapna2023}, consistindo em uma infraestrutura dedicada a uma única organização \cite{mell2011}. Isso possibilita o desenvolvimento de um ambiente seguro e adaptado às exigências particulares de instituições que necessitam resguardar pesquisas sigilosas e proteger a propriedade intelectual. 
 
 \section{Virtualização e Hipervisores}
+A virtualização é uma técnica de grande importância na computação moderna, uma vez  abstrai o hardware de máquinas físicas, agrupando logicamente os recursos de servidores. Esses agrupamentos lógicos, também conhecido como (\textit{pools}), permite a criação de máquinas virtuais (VMs) isoladas em um único sistema computacional físico (\cite{carissimi2008}; \cite{kominos2017}). Cada VM funciona como um ambiente de execução completo e autônomo, com sistema operacional próprio, aplicações, configurações e  serviços de rede, como se fosse uma máquina física independente (\cite{carissimi2008}; \cite{smith2005}). Esta capacidade de particionamento lógico de recursos de hardware é um dos fundamentos da computação em nuvem, viabilizando a elasticidade, a multilocação e a eficiência de custos (\cite{chawla2025}).
 
-A virtualização é fundamental na computação moderna por abstrair o hardware de servidores físicos e agrupar logicamente seus recursos em \textit{pools}. Esse agrupamento permite a criação de máquinas virtuais (VMs) isoladas em um único host físico \cite{carissimi2008, kominos2017}. Cada VM opera como um sistema autônomo, com sistema operacional, aplicações e serviços de rede próprios, como se fosse um hardware independente \cite{carissimi2008, smith2005}. Esse particionamento lógico dos recursos viabiliza os pilares da computação em nuvem — elasticidade, multilocação e eficiência de custos \cite{chawla2025}.
+A virtualização é fundamental na computação moderna por abstrair o hardware de servidores físicos e agrupar logicamente seus recursos em \textit{pools}. Esse agrupamento permite a criação de máquinas virtuais (VMs) isoladas em um único host físico (\cite{carissimi2008}; \cite{kominos2017}). Cada VM opera como um sistema autônomo, com sistema operacional, aplicações e serviços de rede próprios, como se fosse um hardware independente (\cite{carissimi2008}; \cite{smith2005}). Esse particionamento lógico dos recursos viabiliza os pilares da computação em nuvem — elasticidade, multilocação e eficiência de custos (\cite{chawla2025}).
 
 \subsection{Tipos de Virtualização}
-
-A implementação de VMs de sistema baseia-se, principalmente, em duas técnicas: virtualização total e paravirtualização \cite{carissimi2008}.
-
-\paragraph{Virtualização Total (\textit{Full Virtualization})} Também chamada de \textit{Hardware Virtual Machine} (HVM), cria uma réplica virtual completa do hardware subjacente, permitindo instalar qualquer sistema operacional sem modificar seu kernel \cite{carissimi2008}. O desafio reside na execução de instruções privilegiadas, originalmente tratadas por emulação de software, introduzindo sobrecarga de desempenho. Extensões de processador como \textit{Intel VT-x} e \textit{AMD-V} minimizaram esse custo ao permitir que o SO virtualizado execute instruções privilegiadas diretamente e com segurança, aproximando o desempenho da VM ao do hardware nativo \cite{carissimi2008, chawla2025}.
-
-\paragraph{Paravirtualização (PV)} Nessa técnica, o sistema operacional é adaptado para operar em ambiente virtualizado: o kernel recebe \textit{drivers} específicos que utilizam chamadas diretas ao hipervisor (\textit{hypercalls}) em vez de instruções privilegiadas \cite{carissimi2008}. Ao eliminar a necessidade de interceptação e emulação, a paravirtualização reduz o \textit{overhead} e apresenta desempenho superior quando comparada à virtualização total sem suporte de hardware \cite{carissimi2008}.
-
-% Tabela 1 – Comparativo entre Virtualização Total e Paravirtualização
-\begin{table}[htb]
-    \centering
-    \caption{Comparativo entre Virtualização Total e Paravirtualização}
-    \label{tab:comparativo_virtualizacao}
-    \begin{tabularx}{\textwidth}{ l >{\RaggedRight}X >{\RaggedRight}X }
-        \toprule
-        \textbf{Característica} & \textbf{Virtualização Total} & \textbf{Paravirtualização} \\
-        \midrule
-        Visão do \textit{Guest} & Hardware virtual idêntico ao físico. & API/hardware simplificado, exposto pelo hipervisor. \\
-        \addlinespace
-        Modificação do SO & Não é necessária. & Sim, o \textit{kernel} precisa de drivers e \textit{hypercalls} especiais. \\
-        \addlinespace
-        Instruções Privilegiadas & Interceptadas pelo hipervisor ou tratadas via hardware (\textit{Intel VT-x/AMD-V}). & O \textit{guest} realiza \textit{hypercalls} diretas ao hipervisor. \\
-        \addlinespace
-        Desempenho & Historicamente mais lento, mas hoje quase nativo graças à assistência de hardware. & Menor sobrecarga e desempenho superior, especialmente em I/O. \\
-        \addlinespace
-        Principal Vantagem & Compatibilidade universal com qualquer sistema operacional. & Velocidade e eficiência, sobretudo antes da popularização do \textit{Intel VT-x}. \\
-        \addlinespace
-        Principal Desvantagem & Maior sobrecarga sem assistência de hardware. & Requer suporte e modificação no sistema operacional convidado. \\
-        \bottomrule
-    \end{tabularx}
-    \fonte{Elaborado pelo autor, com base em Carissimi (2008).}
-\end{table}
-
-% 2.2.2 – Definição e tipos de hipervisores
-\subsection{Hipervisores: Definição e Tipos}
-
-O componente de software responsável por criar e gerenciar máquinas virtuais é denominado \textit{hipervisor} ou Monitor de Máquina Virtual (\textit{Virtual Machine Monitor} — VMM) \cite{chawla2025, carissimi2008}. Posicionado entre o hardware e os sistemas operacionais, ele arbitra o acesso aos recursos físicos e preserva o isolamento entre VMs \cite{chawla2025}.
-
-Os hipervisores são tradicionalmente classificados em dois tipos, conforme ilustrado na Figura~\ref{fig:arq-hipervisores}.
-
-\begin{figure}[htb]
-    \centering
-    % Substitua pelo caminho correto da imagem
-    \includegraphics[width=0.8\textwidth]{figuras/hipervisores_tipo1_tipo2.png}
-    \caption{Arquiteturas de hipervisores Tipo 1 e Tipo 2. Adaptado de \cite{chawla2025, kominos2017}}
-    \label{fig:arq-hipervisores}
-\end{figure}
-
-\paragraph{Tipo 1 (\textit{Bare-Metal})} Executa diretamente sobre o hardware do servidor, atuando como um sistema operacional enxuto dedicado à execução de VMs \cite{chawla2025}. São exemplos o \textit{Xen}, \textit{VMware ESXi} e \textit{Microsoft Hyper-V} \cite{chawla2025, carissimi2008}. Acesso direto ao hardware resulta em melhor desempenho e maior segurança.
-
-\paragraph{Tipo 2 (\textit{Hosted})} Opera como aplicação sobre um sistema operacional convencional (hospedeiro) que gerencia o hardware \cite{chawla2025}. Entre os exemplos estão o \textit{KVM}, \textit{Oracle VirtualBox} e \textit{VMware Player} \cite{chawla2025, carissimi2008}. A instalação é mais simples, porém existe sobrecarga adicional devido à camada do SO hospedeiro.
-
-Para destacar suas diferenças, a Tabela~\ref{tab:comparativo_hipervisores} resume as principais características de cada tipo.
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{../figuras/Figura 2 - Arquitetura de Hipervisores.png}
-    \caption{Arquitetura típica de hipervisores Tipo 1 e Tipo 2}
-    \label{fig:arq_hipervisores}
-    \fonte{Imagem adaptada de Chawla et al. (2025) e Kominos, Seyvet e Vandikas (2017).}
-\end{figure}
-
-% Tabela 2 – Comparativo entre Hipervisores Tipo 1 e Tipo 2
-\begin{table}[htb]
-    \centering
-    \caption{Comparativo entre Hipervisores Tipo 1 e Tipo 2}
-    \label{tab:comparativo_hipervisores}
-    \begin{tabularx}{\textwidth}{ >{\bfseries}l >{\RaggedRight}X >{\RaggedRight}X }
-        \toprule
-        & \textbf{Hipervisor Tipo 1 (Bare-Metal)} & \textbf{Hipervisor Tipo 2 (Hosted)} \\
-        \midrule
-        Posicionamento Arquitetural & Executa diretamente sobre o hardware físico. & Executa como uma aplicação sobre um Sistema Operacional hospedeiro. \\
-        \addlinespace
-        Desempenho & Maior, com menor sobrecarga de virtualização. & Menor, pois há uma camada extra (SO hospedeiro) que pode gerar \textit{overhead}. \\
-        \addlinespace
-        Segurança & Maior — superfície de ataque reduzida. & Menor — depende da segurança do SO hospedeiro. \\
-        \addlinespace
-        Complexidade de Gerência & Requer conhecimentos especializados. & Geralmente mais simples de configurar. \\
-        \addlinespace
-        Casos de Uso Típicos & Data centers, nuvens públicas/privadas. & Estações de trabalho, ambientes de teste/desenvolvimento. \\
-        \bottomrule
-    \end{tabularx}
-    \fonte{Elaborado pelo autor com base em Chawla et al. (2025) e Carissimi (2008).}
-\end{table}
-
-
-% 2.2.3 – Análise Comparativa de Hipervisores
-\subsection{Análise Comparativa de Hipervisores}
-
-A seleção de um hipervisor impacta diretamente o desempenho, a segurança e a escalabilidade de uma infraestrutura de nuvem. A Tabela~\ref{tab:analise-hipervisores} apresenta a comparação de sobrecarga (\textit{overhead}) em CPU, memória, disco e rede, bem como um índice agregado de desempenho geral, compilada a partir de estudos recentes \cite{chawla2025}.
-
-\begin{table}[htb]
-    \centering
-    \caption{Desempenho comparado de hipervisores}
-    \label{tab:analise-hipervisores}
-    \begin{tabularx}{\textwidth}{ >{\bfseries}l c c c c c }
-        \toprule
-        Hipervisor & CPU (\%) & Memória (\%) & Disco I/O (\%) & Rede (\%) & Índice Geral (0--100) \\
-        \midrule
-        VMware ESXi & 2,0 & 2,9 & 2,8 & 2,5 & 92 \\
-        KVM & 3,5 & 3,0 & 3,8 & 3,5 & 88 \\
-        Xen & 4,2 & 4,1 & 4,5 & 4,0 & 81 \\
-        Microsoft Hyper-V & 5,0 & 4,5 & 5,0 & 4,5 & 78 \\
-        \bottomrule
-    \end{tabularx}
-    \fonte{Elaborado pelo autor com base em Chawla et al. (2025).}
-\end{table}
-
-Observa-se que o \textit{VMware ESXi} apresenta as menores sobrecargas em todas as métricas, refletindo o melhor desempenho global. O KVM surge como alternativa de código aberto competitiva, com eficiência próxima ao ESXi. Já os hipervisores \textit{Xen} e \textit{Hyper-V} exibem sobrecargas superiores, o que pode afetar cargas de trabalho sensíveis a latência e operações de E/S.
-
-% 2.5.2 – Análise Qualitativa de Hipervisores
-
-A Tabela~\ref{tab:hipervisores} resume as principais características, vantagens e desvantagens dos hipervisores analisados, destacando sua aplicabilidade em ambientes de nuvem.
-
-\begin{table}[htb]
-    \centering
-    \renewcommand{\arraystretch}{1.3}
-    \caption{Comparação entre hipervisores KVM, VMware ESXi e Xen}
-    \label{tab:hipervisores}
-    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{3cm}|X|X|X|}
-        \hline
-        \textbf{Característica} & \textbf{KVM} & \textbf{VMware ESXi} & \textbf{Xen} \\ \hline
-        \textbf{Tipo} & Tipo 2, mas com comportamento de Tipo 1 & Tipo 1 & Tipo 1 \\ \hline
-        \textbf{Licença} & Código Aberto & Proprietário & Código Aberto \\ \hline
-        \textbf{Vantagens} &
-        \begin{itemize}
-            \item Desempenho próximo ao nativo.
-            \item Custo zero de licenciamento.
-            \item Amplo suporte da comunidade \textit{open-source}.
-        \end{itemize} &
-        \begin{itemize}
-            \item Desempenho de E/S superior.
-            \item Ecossistema de gerenciamento maduro.
-            \item Segurança robusta.
-        \end{itemize} &
-        \begin{itemize}
-            \item Arquitetura de segurança confiável.
-            \item Bom isolamento entre VMs.
-            \item Ampla adoção em nuvens públicas (AWS).
-        \end{itemize} \\ \hline
-        \textbf{Desvantagens} &
-        \begin{itemize}
-            \item Segurança depende do \textit{kernel} Linux.
-            \item Gerenciamento menos centralizado.
-        \end{itemize} &
-        \begin{itemize}
-            \item Custo de licenciamento elevado.
-        \end{itemize} &
-        \begin{itemize}
-            \item Maior sobrecarga de desempenho em alguns cenários.
-            \item Configuração mais complexa.
-        \end{itemize} \\ \hline
-    \end{tabularx}
-    \fonte{Elaborado pelo autor com base em Chawla et al. (2025), Kominos, Seyvet e Vandikas (2017) e Arora et al. (2014).}
-\end{table}
+A implementação de máquinas virtuais de sistema pode ser realizada através de duas técnicas principais: a virtualização total e a paravirtualização (\cite{carissimi2008}).
+{{ ... }}
 
 % 2.2.4 – KVM como Solução de Hipervisor
 \subsection{KVM como Solução de Hipervisor}
 
-O \textit{Kernel-based Virtual Machine} (KVM) integra um hipervisor diretamente ao \textit{kernel} do \textit{Linux} \cite{carissimi2008}. Embora seja classificado como hipervisor Tipo~2, sua estreita integração com o núcleo do sistema lhe confere desempenho e eficiência próximos aos de hipervisores Tipo~1 \cite{chawla2025, kominos2017}. Cada máquina virtual é executada como um processo convencional, agendado pelo escalonador padrão do \textit{Linux}, otimizando a gestão de CPU e memória \cite{anand2013}.
+O \textit{Kernel-based Virtual Machine} (KVM) é a solução de virtualização que integra um hipervisor diretamente ao \textit{kernel} do \textit{Linux} (\cite{carissimi2008}). Embora seja classificado como um hipervisor Tipo 2, pois opera sobre um sistema operacional, sua integração com o \textit{kernel} lhe confere características de desempenho e eficiência que se aproximam de soluções Tipo 1 (\cite{chawla2025}; \cite{kominos2017}). No KVM, cada máquina virtual (VM) é gerenciada como um processo regular do \textit{Linux}, agendado pelo escalonador padrão do sistema, o que otimiza a gestão de recursos e a alocação de memória (\cite{anand2013}).
+Para minimizar a sobrecarga da tradução binária, o KVM explora as extensões de virtualização de hardware presentes nos processadores modernos, como Intel VT-x e AMD-V, (\cite{chawla2025}; \cite{carissimi2008}). Essa abordagem permite que o código do sistema operacional seja executado diretamente no processador, resultando em um desempenho muito próximo ao de uma máquina \textit{bare-metal} (\cite{kominos2017}). Estudos comparativos indicam uma sobrecarga do processador de apenas 4,0\% para o KVM, valor competitivo frente a outras soluções (\cite{chawla2025}). Além disso, em virtude de se integrar com o \textit{kernel} \textit{Linux}, o KVM se favorece das otimizações e avanços do próprio \textit{kernel}, como gerenciamento de memória, escalonamento de processos e suporte a hardware (\cite{anand2013}; \cite{arora2014}).
+Apesar de suas vantagens, a segurança do KVM é intrinsecamente ligada ao kernel Linux, e dessa forma, vulnerabilidades no kernel podem expor o hipervisor a ataques como \textit{VM escape} ou \textit{hyperjacking} (\cite{chawla2025}). Soluções como o \textit{VMware ESXi} e o Xen possuírem um \textit{microkernel} próprio, e consequentemente, apresentam uma superfície de ataque menor. Em função disso, são frequentemente consideradas mais resilientes em ambientes corporativos que exigem conformidade com padrões de segurança rigorosos (\cite{chawla2025}).
 
-O KVM explora extensões de virtualização assistida por hardware — Intel VT-x e AMD-V — minimizando a sobrecarga de tradução binária e permitindo que o código privilegiado seja executado diretamente no processador \cite{chawla2025, carissimi2008}. Dessa forma, estudos relatam sobrecarga de CPU em torno de 4\% para o KVM, índice competitivo frente a soluções proprietárias \cite{chawla2025}. Como parte do \textit{kernel} \textit{Linux}, o KVM herda evoluções do subsistema de memória, escalonamento e suporte a novos dispositivos, acompanhando automaticamente os avanços do projeto principal \cite{anand2013, arora2014}.
 
-Em contrapartida, a superfície de ataque do KVM está diretamente relacionada ao tamanho e à segurança do \textit{kernel} \textit{Linux}. Vulnerabilidades no \textit{kernel} podem levar a ataques como \textit{VM escape} ou \textit{hyperjacking}. Hipervisores com \textit{microkernel} próprio, como o \textit{VMware ESXi} e o Xen, apresentam uma base de código menor e, consequentemente, área de ataque reduzida, sendo preferidos em ambientes que demandam requisitos de segurança mais rigorosos \cite{chawla2025}.
 
+Em contrapartida, a superfície de ataque do KVM está diretamente relacionada ao tamanho e à segurança do \textit{kernel} \textit{Linux}. Vulnerabilidades no \textit{kernel} podem levar a ataques como \textit{VM escape} ou \textit{hyperjacking}. Hipervisores com \textit{microkernel} próprio, como o \textit{VMware ESXi} e o Xen, apresentam uma base de código menor e, consequentemente, área de ataque reduzida, sendo preferidos em ambientes que demandam requisitos de segurança mais rigorosos (\cite{chawla2025}).
+{{ ... }}
 \section{Máquinas Virtuais \& Imagens}
 
 % 2.3 – OpenStack
@@ -261,76 +129,92 @@ Em contrapartida, a superfície de ataque do KVM está diretamente relacionada a
 % 2.3.1 – Definição e Características
 \subsection{Definição e Características}
 
-O \textit{OpenStack} é uma plataforma de código aberto voltada à construção e ao gerenciamento de nuvens no modelo \textit{Infrastructure as a Service} (IaaS). Surgiu em 2010 como iniciativa conjunta da \textit{Rackspace Inc.} — que possuía um serviço de armazenamento de objetos escalável — e da \textit{NASA}, que buscava atender às suas demandas computacionais por meio do projeto Nebula \cite{nasa2012}. Ambas disponibilizaram o código sob licença \textit{Apache~2.0}, fomentando uma comunidade global de desenvolvimento.
+O  \textit{OpenStack} é uma plataforma de software de código aberto (\textit{open-source}) utilizada para criar e gerenciar nuvens no modelo \textit{IaaS}. Sua história começou em 2010 como um projeto conjunto entre a  \textit{Rackspace Inc.} e a Administração Nacional da Aeronáutica e Espaço dos Estados Unidos \textit{NASA}. A NASA, buscando uma plataforma de nuvem robusta para suas vastas necessidades computacionais e de dados, desenvolveu a plataforma de computação "Nebula". Em paralelo, a Rackspace desenvolveu uma solução de armazenamento de objetos altamente escalável. As duas organizações combinaram suas tecnologias e lançaram o código-fonte como OpenStack sob uma licença  \textit{Apache 2.0}, permitindo que qualquer pessoa o utilizasse, modificasse e distribuísse livremente \cite{nasa2012}, estimulando assim a criação de uma comunidade global de desenvolvedores.
 
-A adoção do OpenStack deve-se à natureza aberta, flexível e de baixo custo de licenciamento. Sua arquitetura modular permite implantar apenas os serviços necessários — computação (\textit{Nova}), armazenamento de objetos (\textit{Swift}), rede (\textit{Neutron}), entre outros — e personalizar funções para requisitos específicos \cite{grzonka2015}. A combinação de escalabilidade massiva, apoio da comunidade e participação de grandes empresas faz do OpenStack a escolha de data centers, operadoras de telecomunicações e instituições de pesquisa, como o CERN \cite{rousseau2019}.
+A fama do OpenStack deve-se principalmente à sua natureza aberta, flexibilidade e eficiência de custos. Por ser de código aberto, ele permite que empresas evitem altos custos de licenças proprietárias e dependência tecnológica. Sua arquitetura modular permite que os usuários implantem apenas os componentes desejados, como computação ( \textit{Nova}), armazenamento ( \textit{Swift}), rede ( \textit{Neutron}) e personalizem a infraestrutura para atender a requisitos específicos \cite{grzonka2015}. Essa adaptabilidade, combinada com a capacidade de escalar massivamente e o forte apoio de uma comunidade global e de grandes empresas, tornou o OpenStack a plataforma de escolha para uma vasta gama de organizações, desde data centers e provedores de telecomunicações até instituições de pesquisa como a Organização Europeia para a Investigação Nuclear (CERN) \cite{rousseau2019}.
 
-% 2.3.2 – Módulos para configurações básicas do OpenStack
-\subsection{Módulos Básicos do OpenStack}
+% 2.3.2 – Módulos para configurações básicos do OpenStack
+\subsection{Módulos para configurações básicos do OpenStack}
 
-Por compor-se de diversos projetos independentes, o OpenStack permite selecionar módulos conforme a necessidade. Contudo, alguns se destacam como base da maioria das implantações:
+Por ser um conjunto de projetos de código aberto, o OpenStack oferece uma variedade de módulos que podem ser incluídos no projeto conforme a necessidade. Porém, alguns módulos básicos costumam aparecer na maior parte das soluções:
 
 \begin{itemize}
-    \item \textbf{Nova}: serviço de computação responsável pela criação, dimensionamento e destruição de instâncias de máquinas virtuais.
-    \item \textbf{Neutron}: provê abstração e orquestração de redes virtuais, oferecendo conectividade \textit{L2/L3}, balanceamento de carga e \textit{firewalls}.
-    \item \textbf{Glance}: catálogo e serviço de gerenciamento de imagens de discos utilizados para inicializar VMs.
-    \item \textbf{Keystone}: serviço de identidade que centraliza autenticação, autorização e catálogo de endpoints.
-    \item \textbf{Horizon}: painel web que oferece interface gráfica para administrar os serviços OpenStack.
-    \item \textbf{Cinder}: volume block storage que disponibiliza armazenamento persistente, independente do ciclo de vida das instâncias.
-    \item \textbf{Swift}: armazenamento de objetos distribuído, altamente escalável.
+    \item \textbf{Keystone: Serviço de Identidade}\\
+    O \textit{Keystone} é o serviço de identidade do OpenStack, responsável por fornecer autenticação de clientes da API, descoberta de serviços e autorização distribuída multi-inquilino. Ele implementa a API de Identidade do OpenStack \cite{openstack2025}.\\
+    Funcionalidades Principais:
+    \begin{itemize}
+        \item Autenticação: Gerencia a autenticação de usuários e serviços, permitindo o acesso aos recursos do OpenStack. Suporta diversos métodos de autenticação \cite{openstack2025}.
+        \item Autorização: Controla o acesso aos serviços e recursos do OpenStack, definindo permissões para usuários e grupos \cite{openstack2025}.
+        \item Catálogo de Serviços: Fornece um catálogo de todos os serviços do OpenStack disponíveis e seus respectivos endpoints (pontos de acesso), facilitando a descoberta de serviços pelos clientes \cite{openstack2025}.
+        \item Gerenciamento de Usuários e Grupos (User and Group Management): Permite a criação e gerenciamento de usuários, grupos e projetos (tenants) dentro do ambiente OpenStack \cite{openstack2025}.
+    \end{itemize}
+
+    \item \textbf{Nova: Serviço de Computação}\\
+    O \textit{Nova} é o módulo do OpenStack que provisiona instâncias de servidores virtuais. Ele suporta a criação de VMs e possui suporte para contêineres de sistema. O Nova opera como um conjunto de \textit{daemons} em servidores Linux existentes para fornecer esse serviço \cite{openstack2025}.\\
+    Funcionalidades Principais:
+    \begin{itemize}
+        \item Gerenciamento de Instâncias: Permite a criação, inicialização, parada, reinicialização e exclusão de instâncias de computação.
+        \item Agendamento de Recursos: O agendador do Nova determina em qual host de computação uma nova instância deve ser provisionada, com base em critérios como recursos disponíveis e políticas de afinidade.
+        \item Gerenciamento de Ciclo de Vida: Gerencia o ciclo de vida completo das instâncias, desde o provisionamento até a terminação.
+        \item Integração com Hipervisores: Suporta diversos hipervisores, incluindo KVM, Xen, VMware ESXi e Hyper-V, permitindo a execução de VMs em diferentes tecnologias de virtualização.
+    \end{itemize}
+
+    \item \textbf{Neutron: Serviço de Rede}\\
+    O \textit{Neutron} é o módulo do OpenStack que fornece conectividade de rede entre dispositivos gerenciados pelo OpenStack, implementando uma API de Rede \cite{openstack2025}.\\
+    Funcionalidades Principais:
+    \begin{itemize}
+        \item Gerenciamento de Redes (Network Management): Permite a criação e gerenciamento de redes virtuais, sub-redes e portas para as instâncias do OpenStack \cite{openstack2025}.
+        \item Roteamento (Routing): Oferece capacidades de roteamento entre redes virtuais e para redes externas \cite{openstack2025}.
+        \item Firewall como Serviço (Firewall as a Service - FWaaS): Permite a configuração de regras de firewall para proteger as instâncias e redes virtuais \cite{openstack2025}.
+        \item Balanceamento de Carga como Serviço (Load Balancing as a Service - LBaaS): Distribui o tráfego de rede entre múltiplas instâncias para melhorar a disponibilidade e o desempenho \cite{openstack2025}.
+        \item Rede Definida por Software (Software-Defined Networking - SDN): Integra-se com diversas tecnologias SDN para fornecer uma infraestrutura de rede flexível e programável \cite{openstack2025}.
+    \end{itemize}
+
+    \item \textbf{Horizon: Dashboard}\\
+    O \textit{Horizon} é a interface gráfica (\textit{dashboard}) do OpenStack, que fornece uma visão unificada e uma ferramenta de gerenciamento para todos os serviços da plataforma \cite{openstack2025}. Através do Horizon, administradores podem monitorar recursos, criar e gerenciar instâncias, configurar redes, gerenciar volumes de armazenamento e realizar diversas tarefas operacionais de forma intuitiva, facilitando a administração da nuvem.\\
+    Funcionalidades Principais:
+    \begin{itemize}
+        \item Interface Gráfica: Proporciona uma interface intuitiva para que usuários e administradores possam interagir com os serviços do OpenStack sem a necessidade de usar a linha de comando \cite{openstack2025}.
+        \item Gerenciamento de Recursos: Permite gerenciar instâncias, redes, volumes de armazenamento, imagens e usuários de forma visual \cite{openstack2025}.
+        \item Monitoramento: Oferece visibilidade sobre o status e o desempenho dos recursos da nuvem \cite{openstack2025}.
+        \item Extensibilidade: É uma estrutura extensível, permitindo que desenvolvedores criem novos painéis e funcionalidades para atender a necessidades específicas \cite{openstack2025}.
+    \end{itemize}
+
+    \item \textbf{Glance: Serviço de Imagem}\\
+    O \textit{Glance} atua como um serviço de registro e entrega de imagens de VMs. Ele permite que usuários armazenem e descubram imagens de disco de VM, que podem ser usadas como modelos para lançar novas instâncias \cite{openstack2024}.\\
+    Funcionalidades Principais:
+    \begin{itemize}
+        \item Registro e Entrega de Imagens: Permite o upload, registro e descoberta de imagens de VMs \cite{openstack2024}.
+        \item Armazenamento de Imagens: Armazena as imagens de VMs como sistemas de arquivos \cite{openstack2024}.
+        \item Metadados de Imagens: Gerencia metadados associados às imagens, facilitando a busca e categorização \cite{openstack2024}.
+        \item API RESTful: Oferece uma API RESTful para consulta de metadados de imagens e recuperação das imagens reais \cite{openstack2024}.
+    \end{itemize}
+
+    \item \textbf{Cinder: Serviço de Armazenamento em Bloco}\\
+    O  \textit{Cinder} fornece armazenamento em bloco persistente para as instâncias OpenStack. Este módulo é crucial para garantir que todas as alterações feitas pelos usuários em suas máquinas virtuais sejam salvas. Cada máquina virtual de usuário teria um volume de boot do Cinder, garantindo que o sistema operacional e os dados do usuário permaneçam intactos mesmo após a VM ser desligada e reiniciada, atendendo ao requisito de ambiente persistente \cite{openstack2021}.\\
+    Funcionalidades Principais:
+    \begin{itemize}
+        \item Criação e Gerenciamento de Volumes: Permite criar, anexar, desanexar e excluir volumes de armazenamento para as instâncias \cite{openstack2021}.
+        \item Snapshots e Backups: Oferece a capacidade de criar  \textit{snapshots} de volumes para recuperação de dados e \textit{backups} \cite{openstack2021}.
+        \item Tipos de Volume: Suporta diferentes tipos de volumes com características de desempenho e redundância variadas, permitindo que os usuários escolham o tipo de armazenamento mais adequado às suas necessidades \cite{openstack2021}.
+        \item Integração com  soluções de terceiros: Pode se integrar com uma ampla gama de soluções de armazenamento de terceiros \cite{openstack2021}.
+    \end{itemize}
+
+    \item \textbf{Swift: Serviço de Armazenamento de Objetos}\\
+    O  \textit{Swift} é um módulo para armazenamento de objetos altamente disponíveis. Organizações podem usar o Swift para armazenar grandes quantidades de dados de forma eficiente, segura e econômica \cite{openstack2023}.\\
+    Funcionalidades Principais:
+    \begin{itemize}
+        \item Armazenamento de Objetos: Permite armazenar e recuperar objetos de dados de forma escalável e durável, sem a estrutura hierárquica de um sistema de arquivos tradicional \cite{openstack2023}.
+        \item Alta Disponibilidade e Durabilidade: Garante a disponibilidade e a integridade dos dados através da replicação e distribuição de objetos em múltiplos nós de armazenamento  \cite{openstack2023}.
+        \item Escalabilidade: Projetado para escalar horizontalmente, permitindo adicionar mais capacidade de armazenamento conforme a necessidade  \cite{openstack2023}.
+        \item API RESTful: Oferece uma API RESTful simples para interagir com o serviço de armazenamento de objetos  \cite{openstack2023}.
+    \end{itemize}
 \end{itemize}
 
-% --- Detalhamento dos módulos ---
-\subsubsection{Keystone: Serviço de Identidade}
 
-O \textit{Keystone} fornece autenticação, autorização e catálogo de serviços no ecossistema OpenStack \cite{openstack_keystone}. Seus principais recursos incluem:
-\begin{itemize}
-    \item \textbf{Autenticação}: múltiplos métodos (senha, tokens, federado, LDAP) para validar usuários e serviços.
-    \item \textbf{Autorização}: políticas baseadas em funções que controlam o acesso a projetos, usuários e grupos.
-    \item \textbf{Catálogo de Serviços}: lista endpoints REST dos serviços registrados, permitindo descoberta dinâmica.
-    \item \textbf{Gerenciamento de Usuários e Grupos}: criação e manutenção de domínios, projetos, usuários e grupos.
-\end{itemize}
 
-\subsubsection{Nova: Serviço de Computação}
 
-O \textit{Nova} orquestra o ciclo de vida das instâncias de máquinas virtuais ou contêineres \cite{openstack_nova}. Funcionalidades principais:
-\begin{itemize}
-    \item \textbf{Gerenciamento de Instâncias}: operações de criação, parada, reinicialização, migração e exclusão.
-    \item \textbf{Agendamento de Recursos}: algoritmo pluggable que seleciona o \textit{compute node} ideal com base em filtros de capacidade e afinidade.
-    \item \textbf{Integração com Hipervisores}: suporte a KVM, Xen, VMware ESXi, Hyper-V, entre outros.
-    \item \textbf{APIs REST}: interface pública e interna para automação e integração com ferramentas de nuvem.
-\end{itemize}
 
-\subsubsection{Neutron: Serviço de Rede}
-
-O \textit{Neutron} provê serviços de rede em nível 2/3 e avançados (FWaaS, LBaaS, VPN) \cite{openstack_neutron}. Funcionalidades principais:
-\begin{itemize}
-    \item \textbf{Gerenciamento de Redes}: criação de redes virtuais, sub-redes, portas e segurança de portas (SG).
-    \item \textbf{Roteamento}: gateways externos, roteadores virtuais e NAT para conectividade externa.
-    \item \textbf{Firewall as a Service}: políticas de segurança de tráfego ingress/egress.
-    \item \textbf{Load Balancing as a Service}: balanceamento L4 e L7 com alta disponibilidade.
-    \item \textbf{Integração SDN}: compatibilidade com Open vSwitch, OVN, Calico e controladores SDN.
-\end{itemize}
-
-\subsubsection{Horizon: Dashboard}
-
-O \textit{Horizon} fornece uma interface web unificada para usuários e administradores \cite{openstack_horizon}. Principais capacidades:
-\begin{itemize}
-    \item \textbf{Interface Gráfica}: acesso visual a todos os serviços sem CLI.
-    \item \textbf{Gerenciamento de Recursos}: instâncias, volumes, redes, imagens e identidades.
-    \item \textbf{Monitoramento}: visão do estado e uso de quota dos projetos.
-    \item \textbf{Extensibilidade}: framework para criação de painéis customizados.
-\end{itemize}
-
-\subsubsection{Glance: Serviço de Imagem}
-
-O \textit{Glance} armazena e distribui imagens de discos de VM \cite{openstack_glance}. Funcionalidades:
-\begin{itemize}
-    \item \textbf{Registro e Descoberta}: upload, versionamento e busca de imagens.
-    \item \textbf{Armazenamento Backend}: drivers para Swift, sistemas de arquivos locais, Ceph, S3.
-    \item \textbf{Metadados}: esquema flexível para anexar atributos às imagens.
-    \item \textbf{API RESTful}: operações CRUD de imagens e metadados.
-\end{itemize}
 
 
 \section{Elasticidade e Provisionamento Dinâmico}
