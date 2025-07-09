@@ -5,7 +5,7 @@ Este capítulo descreve detalhadamente a solução proposta para otimizar o uso 
 
 ### 3.1. Contexto do Laboratório e Problemas
 
-O cenário atual doLab Telecom apresenta desafios significativos para o desenvolvimento de atividades que demandam alto poder computacional. Com um corpo discente de aproximadamente 30 alunos ativos, e tendo contribuido com a formação de mais de 100 profissionais formados em Engenharia Eletrônica, Aeroespacial, Automotiva, de Energia e de Software, o laboratório dispõe de apenas 3 máquinas dedicadas para a execução de simulações complexas e programas de alto desempenho, como Ansys, Cadence e SolidWorks. Essa limitação de recursos computacionais resulta em longas filas de espera, restrição no acesso simultâneo e, consequentemente, um gargalo no progresso das pesquisas e projetos acadêmicos dos alunos. 
+O cenário atual do Lab Telecom apresenta desafios significativos para o desenvolvimento de atividades que demandam alto poder computacional. Com um corpo discente de aproximadamente 30 alunos ativos, e tendo contribuido com a formação de mais de 100 profissionais formados em Engenharia Eletrônica, Aeroespacial, Automotiva, de Energia e de Software, o laboratório dispõe de apenas 3 máquinas dedicadas para a execução de simulações complexas e programas de alto desempenho, como Ansys, Cadence e SolidWorks. Essa limitação de recursos computacionais resulta em longas filas de espera, restrição no acesso simultâneo e, consequentemente, um gargalo no progresso das pesquisas e projetos acadêmicos dos alunos. 
 
 Como parte de uma instituição pública, o laboratório enfrenta fluxo de caixa irrecular, dependendo de editais de fomento que não garantem um fluxo financeiro constante. Essa realidade inviabiliza a contratação de nuvens públicas como alternativa para a alta demanda computacional. Adicionalmente, a natureza das pesquisas, que frequentemente envolvem o desenvolvimento de tecnologias patenteáveis, impõe uma barreira de segurança: o armazenamento de propriedade intelectual sensível em plataformas de terceiros. Esses obstáculos restringem a capacidade de expansão e a agilidade necessárias para a pesquisa de ponta.
 
@@ -35,7 +35,7 @@ Além dos servidores, o laboratório dispõe de QUANTIDADE switches Cisco MODELO
 
 A arquitetura da nuvem privada proposta é projetada para maximizar a utilização dos recursos de hardware existentes no laboratório da UnB, ao mesmo tempo em que oferece um ambiente flexível e escalável para os usuários. A estrutura da nuvem será organizada em camadas, garantindo a separação lógica e a modularidade dos componentes, conforme ilustrado na Figura 3.4.
 
-Na base da arquitetura, encontram-se os **servidores físicos** Dell, que atuarão como nós de computação e armazenamento. Sobre esses servidores, será implementada a camada de **virtualização**, utilizando o KVM (Kernel-based Virtual Machine) em conjunto com o Ubuntu Server. A escolha do KVM é justificada por ser um sistema de código aberto, evitando o gasto com licenças de software proprietário, e dependencia tecnológica de empresas privadas. Além disso, ao compara-lo com o Xen, o KVM mostrou desempenho superior, maior facilidade de uso e de gerenciamento. Sua integração profunda com o kernel Linux, torna-o eficiente para ambientes de virtualização de alto desempenho. Como sistema operacional hospedeiro, será utilizado o Ubuntu Server, por ser uma plataforma estável e amplamente suportada para a execução do KVM e dos serviços do OpenStack.
+Na base da arquitetura, encontram-se os servidores físicos Dell, que atuarão como nós de computação e armazenamento. Sobre esses servidores, será implementada a camada de virtualização, utilizando o KVM (Kernel-based Virtual Machine) em conjunto com o Ubuntu Server. A escolha do KVM é justificada por ser um sistema de código aberto, evitando o gasto com licenças de software proprietário, e dependencia tecnológica de empresas privadas. Além disso, ao compara-lo com o Xen, o KVM mostrou desempenho superior, maior facilidade de uso e de gerenciamento. Sua integração profunda com o kernel Linux, torna-o eficiente para ambientes de virtualização de alto desempenho. Como sistema operacional hospedeiro, será utilizado o Ubuntu Server, por ser uma plataforma estável e amplamente suportada para a execução do KVM e dos serviços do OpenStack.
 
 A camada de **orquestração** será provida pelo OpenStack, que atuará como o sistema operacional da nuvem, gerenciando e coordenando todos os recursos computacionais, de rede e de armazenamento. Os principais componentes do OpenStack que farão parte dessa arquitetura incluem:
 
@@ -67,69 +67,72 @@ A implementação da nuvem privada dinâmica no laboratório da UnB seguirá uma
     *   **Cinder:** será configurado para provisionar volumes persistentes para as VMs, utilizando o armazenamento configurado com RAID 6 nos servidores físicos;
     *   **Horizon:** será instalado e configurado para fornecer uma interface gráfica para o gerenciamento da nuvem.
 
-4.  **Configuração de Rede e Armazenamento:** A configuração de rede no Neutron incluirá a criação de redes virtuais para os usuários, sub-redes e roteadores virtuais. A integração do Cinder com o armazenamento físico dos servidores, configurado com RAID 6, garantirá a persistência e a segurança dos dados das VMs. A escolha dessas configurações visa otimizar o desempenho para aplicações de HPC e garantir a segurança dos dados sensíveis.
+4.  **Configuração de Rede e Armazenamento:** A configuração de rede no Neutron incluirá a criação de redes virtuais para os usuários, sub-redes e roteadores virtuais. A integração do Cinder com o armazenamento físico dos servidores, configurado com RAID 6, garantirá a persistência e a segurança dos dados das VMs. A escolha dessas configurações visa otimizar o desempenho para aplicações e garantir a segurança dos dados sensíveis.
 
 *   **Figura 6:** Capturas de tela (screenshots) de configurações importantes do OpenStack, como o painel do Horizon mostrando a criação de uma instância, ou a configuração de rede no Neutron, para ilustrar a interface de gerenciamento.
 
 
 ### 3.5. Provisionamento Dinâmico de Recursos 
 
-O provisionamento dinâmico de recursos é um pilar fundamental da solução proposta, visando otimizar a utilização da memória RAM e do processamento (CPU) nos servidores físicos, garantindo que os recursos sejam alocados e redistribuídos de forma eficiente conforme a demanda dos usuários. Este mecanismo é crucial para ambientes com recursos limitados, como o laboratório da UnB, onde a flutuação na carga de trabalho é comum.
+O provisionamento dinâmico de recursos é um pilar fundamental da solução proposta, visando otimizar a utilização da memória RAM e do processamento nos servidores físicos, garantindo que os recursos sejam alocados e redistribuídos de forma eficiente conforme a demanda dos usuários. Este mecanismo é fundamental para ambientes onde a flutuação na carga de trabalho é comum, e os recursos computacionais são limitados.
 
-A implementação do provisionamento dinâmico será realizada através da integração de funcionalidades do OpenStack Nova e do hipervisor KVM. O `nova-scheduler`, componente do OpenStack Nova, desempenha um papel central ao determinar em qual host de computação uma nova máquina virtual (VM) deve ser provisionada, levando em consideração a disponibilidade de recursos e as políticas de alocação. No entanto, o provisionamento dinâmico em tempo de execução, ou seja, a redistribuição de recursos para VMs já em operação, será gerenciado por mecanismos do KVM e do sistema operacional subjacente.
+A implementação do provisionamento dinâmico será realizada através do OpenStack Nova e do hipervisor KVM. O ***`nova-scheduler`***, componente do OpenStack Nova, determina qual o hospedeiro(host) de uma nova máquina virtual será provisionada, levando em consideração a disponibilidade de recursos e as políticas de alocação. No entanto, o provisionamento dinâmico em tempo de execução será gerenciado por mecanismos do KVM e do Ubuntu Server.
 
-Para a memória RAM, a técnica de **ballooning** será empregada. O ballooning permite que o hipervisor KVM "recupere" memória ociosa de VMs que não estão utilizando toda a sua RAM alocada e a disponibilize para outras VMs que necessitam de mais recursos. Isso é feito através de um driver de ballooning instalado dentro da VM, que se comunica com o hipervisor para ajustar dinamicamente a quantidade de memória disponível para a VM. Se uma VM está com pouca atividade, o driver de ballooning pode "inflar" (inflar o balão), fazendo com que o sistema operacional convidado libere memória para o hipervisor. Quando a VM precisa de mais memória, o balão é "desinflado", e a memória é devolvida. Essa abordagem garante que a memória seja utilizada de forma mais eficiente em todo o cluster (OPENSTACK, [s.d.]b; KUMAR; SINGH, 2016).
+Para a memória RAM, a técnica de ***ballooning*** será empregada. O ***ballooning*** permite que o hipervisor KVM recupere a memória ociosa de VMs que não estão utilizando toda a sua RAM alocada e a disponibilize para outras VMs que precisam de mais recursos. Isso é feito através de um ***driver*** de ***ballooning***, que é instalado dentro da VM, que se comunica com o hipervisor para ajustar dinamicamente a quantidade de memória disponível para a VM. Se uma VM está com pouca atividade, o driver de ballooning fará o sistema operacional convidado liberar memória para o hipervisor. Quando a VM precisa de mais memória, a memória será devolvida.
 
-Para o processamento (CPU), o KVM, em conjunto com as configurações do Linux, permite a alocação dinâmica de núcleos de CPU e ciclos de processamento. Serão implementadas **políticas de fair-share** (compartilhamento justo) no nível do hipervisor, que garantem que o poder de processamento seja distribuído equitativamente entre as VMs, mas com a capacidade de priorizar VMs que demandam mais recursos em momentos de pico. Isso significa que, se um usuário estiver executando uma simulação intensiva em CPU e outro usuário estiver ocioso, os recursos não utilizados pelo segundo usuário poderão ser temporariamente alocados para o primeiro, otimizando o desempenho geral do sistema. Quando o segundo usuário retomar a atividade, os recursos serão redistribuídos conforme a necessidade.
+Para a CPU, o KVM, em conjunto com configurações do Ubuntu Server, permite a alocação dinâmica de núcleos de CPU e ciclos de processamento. Serão implementadas políticas de ***fair-share*** no nível do hipervisor, para garantir que o poder de processamento será distribuído equitativamente entre as VMs, com a capacidade de priorizar VMs que demandam mais recursos em momentos de pico. Isso significa que, se um usuário estiver executando uma simulação intensiva em CPU e outro usuário estiver ocioso, os recursos não utilizados pelo segundo usuário poderão ser temporariamente alocados para o primeiro, otimizando o desempenho geral do sistema. Quando o segundo usuário retomar a atividade, os recursos serão redistribuídos conforme a necessidade.
 
-Os algoritmos de decisão para a redistribuição de recursos serão baseados em métricas de uso de CPU e RAM coletadas em tempo real. Ferramentas de monitoramento integradas ao OpenStack e ao KVM (como Ceilometer ou Prometheus/Grafana) serão utilizadas para coletar esses dados. A lógica de decisão considerará:
+Os algoritmos de decisão para a redistribuição de recursos serão baseados em métricas de uso de CPU e RAM coletadas em tempo real. Para isso, serão integradas ferramentas de monitoramento, como Ceilometer ou Prometheus e Grafana, integradas ao OpenStack e ao KVM para coletar esses dados. A lógica de decisão considerará:
 
 *   **Uso atual de recursos:** VMs com alta utilização de CPU ou RAM terão prioridade na alocação de recursos adicionais.
 *   **Recursos ociosos:** Recursos não utilizados por VMs ociosas serão identificados e disponibilizados para outras VMs.
-*   **Políticas de prioridade:** Poderão ser definidas políticas para dar prioridade a determinados usuários ou tipos de carga de trabalho, caso necessário.
+*   **Política de prioridade:** Poderá ser implementada uma política de prioridade para os usuários, onde os usuários com maior prioridade terão acesso a mais recursos.
 
-A eficácia dessa abordagem reside na capacidade de maximizar o aproveitamento dos servidores antigos, transformando-os em uma infraestrutura flexível que se adapta às necessidades dos usuários, sem a necessidade de intervenção manual constante. Isso garante uma melhor qualidade de serviço para os alunos, mesmo com a limitação de hardware, e otimiza o investimento em infraestrutura.
+Essas politicas buscam tornar a infraestrutura flexível e adaptada às necessidades dos usuários, sem precisar de intervenção manual constante ou filas de espera para uso de máquinas. Isso trará melhor qualidade de serviço para os alunos, mesmo com a limitação de hardware.
 
 
-*   **Figura 7:** Fluxograma detalhado do processo de provisionamento dinâmico de recursos, ilustrando como o `nova-scheduler` e os mecanismos de `ballooning` e `fair-share` interagem para alocar e redistribuir CPU e RAM.
+*   **Figura 7:** Fluxograma detalhado do processo de provisionamento dinâmico de recursos, ilustrando como o `nova-scheduler` e os mecanismos de ***ballooning*** e ***fair-share*** interagem para alocar e redistribuir CPU e RAM.
 *   **Figura 8:** Gráfico de monitoramento de uso de CPU/RAM em VMs ao longo do tempo, demonstrando a alocação dinâmica de recursos em resposta a picos de demanda e ociosidade.
-
 
 
 ### 3.6. Gerenciamento de Imagens de Máquinas Virtuais (Virtual Machine Image Management)
 
-O gerenciamento eficiente de imagens de máquinas virtuais (VMs) é fundamental para a agilidade no provisionamento e para a padronização dos ambientes de trabalho no laboratório. A solução proposta utilizará o serviço Glance do OpenStack para criar, armazenar e distribuir as imagens base (base images) das VMs (OPENSTACK, [s.d.]e).
+O gerenciamento de imagens de máquinas virtuais (VMs) será feito utilizando o serviço Glance do OpenStack para criar, armazenar e distribuir as imagens base (base images) das VMs.
 
-As **imagens base** serão configuradas com os sistemas operacionais e softwares essenciais para as atividades do laboratório, como as ferramentas de simulação (Ansys, SolidWorks, Cadence). Isso garante que cada nova VM provisionada inicie com um ambiente pré-configurado e pronto para uso, reduzindo o tempo de setup para os usuários.
+As **imagens base** serão configuradas com os sistemas operacionais e softwares essenciais para as atividades do laboratório, como o Windows 10 com as ferramentas de simulação Ansys, SolidWorks, Cadence e Altium Designer. Isso garante que cada VM provisionada terá um ambiente pré-configurado e pronto para uso, reduzindo o tempo de setup para os usuários.Atém dsso, o processo de gerenciamento de imagens permitirá que os administradores do laboratório criem e atualizem as imagens base, garantindo que todos os usuários tenham acesso às versões mais recentes dos softwares e configurações.
 
 Para garantir a persistência das alterações realizadas pelos usuários em suas VMs, serão empregadas duas abordagens principais:
 
-1.  **Discos Diferenciais:** Ao provisionar uma nova VM a partir de uma imagem base, um disco diferencial (também conhecido como *overlay* ou *copy-on-write*) será criado. Este disco armazenará apenas as alterações feitas pelo usuário na VM, enquanto a imagem base permanece inalterada. Essa técnica otimiza o espaço de armazenamento, pois múltiplas VMs podem compartilhar a mesma imagem base, e facilita a restauração da VM para um estado inicial, se necessário.
+1.  **Discos Diferenciais:** Ao provisionar uma VM a partir de uma imagem base, um disco diferencial será criado. Este disco armazenará apenas as alterações feitas pelo usuário na VM, enquanto a imagem base permanece inalterada. Essa técnica otimiza o espaço de armazenamento, pois múltiplas VMs podem compartilhar a mesma imagem base, e facilita a restauração da VM para um estado inicial.
 
-2.  **Volumes Cinder Anexados:** Para dados mais críticos e que exigem maior persistência e flexibilidade, os usuários poderão anexar volumes de armazenamento persistentes providos pelo serviço Cinder. Esses volumes são independentes do ciclo de vida da VM e podem ser desanexados e reanexados a outras VMs, garantindo que os dados do usuário permaneçam seguros mesmo que a VM seja excluída ou recriada.
-
-O processo de gerenciamento de imagens permitirá que os administradores do laboratório criem e atualizem as imagens base de forma centralizada, garantindo que todos os usuários tenham acesso às versões mais recentes dos softwares e configurações. Além disso, a capacidade de restaurar uma VM para seu estado original a partir da imagem base, ou de preservar dados em volumes Cinder, oferece flexibilidade e segurança para os usuários, que podem experimentar e desenvolver seus projetos sem o risco de perder informações importantes.
+2.  **Volumes Cinder Anexados:** Para dados críticos e que exigem maior persistência e flexibilidade, os usuários poderão anexar volumes de armazenamento persistentes providos pelo serviço Cinder. Esses volumes são independentes do ciclo de vida da VM e podem ser desanexados e reanexados a outras VMs, garantindo que os dados do usuário permaneçam seguros mesmo que a VM seja excluída ou recriada.
 
 *   **Figura 9:** Diagrama do ciclo de vida de uma imagem de VM e seus discos associados, ilustrando a relação entre a imagem base, o disco diferencial e os volumes Cinder anexados.
 
-
 ### 3.7. Políticas de Escalonamento
 
-Para garantir que a nuvem privada se adapte dinamicamente às flutuações de demanda dos usuários do laboratório, serão implementadas políticas de escalonamento automático (autoscaling). O escalonamento automático permite que a infraestrutura da nuvem responda proativamente às mudanças na carga de trabalho, aumentando ou diminuindo os recursos disponíveis sem a necessidade de intervenção manual. Isso é particularmente importante em um ambiente acadêmico, onde o número de usuários e a intensidade das cargas de trabalho podem variar significativamente ao longo do dia ou do semestre.
-
-As políticas de escalonamento serão baseadas em métricas de desempenho coletadas em tempo real, como o uso de CPU e memória RAM das máquinas virtuais e dos hosts físicos. Os gatilhos (triggers) para o escalonamento serão definidos com base em limiares (thresholds) predefinidos para essas métricas. Por exemplo, se o uso médio de CPU de um conjunto de VMs exceder um determinado percentual por um período contínuo, uma ação de escalonamento será acionada.
+Para garantir que a nuvem privada se adapte dinamicamente às flutuações de demanda dos usuários do laboratório, serão implementadas políticas de escalonamento automático. O escalonamento automático permite que a infraestrutura da nuvem responda proativamente às mudanças na carga de trabalho, aumentando ou diminuindo os recursos disponíveis sem a necessidade de intervenção manual. Isso é particularmente importante em um ambiente acadêmico, onde o número de usuários e a intensidade das cargas de trabalho podem variar significativamente ao longo do dia ou do semestre.
 
 As ações de escalonamento podem incluir:
 
-*   **Escalonamento Vertical:** Aumento ou diminuição dos recursos (CPU, RAM) alocados a uma VM existente. Isso pode ser feito através de ajustes dinâmicos de recursos suportados pelo KVM e gerenciados pelo OpenStack Nova, complementando o provisionamento dinâmico detalhado na seção 3.5.
-*   **Escalonamento Horizontal:** Início de novas VMs a partir de imagens base pré-configuradas para distribuir a carga de trabalho, ou a parada de VMs ociosas para liberar recursos. Embora o foco principal seja o provisionamento dinâmico de recursos *dentro* das VMs, a capacidade de iniciar novas VMs sob demanda é uma extensão natural para lidar com um aumento significativo no número de usuários ou na demanda total.
+*   **Escalonamento Vertical:** Aumento ou diminuição dos recursos (CPU, RAM) alocados a uma VM existente. Isso será feito através de ajustes dinâmicos feitos pelo KVM e Ubuntu Server, e gerenciados pelo OpenStack Nova, conforme foi detalhado na seção 3.5.
+*   **Escalonamento Horizontal:** Início de novas VMs a partir de imagens base pré-configuradas para maximizar a quantidade de discentes utilizando simultaneamente os recursos laboratório, ou a parada de VMs ociosas para liberar recursos. 
 
-A necessidade de automatizar o gerenciamento de recursos é justificada pela complexidade de monitorar e ajustar manualmente uma infraestrutura de nuvem em constante mudança. As políticas de escalonamento garantem a eficiência operacional, a disponibilidade dos recursos e a qualidade de serviço para os usuários, otimizando o uso dos servidores antigos e prolongando sua vida útil. A implementação dessas políticas contribuirá para um ambiente de HPC mais responsivo e adaptável às necessidades do laboratório.
+A necessidade de automatizar o gerenciamento de recursos é fundamental garantir a eficiência operacional, a disponibilidade dos recursos e a qualidade de serviço para os usuários, otimizando o uso dos servidores antigos e prolongando sua vida útil.
 
 *   **Figura 10:** Exemplo de política de escalonamento baseada em uso de CPU, mostrando um gráfico de uso de CPU ao longo do tempo com os limiares de escalonamento (aumentar/diminuir) e as ações correspondentes.
 
 
-### 3.8. Escalabilidade e Automatização de Configurações
-- ansible
-- terraform
-- como adicionar mais servidores
+### 3.8. Expandibilidade e Automatização de Configurações
+
+Em um ambiente de pesquisas acadêmicas, a necessidade de expandir a nuvem privada para suportar mais usuários e cargas de trabalho pode ser uma necessidade recorrente. Para isso, serão preparados mecanismos de automatização de configurações para a expansão da infraestrutura, garantindo agilidade, consistência e minimizando erros manuais. Para isso, ferramentas de automação de infraestrutura como código (***Infrastructure as Code*** - IaC) desempenham um papel importante.
+
+#### 3.8.1. Ansible para Automação de Configurações
+
+O Ansible será utilizado para automatizar a instalação e configuração do KVM e OpenStack nos servidores físicos, garantindo que cada novo servidor adicionado à nuvem seja configurado de forma idêntica e consistente. Para isso, o Ansible irá:
+
+- Instalar e Configurar o KVM e OpenStack: Playbooks Ansible serão desenvolvidos para automatizar a configuração do Ubuntu Server, KVM e todos os componentes do OpenStack. Isso garante que cada novo servidor adicionado à nuvem seja configurado de forma idêntica e consistente, seguindo as melhores práticas definidas.
+
+- Provisionar Recursos: Embora o OpenStack gerencie o provisionamento de VMs, o Ansible pode ser usado para automatizar tarefas pré e pós-provisionamento, como a criação de usuários no Keystone, a configuração de redes no Neutron ou a preparação de volumes no Cinder.
+
+A utilização do Ansible dá a capacidade e independência ao laboratório para adicionar novos servidores à infraestrutura da nuvem de forma rápida e eficiente, executando um conjunto de playbooks que se encarregam de todas as etapas de configuração, desde a instalação do sistema operacional até a integração com o OpenStack. 

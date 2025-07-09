@@ -12,11 +12,11 @@ Este capítulo reúne a fundamentação teórica necessária, cobrindo conceitos
 A computação em nuvem (\textit{cloud computing}) é definida na publicação especial 800-145 pelo \textit{National Institute of Standards and Technology}(NIST), como um modelo que permite acesso a um conjunto compartilhado de recursos computacionais configuráveis, como redes, servidores, armazenamento, aplicações e serviços,  sob demanda e via rede. Esses recursos podem ser rapidamente provisionados e liberados com mínimo esforço de gerenciamento ou interação com o provedor de serviços \cite{mell2011}. Essa definição enfatiza características essenciais da computação em nuvem, dentre as quais destacam-se:
 
 \begin{itemize}
-    \item \textbf{Autoatendimento sob demanda (\textit{On-demand self-service})}: o próprio usuário pode provisionar recursos, como tempo de CPU ou armazenamento, sempre que necessário, sem intervenção humana junto ao provedor \cite{mell2011};
-    \item \textbf{Acesso amplo à rede (\textit{Broad network access})}: os serviços são acessíveis via internet por meio de mecanismos padronizados, compatíveis com múltiplos dispositivos \cite{mell2011};
-    \item \textbf{Agrupamento de recursos (\textit{Resource pooling})}: processamento, memória, armazenamento e largura de banda são agrupados e redistribuídos dinamicamente entre múltiplos inquilinos (\textit{multi-tenant}) conforme a demanda \cite{mell2011};
-    \item \textbf{Elasticidade rápida (\textit{Rapid elasticity})}: a capacidade de hardware aparenta ser ilimitada, podendo aumentar ou diminuir de forma ágil — muitas vezes automática — para acompanhar variações de carga \cite{mell2011};
-    \item \textbf{Serviço mensurado (\textit{Measured service})}: o uso de recursos é monitorado, controlado e relatado, garantindo transparência ao provedor e ao consumidor \cite{mell2011}.
+    \item \emph{Autoatendimento sob demanda (\textit{On-demand self-service})}: o próprio usuário pode provisionar recursos, como tempo de CPU ou armazenamento, sempre que necessário, sem intervenção humana junto ao provedor \cite{mell2011};
+    \item \emph{Acesso amplo à rede (\textit{Broad network access})}: os serviços são acessíveis via internet por meio de mecanismos padronizados, compatíveis com múltiplos dispositivos \cite{mell2011};
+    \item \emph{Agrupamento de recursos (\textit{Resource pooling})}: CPU, memória, armazenamento e largura de banda são agrupados e redistribuídos dinamicamente entre múltiplos inquilinos (\textit{multi-tenant}) conforme a demanda \cite{mell2011};
+    \item \emph{Elasticidade rápida (\textit{Rapid elasticity})}: a capacidade de hardware aparenta ser ilimitada, podendo aumentar ou diminuir de forma ágil — muitas vezes automática — para acompanhar variações de carga \cite{mell2011};
+    \item \emph{Serviço mensurado (\textit{Measured service})}: o uso de recursos é monitorado, controlado e relatado, garantindo transparência ao provedor e ao consumidor \cite{mell2011}.
 \end{itemize}
 
 \subsection{Modelos de Serviço}
@@ -26,43 +26,24 @@ Com base nessas características, o NIST classifica os serviços em três modelo
 \begin{description}
     \item[Software como Serviço (SaaS)] oferece aplicações completas hospedadas na nuvem e acessadas pela internet. O usuário não gerencia a infraestrutura subjacente \cite{mell2011};
     \item[Plataforma como Serviço (PaaS)] provê um ambiente na nuvem para que o consumidor implante aplicações próprias, sem administrar servidores, rede ou sistemas operacionais \cite{mell2011};
-    \item[Infraestrutura como Serviço (IaaS)] disponibiliza recursos fundamentais — processamento, armazenamento e rede — permitindo ao usuário instalar sistemas operacionais e aplicações com controle limitado de rede \cite{mell2011}.
+    \item[Infraestrutura como Serviço (IaaS)] disponibiliza recursos fundamentais — CPU, armazenamento e rede — permitindo ao usuário instalar sistemas operacionais e aplicações com controle limitado de rede \cite{mell2011}.
 \end{description}
 
 
 
 A computação em nuvem (\textit{cloud computing}) é definida pelo \textit{National Institute of Standards and Technology}(NIST), como um modelo que permite acesso a um conjunto compartilhado de recursos computacionais configuráveis, como redes, servidores, armazenamento, aplicações e serviços,  sob demanda e via rede. Esses recursos podem ser rapidamente provisionados e liberados com mínimo esforço de gerenciamento ou interação com o provedor de serviços \cite{mell2011}. Essa definição enfatiza características essenciais da computação em nuvem, dentre as quais destacam-se: 
-\textbf{Autoatendimento sob demanda (\textit{On-demand self-service}):} o usuário pode provisionar recursos computacionais, como tempo de servidor e armazenamento em rede, conforme a necessidade, automaticamente e sem necessidade de interação humana com cada provedor de serviço.
-\textbf{Acesso amplo à rede (\textit{Broad network access}):} Os serviços da nuvem podem ser acessados pela grande maioria de aparelhos que possuem acesso à internet, com interfaces padronizadas que facilitam a experiência dos usuários que já estão acostumados com algum serviço na nuvem.
+\emph{Autoatendimento sob demanda (\textit{On-demand self-service}):} o usuário pode provisionar recursos computacionais, como tempo de servidor e armazenamento em rede, conforme a necessidade, automaticamente e sem necessidade de interação humana com cada provedor de serviço.
+\emph{Acesso amplo à rede (\textit{Broad network access}):} Os serviços da nuvem podem ser acessados pela grande maioria de aparelhos que possuem acesso à internet, com interfaces padronizadas que facilitam a experiência dos usuários que já estão acostumados com algum serviço na nuvem.
  
-\textbf{Agrupamento de recursos (\textit{Resource pooling}):} Os recursos computacionais, como processamento, memória, armazenamento e largura de banda de rede, são agrupados pelo provedor para atender múltiplos inquilinos usando um modelo de multilocação (\textit{multi-tenant}), com diferentes recursos sendo distribuídos dinamicamente e redistribuídos conforme a demanda do inquilino.
-\textbf{Elasticidade rápida (\textit{Rapid elasticity}):} Os recursos podem ser provisionados e liberados elasticamente, em alguns casos automaticamente, para escalar rapidamente conforme a demanda. Para o usuário, as capacidades disponíveis para provisionamento parecem ser ilimitadas, a depender da quantidade de hardware que o provedor possui,  e podem ser utilizadas em qualquer quantidade, a qualquer momento. 
-\textbf{Serviço mensurado (\textit{Measured service}):} Sistemas de nuvem controlam e otimizam automaticamente o uso de recursos utilizando recursos de medição. Devido a isso, o uso dos recursos pode ser monitorado, controlado e reportado, proporcionando transparência tanto para o provedor quanto para o consumidor do serviço utilizado. 
+\emph{Agrupamento de recursos (\textit{Resource pooling}):} Os recursos computacionais, como CPU, memória, armazenamento e largura de banda de rede, são agrupados pelo provedor para atender múltiplos inquilinos usando um modelo de multilocação (\textit{multi-tenant}), com diferentes recursos sendo distribuídos dinamicamente e redistribuídos conforme a demanda do inquilino.
+\emph{Elasticidade rápida (\textit{Rapid elasticity}):} Os recursos podem ser provisionados e liberados elasticamente, em alguns casos automaticamente, para escalar rapidamente conforme a demanda. Para o usuário, as capacidades disponíveis para provisionamento parecem ser ilimitadas, a depender da quantidade de hardware que o provedor possui,  e podem ser utilizadas em qualquer quantidade, a qualquer momento. 
+\emph{Serviço mensurado (\textit{Measured service}):} Sistemas de nuvem controlam e otimizam automaticamente o uso de recursos utilizando recursos de medição. Devido a isso, o uso dos recursos pode ser monitorado, controlado e reportado, proporcionando transparência tanto para o provedor quanto para o consumidor do serviço utilizado. 
 
 Além dessas características essenciais, os serviços oferecidos por provedores de nuvem são classificados em modelos de serviço:
 
-\textbf{Plataforma como Serviço (\textit{PaaS})}: é um modelo que fornece ao consumidor a possibilidade de implantar, sobre a infraestrutura de nuvem, aplicações criadas ou adquiridas usando linguagens de programação, bibliotecas, serviços e ferramentas compatíveis com o ambiente oferecido pelo provedor. O consumidor não gerencia nem controla a infraestrutura subjacente da nuvem, como redes, servidores, sistemas operacionais ou armazenamento, mas possui controle sobre as aplicações implantadas e, possivelmente, sobre as configurações do ambiente onde essas aplicações serão hospedadas \cite{mell2011}.
+\emph{Plataforma como Serviço (\textit{PaaS})}: é um modelo que fornece ao consumidor a possibilidade de implantar, sobre a infraestrutura de nuvem, aplicações criadas ou adquiridas usando linguagens de programação, bibliotecas, serviços e ferramentas compatíveis com o ambiente oferecido pelo provedor. O consumidor não gerencia nem controla a infraestrutura subjacente da nuvem, como redes, servidores, sistemas operacionais ou armazenamento, mas possui controle sobre as aplicações implantadas e, possivelmente, sobre as configurações do ambiente onde essas aplicações serão hospedadas \cite{mell2011}.
 
-\textbf{Infraestrutura como Serviço (\textit{IaaS})}: é um modelo que fornece ao consumidor a capacidade de provisionar recursos computacionais, como processamento, armazenamento, redes e outros, permitindo que ele implante e execute softwares, incluindo sistemas operacionais e aplicações. O consumidor também não gerencia nem controla a infraestrutura física da nuvem, mas tem controle sobre os sistemas operacionais, o armazenamento, as aplicações implantadas e, em alguns casos, controle limitado de componentes específicos de rede, como firewalls do host \cite{mell2011}.
-
-
-
-
-
-
-
-
- 
-
-
-
-Além dessas características essenciais, os serviços oferecidos por provedores de nuvem são classificados em modelos de serviço:
-
- 
-
-
-
-
+\emph{Infraestrutura como Serviço (\textit{IaaS})}: é um modelo que fornece ao consumidor a capacidade de provisionar recursos computacionais, como CPU, armazenamento, redes e outros, permitindo que ele implante e execute softwares, incluindo sistemas operacionais e aplicações. O consumidor também não gerencia nem controla a infraestrutura física da nuvem, mas tem controle sobre os sistemas operacionais, o armazenamento, as aplicações implantadas e, em alguns casos, controle limitado de componentes específicos de rede, como firewalls do host \cite{mell2011}.
 
 \begin{figure}[htb]
 \centering
@@ -80,24 +61,24 @@ Para facilitar o entendimento dos conceitos da Virtualização Total e Paravirtu
 A implantação de sistemas de computação em nuvem pode ser realizada por meio de diferentes modelos. Cada modelo possui características peculiares que determinam sua adequação a contextos específicos. Os modelos mais conhecidos são a nuvem pública, privada, comunitária e híbrida, os quais se diferenciam pelo nível de controle, segurança, escalabilidade e custo de implantação \cite{mell2011}.
 
 \begin{itemize}
-\item \textbf{Nuvem Pública (\textit{Public cloud})}: As nuvem pública são gerenciadas por provedores terceirizados que disponibilizam recursos computacionais por meio da internet \cite{carroll2011}. Esses provedores costumam oferecer capacidades elevadas de escalabilidade e custos iniciais mais acessíveis, o que os torna atrativos para diferentes perfis de organizações \cite{amajuoyi2024}. Além disso, esse modelo de nuvem pode ser particularmente vantajoso para instituições que não contam com equipes internas especializadas no assunto ou que optam por não direcionar recursos à aquisição e manutenção de infraestrutura física própria. Em função desses benefícios, a adoção da nuvem pública tem apresentado um crescimento contínuo nos últimos anos \cite{amajuoyi2024}. Entretanto, as nuvens privadas podem apresentar desafios relevantes em termos de segurança e controle sobre a infraestrutura física. A nuvem pública é aberta a todos e sem garantia de alto nível de segurança, podendo trazer riscos à confidencialidade dos dados, à proteção de informações estratégicas e à perda ou roubo de dados, sendo uma opção mais adequada para empresas com "baixas preocupações de segurança" \cite{sathya2023}.
+\item \emph{Nuvem Pública (\textit{Public cloud})}: As nuvem pública são gerenciadas por provedores terceirizados que disponibilizam recursos computacionais por meio da internet \cite{carroll2011}. Esses provedores costumam oferecer capacidades elevadas de escalabilidade e custos iniciais mais acessíveis, o que os torna atrativos para diferentes perfis de organizações \cite{amajuoyi2024}. Além disso, esse modelo de nuvem pode ser particularmente vantajoso para instituições que não contam com equipes internas especializadas no assunto ou que optam por não direcionar recursos à aquisição e manutenção de infraestrutura física própria. Em função desses benefícios, a adoção da nuvem pública tem apresentado um crescimento contínuo nos últimos anos \cite{amajuoyi2024}. Entretanto, as nuvens privadas podem apresentar desafios relevantes em termos de segurança e controle sobre a infraestrutura física. A nuvem pública é aberta a todos e sem garantia de alto nível de segurança, podendo trazer riscos à confidencialidade dos dados, à proteção de informações estratégicas e à perda ou roubo de dados, sendo uma opção mais adequada para empresas com "baixas preocupações de segurança" \cite{sathya2023}.
 
-\item \textbf{Nuvem Privada (\textit{Private cloud})}: A infraestrutura é fornecida para uso exclusivo de uma única organização. Essa infraestrutura pode ser de propriedade, de terceiros, ou uma combinação de ambos, e pode estar localizada dentro ou fora das instalações da organização \cite{mell2011}. Para organizações que desejam um grau elevado de controle, personalização e alto nível de segurança, as nuvens privadas podem se destacar como uma solução adequada \cite{swapna2023}. Isso possibilita o desenvolvimento de um ambiente seguro e adaptado às exigências particulares de instituições que necessitam resguardar pesquisas sigilosas e proteger a propriedade intelectual. Dessa forma, a nuvem privada se mostra a alternativa ideal para operações que demandam um rigoroso gerenciamento de dados e confidencialidade, assegurando a integridade de informações estratégicas e o cumprimento de normativas internas.
+\item \emph{Nuvem Privada (\textit{Private cloud})}: A infraestrutura é fornecida para uso exclusivo de uma única organização. Essa infraestrutura pode ser de propriedade, de terceiros, ou uma combinação de ambos, e pode estar localizada dentro ou fora das instalações da organização \cite{mell2011}. Para organizações que desejam um grau elevado de controle, personalização e alto nível de segurança, as nuvens privadas podem se destacar como uma solução adequada \cite{swapna2023}. Isso possibilita o desenvolvimento de um ambiente seguro e adaptado às exigências particulares de instituições que necessitam resguardar pesquisas sigilosas e proteger a propriedade intelectual. Dessa forma, a nuvem privada se mostra a alternativa ideal para operações que demandam um rigoroso gerenciamento de dados e confidencialidade, assegurando a integridade de informações estratégicas e o cumprimento de normativas internas.
 
-\item \textbf{Nuvem Comunitária (\textit{Community cloud})}. A infraestrutura é fornecida para uso exclusivo de uma comunidade específica de clientes, pertencentes a diferentes organizações que compartilham interesses comuns. A infraestrutura pode ser de propriedade, de terceiros, ou uma combinação desses, e pode estar localizada dentro ou fora das instalações das organizações envolvidas \cite{mell2011}.
+\item \emph{Nuvem Comunitária (\textit{Community cloud})}. A infraestrutura é fornecida para uso exclusivo de uma comunidade específica de clientes, pertencentes a diferentes organizações que compartilham interesses comuns. A infraestrutura pode ser de propriedade, de terceiros, ou uma combinação desses, e pode estar localizada dentro ou fora das instalações das organizações envolvidas \cite{mell2011}.
 
-\item \textbf{Nuvem Híbrida (\textit{Hybrid cloud})}. Essa infraestrutura é uma composição de duas ou mais infraestruturas distintas (privada, comunitária ou pública)  \cite{mell2011}.
+\item \emph{Nuvem Híbrida (\textit{Hybrid cloud})}. Essa infraestrutura é uma composição de duas ou mais infraestruturas distintas (privada, comunitária ou pública)  \cite{mell2011}.
 
 A implantação de sistemas de computação em nuvem pode ser realizada por meio de diferentes modelos, cada qual adequado a cenários específicos. Os modelos mais difundidos são as nuvens pública, privada, comunitária e híbrida, que se diferenciam em nível de controle, segurança, escalabilidade e custo de implantação \cite{mell2011}.
 
 \begin{description}
-  \item[\textbf{Nuvem Pública} (\textit{Public cloud})] \hfill \\ As nuvens públicas são gerenciadas por provedores terceirizados e disponibilizam recursos via internet \cite{carroll2011}. Costumam oferecer alta escalabilidade e baixos custos iniciais, favorecendo organizações de perfis variados \cite{amajuoyi2024}. Entretanto, por serem ambientes compartilhados, podem impor riscos à confidencialidade de dados e perda de controle sobre a infraestrutura, sendo mais recomendadas a empresas com menores exigências de segurança \cite{sathya2023}.
+  \item[\emph{Nuvem Pública} (\textit{Public cloud})] \hfill \\ As nuvens públicas são gerenciadas por provedores terceirizados e disponibilizam recursos via internet \cite{carroll2011}. Costumam oferecer alta escalabilidade e baixos custos iniciais, favorecendo organizações de perfis variados \cite{amajuoyi2024}. Entretanto, por serem ambientes compartilhados, podem impor riscos à confidencialidade de dados e perda de controle sobre a infraestrutura, sendo mais recomendadas a empresas com menores exigências de segurança \cite{sathya2023}.
 
-  \item[\textbf{Nuvem Privada} (\textit{Private cloud})] \hfill \\ É uma infraestrutura dedicada a uma única organização, podendo estar on-premises ou em instalações de terceiros \cite{mell2011}. Garante maior controle, personalização e níveis mais altos de segurança. Destaca-se em contextos que exigem proteção de propriedade intelectual ou dados sensíveis \cite{swapna2023}.
+  \item[\emph{Nuvem Privada} (\textit{Private cloud})] \hfill \\ É uma infraestrutura dedicada a uma única organização, podendo estar on-premises ou em instalações de terceiros \cite{mell2011}. Garante maior controle, personalização e níveis mais altos de segurança. Destaca-se em contextos que exigem proteção de propriedade intelectual ou dados sensíveis \cite{swapna2023}.
 
-  \item[\textbf{Nuvem Comunitária} (\textit{Community cloud})] \hfill \\ Infraestrutura compartilhada por um conjunto de organizações com interesses comuns (por exemplo, requisitos regulatórios), podendo ser mantida interna ou externamente \cite{mell2011}.
+  \item[\emph{Nuvem Comunitária} (\textit{Community cloud})] \hfill \\ Infraestrutura compartilhada por um conjunto de organizações com interesses comuns (por exemplo, requisitos regulatórios), podendo ser mantida interna ou externamente \cite{mell2011}.
 
-  \item[\textbf{Nuvem Híbrida} (\textit{Hybrid cloud})] \hfill \\ Combina duas ou mais infraestruturas (pública, privada ou comunitária), permitindo portabilidade de dados e aplicações entre ambientes \cite{mell2011}.
+  \item[\emph{Nuvem Híbrida} (\textit{Hybrid cloud})] \hfill \\ Combina duas ou mais infraestruturas (pública, privada ou comunitária), permitindo portabilidade de dados e aplicações entre ambientes \cite{mell2011}.
 \end{description}
  
 
@@ -118,8 +99,8 @@ O componente de software responsável por criar e gerenciar as máquinas virtuai
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Tipo 1 (Bare-metal)}: Executa diretamente sobre o hardware do servidor, atuando como um sistema operacional leve e especializado para executar VMs (\cite{chawla2025}). Exemplos notáveis incluem \textit{Xen}, \textit{VMware ESXi} e \textit{Microsoft Hyper-V} (\cite{chawla2025}; \cite{carissimi2008}). Por ter acesso direto ao hardware, esta arquitetura geralmente oferece maior desempenho e segurança.
-    \item \textbf{Tipo 2 (Hosted)}: Opera como uma aplicação de software sobre um sistema operacional convencional (hospedeiro), que gerencia o hardware (\cite{chawla2025}). Exemplos incluem \textit{KVM}, \textit{Oracle VirtualBox} e \textit{VMware Player} (\cite{chawla2025}; \cite{carissimi2008}). Esta abordagem é mais simples de instalar e gerenciar, mas pode introduzir uma sobrecarga de desempenho devido à camada extra do sistema operacional hospedeiro.
+    \item \emph{Tipo 1 (Bare-metal)}: Executa diretamente sobre o hardware do servidor, atuando como um sistema operacional leve e especializado para executar VMs (\cite{chawla2025}). Exemplos notáveis incluem \textit{Xen}, \textit{VMware ESXi} e \textit{Microsoft Hyper-V} (\cite{chawla2025}; \cite{carissimi2008}). Por ter acesso direto ao hardware, esta arquitetura geralmente oferece maior desempenho e segurança.
+    \item \emph{Tipo 2 (Hosted)}: Opera como uma aplicação de software sobre um sistema operacional convencional (hospedeiro), que gerencia o hardware (\cite{chawla2025}). Exemplos incluem \textit{KVM}, \textit{Oracle VirtualBox} e \textit{VMware Player} (\cite{chawla2025}; \cite{carissimi2008}). Esta abordagem é mais simples de instalar e gerenciar, mas pode introduzir uma sobrecarga de desempenho devido à camada extra do sistema operacional hospedeiro.
 \end{itemize}
 
 \subsection{Tipos de Virtualização}
@@ -152,83 +133,81 @@ A fama do OpenStack deve-se principalmente à sua natureza aberta, flexibilidade
 Por ser um conjunto de projetos de código aberto, o OpenStack oferece uma variedade de módulos que podem ser incluídos no projeto conforme a necessidade. Porém, alguns módulos básicos costumam aparecer na maior parte das soluções:
 
 \begin{itemize}
-    \item \textbf{Keystone: Serviço de Identidade}\\
-    O \textit{Keystone} é o serviço de identidade do OpenStack, responsável por fornecer autenticação de clientes da API, descoberta de serviços e autorização distribuída multi-inquilino. Ele implementa a API de Identidade do OpenStack \cite{openstack2025}.\\
+    \item \emph{Keystone: Serviço de Identidade}\\
+    O \textit{Keystone} é o serviço de identidade do OpenStack, responsável por fornecer autenticação de clientes da API, descoberta de serviços e autorização distribuída multi-inquilino. Ele implementa a API de Identidade do OpenStack \cite{openstack_keystone}.\\
     Funcionalidades Principais:
     \begin{itemize}
-        \item Autenticação: Gerencia a autenticação de usuários e serviços, permitindo o acesso aos recursos do OpenStack. Suporta diversos métodos de autenticação \cite{openstack2025}.
-        \item Autorização: Controla o acesso aos serviços e recursos do OpenStack, definindo permissões para usuários e grupos \cite{openstack2025}.
-        \item Catálogo de Serviços: Fornece um catálogo de todos os serviços do OpenStack disponíveis e seus respectivos endpoints (pontos de acesso), facilitando a descoberta de serviços pelos clientes \cite{openstack2025}.
-        \item Gerenciamento de Usuários e Grupos (User and Group Management): Permite a criação e gerenciamento de usuários, grupos e projetos (tenants) dentro do ambiente OpenStack \cite{openstack2025}.
+        \item Autenticação: Gerencia a autenticação de usuários e serviços, permitindo o acesso aos recursos do OpenStack. Suporta diversos métodos de autenticação \cite{openstack_keystone}.
+        \item Autorização: Controla o acesso aos serviços e recursos do OpenStack, definindo permissões para usuários e grupos \cite{openstack_keystone}.
+        \item Catálogo de Serviços: Fornece um catálogo de todos os serviços do OpenStack disponíveis e seus respectivos endpoints (pontos de acesso), facilitando a descoberta de serviços pelos clientes \cite{openstack_keystone}.
+        \item Gerenciamento de Usuários e Grupos (User and Group Management): Permite a criação e gerenciamento de usuários, grupos e projetos (tenants) dentro do ambiente OpenStack \cite{openstack_keystone}.
     \end{itemize}
 
-    \item \textbf{Nova: Serviço de Computação}\\
-    O \textit{Nova} é o módulo do OpenStack que provisiona instâncias de servidores virtuais. Ele suporta a criação de VMs e possui suporte para contêineres de sistema. O Nova opera como um conjunto de \textit{daemons} em servidores Linux existentes para fornecer esse serviço \cite{openstack2025}.\\
+    \item \emph{Nova: Serviço de Computação}\\
+    O \textit{Nova} é o módulo do OpenStack que provisiona instâncias de servidores virtuais. Ele suporta a criação de VMs e possui suporte para contêineres de sistema. O Nova opera como um conjunto de \textit{daemons} em servidores Linux existentes para fornecer esse serviço \cite{openstack_nova}.\\
     Funcionalidades Principais:
     \begin{itemize}
-        \item Gerenciamento de Instâncias: Permite a criação, inicialização, parada, reinicialização e exclusão de instâncias de computação.
-        \item Agendamento de Recursos: O agendador do Nova determina em qual host de computação uma nova instância deve ser provisionada, com base em critérios como recursos disponíveis e políticas de afinidade.
-        \item Gerenciamento de Ciclo de Vida: Gerencia o ciclo de vida completo das instâncias, desde o provisionamento até a terminação.
-        \item Integração com Hipervisores: Suporta diversos hipervisores, incluindo KVM, Xen, VMware ESXi e Hyper-V, permitindo a execução de VMs em diferentes tecnologias de virtualização.
+        \item Gerenciamento de Instâncias: Permite a criação, inicialização, parada, reinicialização e exclusão de instâncias de computação \cite{openstack_nova}.
+        \item Agendamento de Recursos: O agendador do Nova determina em qual host de computação uma nova instância deve ser provisionada, com base em critérios como recursos disponíveis e políticas de afinidade \cite{openstack_nova}.
+        \item Gerenciamento de Ciclo de Vida: Gerencia o ciclo de vida completo das instâncias, desde o provisionamento até a terminação \cite{openstack_nova}.
+        \item Integração com Hipervisores: Suporta diversos hipervisores, incluindo KVM, Xen, VMware ESXi e Hyper-V, permitindo a execução de VMs em diferentes tecnologias de virtualização \cite{openstack_nova}.
     \end{itemize}
 
-    \item \textbf{Neutron: Serviço de Rede}\\
-    O \textit{Neutron} é o módulo do OpenStack que fornece conectividade de rede entre dispositivos gerenciados pelo OpenStack, implementando uma API de Rede \cite{openstack2025}.\\
+    \item \emph{Neutron: Serviço de Rede}\\
+    O \textit{Neutron} é o módulo do OpenStack que fornece conectividade de rede entre dispositivos gerenciados pelo OpenStack, implementando uma API de Rede \cite{openstack_neutron}.\\
     Funcionalidades Principais:
     \begin{itemize}
-        \item Gerenciamento de Redes (Network Management): Permite a criação e gerenciamento de redes virtuais, sub-redes e portas para as instâncias do OpenStack \cite{openstack2025}.
-        \item Roteamento (Routing): Oferece capacidades de roteamento entre redes virtuais e para redes externas \cite{openstack2025}.
-        \item Firewall como Serviço (Firewall as a Service - FWaaS): Permite a configuração de regras de firewall para proteger as instâncias e redes virtuais \cite{openstack2025}.
-        \item Balanceamento de Carga como Serviço (Load Balancing as a Service - LBaaS): Distribui o tráfego de rede entre múltiplas instâncias para melhorar a disponibilidade e o desempenho \cite{openstack2025}.
-        \item Rede Definida por Software (Software-Defined Networking - SDN): Integra-se com diversas tecnologias SDN para fornecer uma infraestrutura de rede flexível e programável \cite{openstack2025}.
+        \item Gerenciamento de Redes (Network Management): Permite a criação e gerenciamento de redes virtuais, sub-redes e portas para as instâncias do OpenStack \cite{openstack_neutron}.
+        \item Roteamento (Routing): Oferece capacidades de roteamento entre redes virtuais e para redes externas \cite{openstack_neutron}.
+        \item Firewall como Serviço (Firewall as a Service - FWaaS): Permite a configuração de regras de firewall para proteger as instâncias e redes virtuais \cite{openstack_neutron}.
+        \item Balanceamento de Carga como Serviço (Load Balancing as a Service - LBaaS): Distribui o tráfego de rede entre múltiplas instâncias para melhorar a disponibilidade e o desempenho \cite{openstack_neutron}.
+        \item Rede Definida por Software (Software-Defined Networking - SDN): Integra-se com diversas tecnologias SDN para fornecer uma infraestrutura de rede flexível e programável \cite{openstack_neutron}.
     \end{itemize}
 
-    \item \textbf{Horizon: Dashboard}\\
-    O \textit{Horizon} é a interface gráfica (\textit{dashboard}) do OpenStack, que fornece uma visão unificada e uma ferramenta de gerenciamento para todos os serviços da plataforma \cite{openstack2025}. Através do Horizon, administradores podem monitorar recursos, criar e gerenciar instâncias, configurar redes, gerenciar volumes de armazenamento e realizar diversas tarefas operacionais de forma intuitiva, facilitando a administração da nuvem.\\
+    \item \emph{Horizon: Dashboard}\\
+    O \textit{Horizon} é a interface gráfica (\textit{dashboard}) do OpenStack, que fornece uma visão unificada e uma ferramenta de gerenciamento para todos os serviços da plataforma \cite{openstack_horizon}. Através do Horizon, administradores podem monitorar recursos, criar e gerenciar instâncias, configurar redes, gerenciar volumes de armazenamento e realizar diversas tarefas operacionais de forma intuitiva, facilitando a administração da nuvem.\\
     Funcionalidades Principais:
     \begin{itemize}
-        \item Interface Gráfica: Proporciona uma interface intuitiva para que usuários e administradores possam interagir com os serviços do OpenStack sem a necessidade de usar a linha de comando \cite{openstack2025}.
-        \item Gerenciamento de Recursos: Permite gerenciar instâncias, redes, volumes de armazenamento, imagens e usuários de forma visual \cite{openstack2025}.
-        \item Monitoramento: Oferece visibilidade sobre o status e o desempenho dos recursos da nuvem \cite{openstack2025}.
-        \item Extensibilidade: É uma estrutura extensível, permitindo que desenvolvedores criem novos painéis e funcionalidades para atender a necessidades específicas \cite{openstack2025}.
+        \item Interface Gráfica: Proporciona uma interface intuitiva para que usuários e administradores possam interagir com os serviços do OpenStack sem a necessidade de usar a linha de comando \cite{openstack_horizon}.
+        \item Gerenciamento de Recursos: Permite gerenciar instâncias, redes, volumes de armazenamento, imagens e usuários de forma visual \cite{openstack_horizon}.
+        \item Monitoramento: Oferece visibilidade sobre o status e o desempenho dos recursos da nuvem \cite{openstack_horizon}.
+        \item Extensibilidade: É uma estrutura extensível, permitindo que desenvolvedores criem novos painéis e funcionalidades para atender a necessidades específicas \cite{openstack_horizon}.
     \end{itemize}
 
-    \item \textbf{Glance: Serviço de Imagem}\\
-    O \textit{Glance} atua como um serviço de registro e entrega de imagens de VMs. Ele permite que usuários armazenem e descubram imagens de disco de VM, que podem ser usadas como modelos para lançar novas instâncias \cite{openstack2024}.\\
+    \item \emph{Glance: Serviço de Imagem}\\
+    O \textit{Glance} atua como um serviço de registro e entrega de imagens de VMs. Ele permite que usuários armazenem e descubram imagens de disco de VM, que podem ser usadas como modelos para lançar novas instâncias \cite{openstack_glance}.\\
     Funcionalidades Principais:
     \begin{itemize}
-        \item Registro e Entrega de Imagens: Permite o upload, registro e descoberta de imagens de VMs \cite{openstack2024}.
-        \item Armazenamento de Imagens: Armazena as imagens de VMs como sistemas de arquivos \cite{openstack2024}.
-        \item Metadados de Imagens: Gerencia metadados associados às imagens, facilitando a busca e categorização \cite{openstack2024}.
-        \item API RESTful: Oferece uma API RESTful para consulta de metadados de imagens e recuperação das imagens reais \cite{openstack2024}.
+        \item Registro e Entrega de Imagens: Permite o upload, registro e descoberta de imagens de VMs \cite{openstack_glance}.
+        \item Armazenamento de Imagens: Armazena as imagens de VMs como sistemas de arquivos \cite{openstack_glance}.
+        \item Metadados de Imagens: Gerencia metadados associados às imagens, facilitando a busca e categorização \cite{openstack_glance}.
+        \item API RESTful: Oferece uma API RESTful para consulta de metadados de imagens e recuperação das imagens reais \cite{openstack_glance}.
     \end{itemize}
 
-    \item \textbf{Cinder: Serviço de Armazenamento em Bloco}\\
-    O  \textit{Cinder} fornece armazenamento em bloco persistente para as instâncias OpenStack. Este módulo é crucial para garantir que todas as alterações feitas pelos usuários em suas máquinas virtuais sejam salvas. Cada máquina virtual de usuário teria um volume de boot do Cinder, garantindo que o sistema operacional e os dados do usuário permaneçam intactos mesmo após a VM ser desligada e reiniciada, atendendo ao requisito de ambiente persistente \cite{openstack2021}.\\
+    \item \emph{Cinder: Serviço de Armazenamento em Bloco}\\
+    O  \textit{Cinder} fornece armazenamento em bloco persistente para as instâncias OpenStack. Este módulo é crucial para garantir que todas as alterações feitas pelos usuários em suas máquinas virtuais sejam salvas. Cada máquina virtual de usuário teria um volume de boot do Cinder, garantindo que o sistema operacional e os dados do usuário permaneçam intactos mesmo após a VM ser desligada e reiniciada, atendendo ao requisito de ambiente persistente \cite{openstack_cinder}.\\
     Funcionalidades Principais:
     \begin{itemize}
-        \item Criação e Gerenciamento de Volumes: Permite criar, anexar, desanexar e excluir volumes de armazenamento para as instâncias \cite{openstack2021}.
-        \item Snapshots e Backups: Oferece a capacidade de criar  \textit{snapshots} de volumes para recuperação de dados e \textit{backups} \cite{openstack2021}.
-        \item Tipos de Volume: Suporta diferentes tipos de volumes com características de desempenho e redundância variadas, permitindo que os usuários escolham o tipo de armazenamento mais adequado às suas necessidades \cite{openstack2021}.
-        \item Integração com  soluções de terceiros: Pode se integrar com uma ampla gama de soluções de armazenamento de terceiros \cite{openstack2021}.
+        \item Criação e Gerenciamento de Volumes: Permite criar, anexar, desanexar e excluir volumes de armazenamento para as instâncias \cite{openstack_cinder}.
+        \item Snapshots e Backups: Oferece a capacidade de criar cópias instantâneas(\textit{snapshots}) de volumes para recuperação de dados e cópia de segurança(\textit{backups}) \cite{openstack_cinder}.
+        \item Tipos de Volume: Suporta diferentes tipos de volumes com características de desempenho e redundância variadas, permitindo que os usuários escolham o tipo de armazenamento mais adequado às suas necessidades \cite{openstack_cinder}.
+        \item Integração com  soluções de terceiros: Pode se integrar com uma ampla gama de soluções de armazenamento de terceiros \cite{openstack_cinder}.
     \end{itemize}
 
-    \item \textbf{Swift: Serviço de Armazenamento de Objetos}\\
-    O  \textit{Swift} é um módulo para armazenamento de objetos altamente disponíveis. Organizações podem usar o Swift para armazenar grandes quantidades de dados de forma eficiente, segura e econômica \cite{openstack2023}.\\
+    \item \emph{Swift: Serviço de Armazenamento de Objetos}\\
+    O  \textit{Swift} é um módulo para armazenamento de objetos altamente disponíveis. Organizações podem usar o Swift para armazenar grandes quantidades de dados de forma eficiente, segura e econômica \cite{openstack_swift}.\\
     Funcionalidades Principais:
     \begin{itemize}
-        \item Armazenamento de Objetos: Permite armazenar e recuperar objetos de dados de forma escalável e durável, sem a estrutura hierárquica de um sistema de arquivos tradicional \cite{openstack2023}.
-        \item Alta Disponibilidade e Durabilidade: Garante a disponibilidade e a integridade dos dados através da replicação e distribuição de objetos em múltiplos nós de armazenamento  \cite{openstack2023}.
-        \item Escalabilidade: Projetado para escalar horizontalmente, permitindo adicionar mais capacidade de armazenamento conforme a necessidade  \cite{openstack2023}.
-        \item API RESTful: Oferece uma API RESTful simples para interagir com o serviço de armazenamento de objetos  \cite{openstack2023}.
+        \item Armazenamento de Objetos: Permite armazenar e recuperar objetos de dados de forma escalável e durável, sem a estrutura hierárquica de um sistema de arquivos tradicional \cite{openstack_swift}.
+        \item Alta Disponibilidade e Durabilidade: Garante a disponibilidade e a integridade dos dados através da replicação e distribuição de objetos em múltiplos nós de armazenamento  \cite{openstack_swift}.
+        \item Escalabilidade: Projetado para escalar horizontalmente, permitindo adicionar mais capacidade de armazenamento conforme a necessidade  \cite{openstack_swift}.
+        \item API RESTful: Oferece uma API RESTful simples para interagir com o serviço de armazenamento de objetos  \cite{openstack_swift}.
     \end{itemize}
 \end{itemize}
 
+\section{Ubuntu Server}
 
-
-
-
-
+\section{Matriz Redundante de Discos Independentes (RAID)}
 
 \section{Elasticidade e Provisionamento Dinâmico}
 
@@ -237,6 +216,8 @@ Por ser um conjunto de projetos de código aberto, o OpenStack oferece uma varie
 \subsection{Políticas de \textit{Fair-Share} e \textit{Ballooning}}
 
 \section{Imagens Base Compartilhadas}
+
+\section{Automatização de configurações}
 
 \section{Trabalhos Relacionados}
 
