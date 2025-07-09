@@ -1,0 +1,60 @@
+% ---------------------------------------------------------------------------
+% Capítulo 4 – Metodologia
+% Arquivo: metodologia.tex
+% Este capítulo descreve o desenho metodológico adotado no trabalho, em
+% conformidade com as normas ABNT. Palavras estrangeiras aparem em itálico e
+% não há uso de negrito no corpo do texto.
+% ---------------------------------------------------------------------------
+
+\chapter{Metodologia}
+% Reinicia numeração de tabelas para este capítulo, caso o template o exija
+\setcounter{table}{0}
+
+Este capítulo apresenta o delineamento metodológico utilizado para planejar, executar e avaliar a implantação da nuvem privada dinâmica proposta no Capítulo 3. A metodologia foi estruturada para assegurar a reprodutibilidade dos procedimentos, a validade dos resultados.
+
+\section{Tipo de Pesquisa}
+A investigação se caracteriza como aplicada, pois busca empregar conhecimentos consolidados para resolver um problema prático identificado no Lab Telecom. O estudo assume natureza exploratória e descritiva, objetivando tanto compreender o contexto quanto detalhar o processo de implantação da solução.
+
+\section{Materiais e Ferramentas}
+\begin{itemize}
+    \item \textit{Hardware}: quatro servidores \textit{Dell} (modelos PowerEdge 2950, 2900, 1950 e R900) descritos no Capítulo 3;
+    \item Sistema operacional: Ubuntu Server;
+    \item Hipervisor: KVM;
+    \item Plataforma de orquestração: OpenStack;
+    \item Ferramentas de automação: Ansible;
+    \item Monitoramento: Prometheus e Grafana;
+    \item Linguagem de descrição de infraestrutura: arquivos YAML e playbooks Ansible.
+\end{itemize}
+
+\section{Procedimentos}
+\subsection{Preparação do Ambiente}
+\begin{enumerate}
+    \item Reativar o hardware, verificando a condição das fontes, memória, processadores, de cada hardware;
+    \item Instalação do Ubuntu Server e configuração do RAID 6 em cada servidor;
+    \item Instalação do hipervisor KVM e validação de extensões de virtualização;
+    \item Configuração automática dos serviços do OpenStack por meio de playbooks Ansible;
+    \item Configuração do monitoramento via Prometheus e Grafana;
+    \item Implementação e Configuração das políticas de \textit{Fair-Share} e \textit{Ballooning}, essenciais para o provisionamento dinâmico de RAM e CPU conforme a necessidade dos usuários;
+\end{enumerate}
+
+\subsection{Execução dos Experimentos}
+Para avaliar a eficácia da nuvem privada foram definidos três cenários de carga:
+\begin{description}
+    \item[Cenário A] Carga baixa: até 4 VMs ociosas, com monitoramento da alocação de recursos em estado de baixa demanda;
+    \item[Cenário B] Carga média: 4 VMs com uso moderado de CPU e memória, observando a redistribuição de recursos pelas políticas de \textit{Fair-Share} e \textit{Ballooning};
+    \item[Cenário C] Carga alta: 6 VMs com uso intensivo de CPU e memória, analisando a capacidade da nuvem de escalar e provisionar recursos dinamicamente para atender à demanda máxima.
+\end{description}
+Cada cenário deverá ser executado por 2 horas, registrando métricas a cada 30 segundos para capturar a dinâmica do provisionamento de recursos.
+
+\section{Variáveis e Métricas}
+Para a avaliação do provisionamento dinâmico e da eficácia da solução, as seguintes variáveis e métricas serão monitoradas e analisadas:
+\begin{itemize}
+\item Utilização de CPU: Medida do percentual de uso do processador nas VMs e nos hosts físicos, utilizada para avaliar a eficácia das políticas de \textit{Fair-Share};
+\item Utilização de memória RAM: Medida do percentual de uso da memória RAM nas VMs e nos hosts físicos, utilizada para analisar o impacto do \textit{Ballooning};
+\item Tempo médio de provisionamento de VMs: Tempo necessário para que uma nova VM esteja operacional, indicando a agilidade do sistema;
+\item Tempo de resposta das aplicações: Avaliação da responsividade das aplicações dentro das VMs sob diferentes cargas, refletindo a qualidade de serviço;
+\item Taxa de falhas de provisionamento: Percentual de tentativas de provisionamento de VMs que resultam em falha, indicando a robustez do sistema.
+\end{itemize}
+
+\section{Coleta e Armazenamento de Dados}
+Os dados de desempenho foram coletados pelo \textit{Prometheus} e armazenados em séries temporais, enquanto \textit{logs} de eventos do *OpenStack* foram consolidados no \textit{ElasticSearch}. As tabelas resultantes estão disponibilizadas no Apêndice~\ref{apendice:logs}.
