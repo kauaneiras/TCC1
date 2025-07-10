@@ -53,7 +53,7 @@ A implantação de sistemas de computação em nuvem pode ser realizada por meio
 A implantação de sistemas de computação em nuvem pode ser realizada por meio de diferentes modelos, cada qual adequado a cenários específicos. Os modelos mais difundidos são as nuvens pública, privada, comunitária e híbrida, que se diferenciam em nível de controle, segurança, escalabilidade e custo de implantação \cite{mell2011}.
 
 \section{Virtualização e Hipervisores}
-A virtualização é uma técnica de grande importância na computação moderna, uma vez  abstrai o hardware de máquinas físicas, agrupando logicamente os recursos de servidores. Esses agrupamentos lógicos, também conhecido como \textit{pools}, permite a criação de máquinas virtuais (VMs) isoladas em um único sistema computacional físico \cite{carissimi2008}; \cite{kominos2017}. Cada VM funciona como um ambiente de execução completo e autônomo, com sistema operacional próprio, aplicações, configurações e  serviços de rede, como se fosse uma máquina física independente \cite{carissimi2008}. Esta capacidade de particionamento lógico de recursos de hardware é um dos fundamentos da computação em nuvem, viabilizando a elasticidade, a multilocação e a eficiência de custos \cite{chawla2025}.
+A virtualização é uma técnica de grande importância na computação moderna, uma vez  abstrai o hardware de máquinas físicas, agrupando logicamente os recursos de servidores. Esses agrupamentos lógicos, também conhecido como \textit{pools}, permite a criação de máquinas virtuais (VMs) isoladas em um único sistema computacional físico \cite{carissimi2008, kominos2017}. Cada VM funciona como um ambiente de execução completo e autônomo, com sistema operacional próprio, aplicações, configurações e  serviços de rede, como se fosse uma máquina física independente \cite{carissimi2008}. Esta capacidade de particionamento lógico de recursos de hardware é um dos fundamentos da computação em nuvem, viabilizando a elasticidade, a multilocação e a eficiência de custos \cite{chawla2025}.
 
 \subsection{Tipos de Virtualização}
 A implementação de máquinas virtuais de sistema pode ser realizada através de duas técnicas principais:
@@ -64,8 +64,6 @@ A implementação de máquinas virtuais de sistema pode ser realizada através d
 \end{description}
 
 Para facilitar o entendimento dos conceitos da Virtualização Total e Paravirtualização, a Tabela~\ref{tab:comparativo_virtualizacao} apresenta um comparativo entre esses dois tipos, destacando suas vantagens e desvantagens:
-
-
 \begin{table}[h]
     \centering
     \caption{Comparativo entre Virtualização Total e Paravirtualização}
@@ -88,13 +86,8 @@ Para facilitar o entendimento dos conceitos da Virtualização Total e Paravirtu
         Principal Desvantagem   & Maior sobrecarga sem assistência de hardware. 
                                 & Requer suporte e modificação no sistema operacional convidado. \\ \hline
     \end{tabular}
-\end{table}
-
     \fonte{Elaborado pelo autor, com base em Carissimi (2008).}
 \end{table}
-
-
-\subsection{Definição e tipos de hipervisores}
 O componente de software responsável por criar e gerenciar as máquinas virtuais é denominado hipervisor, ou Monitor de Máquina Virtual (VMM) \cite{chawla2025}; \cite{carissimi2008}. O hipervisor é a camada de software que fica entre o hardware e os sistemas operacionais, e é responsável por orquestrar o acesso aos recursos físicos e manter o isolamento entre as diferentes VMs \cite{chawla2025}; \cite{carissimi2008}. Os hipervisores são classificados em dois tipos principais, conforme ilustrado na Figura 2.
 
 \begin{figure}[h]
@@ -214,8 +207,8 @@ A Tabela 4 resume as principais características, vantagens e desvantagens de ca
 
 \subsection{KVM como Solução de Hipervisor}
 
-O \textit{Kernel-based Virtual Machine} (KVM) é a solução de virtualização que integra um hipervisor diretamente ao \textit{kernel} do Linux \cite{carrisimi2008}. Embora seja classificado como um hipervisor Tipo 2, pois opera sobre um sistema operacional, sua integração com o \textit{kernel} lhe confere características de desempenho e eficiência que se aproximam de soluções Tipo 1 \cite{chawla2025, kominos2017}. No KVM, cada máquina virtual (VM) é gerenciada como um processo regular do Linux, agendado pelo escalonador padrão do sistema, o que otimiza a gestão de recursos e a alocação de memória \cite{anand2013}.
-Para minimizar a sobrecarga da tradução binária, o KVM explora as extensões de virtualização de hardware presentes nos processadores modernos, como Intel VT-x e AMD-V, \cite{chawla2025, carrisimi2008}. Essa abordagem permite que o código do sistema operacional seja executado diretamente no processador, resultando em um desempenho muito próximo ao de uma máquina \textit{bare-metal} \cite{kominos2017}. Estudos comparativos indicam uma sobrecarga do processador de apenas 4,0\% para o KVM, valor competitivo frente a outras soluções \cite{chawla2025}. Além disso, em virtude de se integrar com o \textit{kernel} Linux, o KVM se favorece das otimizações e avanços do próprio \textit{kernel}, como gerenciamento de memória, escalonamento de processos e suporte a \textit{hardware} \cite{anand2013, arora2014}. 
+O \textit{Kernel-based Virtual Machine} (KVM) é a solução de virtualização que integra um hipervisor diretamente ao \textit{kernel} do Linux \cite{carissimi2008}. Embora seja classificado como um hipervisor Tipo 2, pois opera sobre um sistema operacional, sua integração com o \textit{kernel} lhe confere características de desempenho e eficiência que se aproximam de soluções Tipo 1 \cite{chawla2025, kominos2017}. No KVM, cada máquina virtual (VM) é gerenciada como um processo regular do Linux, agendado pelo escalonador padrão do sistema, o que otimiza a gestão de recursos e a alocação de memória \cite{anand2013}.
+Para minimizar a sobrecarga da tradução binária, o KVM explora as extensões de virtualização de hardware presentes nos processadores modernos, como Intel VT-x e AMD-V, \cite{chawla2025, carissimi2008}. Essa abordagem permite que o código do sistema operacional seja executado diretamente no processador, resultando em um desempenho muito próximo ao de uma máquina \textit{bare-metal} \cite{kominos2017}. Estudos comparativos indicam uma sobrecarga do processador de apenas 4,0\% para o KVM, valor competitivo frente a outras soluções \cite{chawla2025}. Além disso, em virtude de se integrar com o \textit{kernel} Linux, o KVM se favorece das otimizações e avanços do próprio \textit{kernel}, como gerenciamento de memória, escalonamento de processos e suporte a \textit{hardware} \cite{anand2013, arora2014}. 
 Apesar de suas vantagens, a segurança do KVM é intrinsecamente ligada ao \textit{kernel} Linux, e dessa forma, vulnerabilidades no \textit{kernel} podem expor o hipervisor a ataques como \textit{VM escape} ou \textit{hyperjacking} \cite{chawla2025}. Soluções como o VMware ESXi e o Xen possuírem um \textit{microkernel} próprio, e consequentemente, apresentam uma superfície de ataque menor. Em função disso, são frequentemente consideradas mais resilientes em ambientes corporativos que exigem conformidade com padrões de segurança rigorosos \cite{chawla2025}.
 
 \section{Máquinas Virtuais \& Imagens}
