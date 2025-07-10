@@ -23,16 +23,16 @@ A investigação se caracteriza como aplicada, pois busca empregar conhecimentos
     \item Plataforma de orquestração: OpenStack;
     \item Ferramentas de automação: Ansible;
     \item Monitoramento: Prometheus e Grafana;
-    \item Linguagem de descrição de infraestrutura: arquivos YAML e playbooks Ansible.
+    \item Linguagem de descrição de infraestrutura: arquivos YAML e \textit{playbooks} Ansible.
 \end{itemize}
 
 \section{Procedimentos}
 \subsection{Preparação do Ambiente}
 \begin{enumerate}
-    \item Reativar o hardware, verificando a condição das fontes, memória, processadores, de cada hardware;
+    \item Reativar o \textit{hardware}, verificando a condição das fontes, memória, processadores, de cada \textit{hardware};
     \item Instalação do Ubuntu Server e configuração do RAID 6 em cada servidor;
     \item Instalação do hipervisor KVM e validação de extensões de virtualização;
-    \item Configuração automática dos serviços do OpenStack por meio de playbooks Ansible;
+    \item Configuração automática dos serviços do OpenStack por meio de \textit{playbooks} Ansible;
     \item Configuração do monitoramento via Prometheus e Grafana;
     \item Implementação e Configuração das políticas de \textit{Fair-Share} e \textit{Ballooning}, essenciais para o provisionamento dinâmico de RAM e CPU conforme a necessidade dos usuários;
 \end{enumerate}
