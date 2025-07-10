@@ -172,40 +172,41 @@ A Tabela 4 resume as principais características, vantagens e desvantagens de ca
     \renewcommand{\arraystretch}{1.3}
     \caption{Comparação entre hipervisores KVM, VMware ESXi e Xen}
     \label{tab:hipervisores}
-    \begin{tabular}{|l|l|l|l|}
+    % Colunas flexíveis que aceitam vários parágrafos/listas
+    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{3cm}|X|X|X|}
         \hline
         \textbf{Característica} & \textbf{KVM} & \textbf{VMware ESXi} & \textbf{Xen} \\ \hline
         \textbf{Tipo} & Tipo 2, mas com comportamento de Tipo 1 & Tipo 1 & Tipo 1 \\ \hline
         \textbf{Licença} & Código Aberto & Proprietário & Código Aberto \\ \hline
         \textbf{Vantagens} &
-        \begin{description}
+        \begin{itemize}[leftmargin=*]
             \item Desempenho próximo ao nativo.
             \item Custo zero de licenciamento.
             \item Amplo suporte da comunidade \textit{open-source}.
-        \end{description} &
-        \begin{description}
+        \end{itemize} &
+        \begin{itemize}[leftmargin=*]
             \item Desempenho de E/S superior.
             \item Ecossistema de gerenciamento maduro.
             \item Segurança robusta.
-        \end{description} &
-        \begin{description}
+        \end{itemize} &
+        \begin{itemize}[leftmargin=*]
             \item Arquitetura de segurança superior.
             \item Bom isolamento entre VMs.
             \item Ampla adoção em nuvens públicas (AWS).
-        \end{description} \\ \hline
+        \end{itemize} \\ \hline
         \textbf{Desvantagens} &
-        \begin{description}
+        \begin{itemize}[leftmargin=*]
             \item A segurança depende do \textit{kernel} Linux.
             \item Gerenciamento menos centralizado que outras soluções.
-        \end{description} &
-        \begin{description}
+        \end{itemize} &
+        \begin{itemize}[leftmargin=*]
             \item Custo de licenciamento elevado.
-        \end{description} &
-        \begin{description}
+        \end{itemize} &
+        \begin{itemize}[leftmargin=*]
             \item Maior sobrecarga de desempenho em alguns cenários.
             \item Configuração pode ser mais complexa.
-        \end{description} \\ \hline
-    \end{tabular}
+        \end{itemize} \\ \hline
+    \end{tabularx}
     \fonte{Baseado em Chawla et al. (2025), Kominos et al. (2017) e Arora et al. (2014).}
 \end{table}
 
