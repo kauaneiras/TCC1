@@ -1,6 +1,6 @@
 \chapter{Solução Proposta}
 
-Este capítulo descreve detalhadamente a solução proposta para otimizar o uso de recursos computacionais no \textit{Lab Telecom} (Laboratório Compartilhado de Ensino e Pesquisa em Telecomunicações) da Universidade de Brasília (UnB). A abordagem central envolve a implementação de uma nuvem privada baseada no OpenStack, utilizando servidores legados subutilizados e aplicando técnicas de provisionamento dinâmico de recursos para a entrega de um serviço IaaS (\textit{Infrastructure as a Service}). Serão apresentados o contexto do laboratório, os recursos de hardware disponíveis, a arquitetura da nuvem proposta, os detalhes de implementação e configuração, bem como as estratégias para provisionamento dinâmico, gerenciamento de imagens de máquinas virtuais (VMs) e políticas de escalonamento. O objetivo é demonstrar como essa solução pode fornecer ambientes capazes de suprir a falta de múltiplos servidores dedicados para simulações complexas e programas de alto desempenho, como Ansys, Cadence e SolidWorks. A proposta visa fornecer múltiplos ambientes isolados e eficientes para os discentes e pesquisadores do laboratório, aproveitando a infraestrutura existente e garantindo a segurança e a otimização dos recursos.
+Este capítulo descreve detalhadamente a solução proposta para otimizar o uso de recursos computacionais no Laboratório Compartilhado de Ensino e Pesquisa em Telecomunicações (Lab Telecom) da Universidade de Brasília (UnB). A abordagem central envolve a implementação de uma nuvem privada baseada no OpenStack, utilizando servidores legados subutilizados e aplicando técnicas de provisionamento dinâmico de recursos para a entrega de um serviço IaaS (\textit{Infrastructure as a Service}). Serão apresentados o contexto do laboratório, os recursos de \textit{hardware} disponíveis, a arquitetura da nuvem proposta, os detalhes de implementação e configuração, bem como as estratégias para provisionamento dinâmico, gerenciamento de imagens de máquinas virtuais (VMs) e políticas de escalonamento. O objetivo é demonstrar como essa solução pode fornecer ambientes capazes de suprir a falta de múltiplos servidores dedicados para simulações complexas e programas de alto desempenho, como Ansys, Cadence e SolidWorks. A proposta visa fornecer múltiplos ambientes isolados e eficientes para os discentes e pesquisadores do laboratório, aproveitando a infraestrutura existente e garantindo a segurança e a otimização dos recursos.
 
 \section{Contexto do Laboratório e Problemas}
 
@@ -36,9 +36,9 @@ Além dos servidores, o laboratório dispõe de \textbf{QUANTIDADE} switches Cis
 
 A arquitetura da nuvem privada proposta é projetada para maximizar a utilização dos recursos de hardware existentes, ao mesmo tempo em que oferece um ambiente flexível e escalável para os usuários. A estrutura da nuvem será organizada em camadas, garantindo a separação lógica e a modularidade dos componentes.
 
-Na base da arquitetura, encontram-se os \textbf{servidores físicos} Dell, que atuarão como nós de computação e armazenamento. Sobre esses servidores, será implementada a camada de \textbf{virtualização}, utilizando o KVM (\textit{Kernel-based Virtual Machine}) em conjunto com o Ubuntu Server. A escolha do KVM é justificada por ser um sistema de código aberto, evitando gastos com licenças proprietárias e dependência tecnológica de empresas privadas. Além disso, ao compará-lo com o Xen, o KVM mostrou desempenho superior, maior facilidade de uso e de gerenciamento. Sua integração profunda com o kernel Linux torna-o eficiente para ambientes de virtualização de alto desempenho. Como sistema operacional hospedeiro, será utilizado o Ubuntu Server, por ser uma plataforma estável e amplamente suportada para a execução do KVM e dos serviços do OpenStack.
+Na base da arquitetura, encontram-se os servidores físicos Dell, que atuarão como nós de computação e armazenamento. Sobre esses servidores, será implementada a camada de virtualização, utilizando o KVM (\textit{Kernel-based Virtual Machine}) em conjunto com o Ubuntu Server. A escolha do KVM é justificada por ser um sistema de código aberto, evitando gastos com licenças proprietárias e dependência tecnológica de empresas privadas. Além disso, ao compará-lo com o Xen, o KVM mostrou desempenho superior, maior facilidade de uso e de gerenciamento. Sua integração profunda com o \textit{kernel} Linux torna-o eficiente para ambientes de virtualização de alto desempenho. Como sistema operacional hospedeiro, será utilizado o Ubuntu Server, por ser uma plataforma estável e amplamente suportada para a execução do KVM e dos serviços do OpenStack.
 
-A camada de \textbf{orquestração} será provida pelo OpenStack, que atuará como o sistema operacional da nuvem, gerenciando e coordenando todos os recursos computacionais, de rede e de armazenamento. Os principais componentes do OpenStack que farão parte dessa arquitetura incluem:
+A camada de orquestração será provida pelo OpenStack, que atuará como o sistema operacional da nuvem, gerenciando e coordenando todos os recursos computacionais, de rede e de armazenamento. Os principais componentes do OpenStack que farão parte dessa arquitetura incluem:
 
 \begin{itemize}
  \item \textbf{Keystone (Serviço de Identidade):} Responsável pela autenticação e autorização de usuários e serviços, garantindo a segurança do acesso à nuvem;
@@ -50,8 +50,6 @@ A camada de \textbf{orquestração} será provida pelo OpenStack, que atuará co
 \end{itemize}
 
 Os usuários se conectarão às suas máquinas virtuais por meio de protocolos de acesso remoto, como SSH (\textit{Secure Shell}) para acesso via linha de comando ou RDP (\textit{Remote Desktop Protocol}) para acesso gráfico, garantindo que cada aluno tenha seu ambiente de trabalho isolado e personalizado.
-
-% Figura x: Diagrama de arquitetura da nuvem privada proposta
 
 \section{Implementação e Configuração}
 
@@ -96,7 +94,7 @@ A automatização do gerenciamento de recursos garantirá eficiência operaciona
 
 \section{Escalabilidade e Automatização de Configurações}
 
-Recursos como \textit{Ansible} e \textit{Terraform} podem ser empregados para automatizar a configuração e facilitar a adição de novos servidores à nuvem privada.
+Recursos como Ansible e Terraform podem ser empregados para automatizar a configuração e facilitar a adição de novos servidores à nuvem privada.
 
 
 Este capítulo descreve detalhadamente a solução proposta, apresentando a arquitetura da nuvem privada dinâmica, os componentes envolvidos, os fluxos de provisionamento automático de VMs e as políticas de escalonamento adotadas.
