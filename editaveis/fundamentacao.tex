@@ -29,7 +29,7 @@ Além dessas características essenciais, o NIST também classifica os serviços
     \item[Infraestrutura como Serviço (IaaS)]: disponibiliza recursos fundamentais, como CPU, armazenamento e rede, permitindo ao usuário instalar sistemas operacionais e aplicações com controle limitado de rede \cite{mell2011}.
 \end{description}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{figuras/Figura 1 - Comparação entre os modelos de serviço.png}
 \caption{Comparação entre os modelos de serviço IaaS, PaaS e SaaS}
@@ -64,7 +64,7 @@ A implementação de máquinas virtuais de sistema pode ser realizada através d
 \end{description}
 
 Para facilitar o entendimento dos conceitos da Virtualização Total e Paravirtualização, a Tabela~\ref{tab:comparativo_virtualizacao} apresenta um comparativo entre esses dois tipos, destacando suas vantagens e desvantagens:
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \caption{Comparativo entre Virtualização Total e Paravirtualização}
     \label{tab:comparativo_virtualizacao}
@@ -90,7 +90,7 @@ Para facilitar o entendimento dos conceitos da Virtualização Total e Paravirtu
 \end{table}
 O componente de software responsável por criar e gerenciar as máquinas virtuais é denominado hipervisor, ou Monitor de Máquina Virtual (VMM) \cite{chawla2025}; \cite{carissimi2008}. O hipervisor é a camada de software que fica entre o hardware e os sistemas operacionais, e é responsável por orquestrar o acesso aos recursos físicos e manter o isolamento entre as diferentes VMs \cite{chawla2025}; \cite{carissimi2008}. Os hipervisores são classificados em dois tipos principais, conforme ilustrado na Figura 2.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figuras/Figura 2 - Arquitetura de Hipervisores.png}
     \caption{Arquiteturas de hipervisores do Tipo 1 (bare-metal) e Tipo 2 (hosted).}
@@ -106,29 +106,42 @@ O componente de software responsável por criar e gerenciar as máquinas virtuai
 
 A Tabela~\ref{tab:comparativo_hipervisores} compara, de forma simplificada, as diferenças entre os hipervisores Tipo~1 e Tipo~2, a fim de tornar o entendimento desses conceitos mais claro:
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \caption{Comparativo entre Hipervisores Tipo 1 e Tipo 2}
     \label{tab:comparativo_hipervisores}
-    \begin{tabular}{|l|l|l|}
+
+    % ---- tabela ----
+    \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.23\textwidth}
+                                 |>{\raggedright\arraybackslash}X
+                                 |>{\raggedright\arraybackslash}X|}
         \hline
-        & \textbf{Hipervisor Tipo 1 (Bare-Metal)} & \textbf{Hipervisor Tipo 2 (Hosted)} \\
-        \hline
-        Posicionamento Arquitetural & Executa diretamente sobre o hardware físico. & Executa como uma aplicação sobre um Sistema Operacional hospedeiro. \\
-        \hline
-        Desempenho & Maior, com menor sobrecarga de virtualização. & Menor, pois há uma camada extra (SO hospedeiro) que pode gerar \textit{overhead}. \\
-        \hline
-        Isolamento e Segurança & Considerado mais seguro devido ao acesso direto e controlado ao hardware e menor superfície de ataque. & A segurança depende criticamente do Sistema Operacional hospedeiro subjacente. \\
-        \hline
-        Instalação e Gestão & Geralmente mais complexo, exigindo um servidor dedicado para sua instalação. & Instalação simples, similar a qualquer outro software de desktop. \\
-        \hline
-        Caso de Uso Principal & Ambientes de produção, \textit{datacenters} e nuvens que exigem alto desempenho e escalabilidade. & Desenvolvimento de software, testes, e uso em \textit{desktops} para executar múltiplos sistemas operacionais. \\
-        \hline
-        Exemplos & VMware ESXi, Microsoft Hyper-V, Xen. & Oracle VirtualBox, VMware Player, KVM. \\
-        \hline
-    \end{tabular}
-    \fonte{Elaborada pelo autor, com base em Chawla et al. (2025), Kominos et al. (2017) e Carissimi (2008).}
+        \textbf{Característica} & \textbf{Hipervisor Tipo 1 (Bare-Metal)}
+                                & \textbf{Hipervisor Tipo 2 (Hosted)} \\ \hline
+        Posicionamento Arquitetural
+            & Executa diretamente sobre o hardware físico.
+            & Executa como uma aplicação sobre um sistema operacional hospedeiro. \\ \hline
+        Desempenho
+            & Maior, com menor sobrecarga de virtualização.
+            & Menor, pois há uma camada extra (SO hospedeiro) que gera \textit{overhead}. \\ \hline
+        Isolamento e Segurança
+            & Considerado mais seguro devido ao acesso direto ao hardware e menor superfície de ataque.
+            & A segurança depende criticamente do sistema operacional hospedeiro subjacente. \\ \hline
+        Instalação e Gestão
+            & Geralmente mais complexa, exigindo um servidor dedicado.
+            & Instalação simples, semelhante a qualquer outro software de desktop. \\ \hline
+        Caso de Uso Principal
+            & Ambientes de produção, \textit{datacenters} e nuvens que exigem alto desempenho.
+            & Desenvolvimento, testes e uso em \textit{desktops} para múltiplos SOs. \\ \hline
+        Exemplos
+            & VMware ESXi, Microsoft Hyper-V, Xen.
+            & Oracle VirtualBox, VMware Player, KVM. \\ \hline
+    \end{tabularx}
+    % ----------------
+
+    \fonte{Elaborada pelo autor, com base em Chawla et al.\ (2025), Kominos et al.\ (2017) e Carissimi (2008).}
 \end{table}
+
 
 
 \subsection{Análise Comparativa de Hipervisores}
@@ -143,7 +156,7 @@ A seleção de um hipervisor é uma decisão crítica que impacta diretamente o 
 \end{description}
 
 % Tabela de desempenho de hipervisores
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3}
     \caption{Comparação de overhead e desempenho entre hipervisores}
@@ -162,7 +175,7 @@ A seleção de um hipervisor é uma decisão crítica que impacta diretamente o 
 
 A Tabela 4 resume as principais características, vantagens e desvantagens de cada solução, com foco em sua aplicabilidade em ambientes de nuvem.
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3}
     \caption{Comparação entre hipervisores KVM, VMware ESXi e Xen}
