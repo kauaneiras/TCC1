@@ -83,12 +83,12 @@ A implantação de sistemas de computação em nuvem pode ser realizada por meio
  
 
 \section{Virtualização e Hipervisores}
-A virtualização é uma técnica de grande importância na computação moderna, uma vez  abstrai o hardware de máquinas físicas, agrupando logicamente os recursos de servidores. Esses agrupamentos lógicos, também conhecido como (\textit{pools}), permite a criação de máquinas virtuais (VMs) isoladas em um único sistema computacional físico (\cite{carissimi2008}; \cite{kominos2017}). Cada VM funciona como um ambiente de execução completo e autônomo, com sistema operacional próprio, aplicações, configurações e  serviços de rede, como se fosse uma máquina física independente (\cite{carissimi2008}; \cite{smith2005}). Esta capacidade de particionamento lógico de recursos de hardware é um dos fundamentos da computação em nuvem, viabilizando a elasticidade, a multilocação e a eficiência de custos (\cite{chawla2025}).
+A virtualização é uma técnica de grande importância na computação moderna, uma vez  abstrai o hardware de máquinas físicas, agrupando logicamente os recursos de servidores. Esses agrupamentos lógicos, também conhecido como (\textit{pools}), permite a criação de máquinas virtuais (VMs) isoladas em um único sistema computacional físico \cite{carissimi2008}; \cite{kominos2017}. Cada VM funciona como um ambiente de execução completo e autônomo, com sistema operacional próprio, aplicações, configurações e  serviços de rede, como se fosse uma máquina física independente \cite{carissimi2008}; \cite{smith2005}. Esta capacidade de particionamento lógico de recursos de hardware é um dos fundamentos da computação em nuvem, viabilizando a elasticidade, a multilocação e a eficiência de custos \cite{chawla2025}.
 
-A virtualização é fundamental na computação moderna por abstrair o hardware de servidores físicos e agrupar logicamente seus recursos em \textit{pools}. Esse agrupamento permite a criação de máquinas virtuais (VMs) isoladas em um único host físico (\cite{carissimi2008}; \cite{kominos2017}). Cada VM opera como um sistema autônomo, com sistema operacional, aplicações e serviços de rede próprios, como se fosse um hardware independente (\cite{carissimi2008}; \cite{smith2005}). Esse particionamento lógico dos recursos viabiliza os pilares da computação em nuvem — elasticidade, multilocação e eficiência de custos (\cite{chawla2025}).
+A virtualização é fundamental na computação moderna por abstrair o hardware de servidores físicos e agrupar logicamente seus recursos em \textit{pools}. Esse agrupamento permite a criação de máquinas virtuais (VMs) isoladas em um único host físico \cite{carissimi2008}; \cite{kominos2017}. Cada VM opera como um sistema autônomo, com sistema operacional, aplicações e serviços de rede próprios, como se fosse um hardware independente \cite{carissimi2008}; \cite{smith2005}. Esse particionamento lógico dos recursos viabiliza os pilares da computação em nuvem — elasticidade, multilocação e eficiência de custos \cite{chawla2025}.
 
 % Classificação dos Hipervisores
-O componente de software responsável por criar e gerenciar as máquinas virtuais é denominado hipervisor, ou Monitor de Máquina Virtual (VMM — \textit{Virtual Machine Monitor}) (\cite{chawla2025}; \cite{carissimi2008}). O hipervisor é a camada de software que fica entre o hardware e os sistemas operacionais e é responsável por orquestrar o acesso aos recursos físicos e manter o isolamento entre as diferentes VMs (\cite{chawla2025}). Os hipervisores são classificados em dois tipos principais, conforme ilustrado na Figura~\ref{fig:arquitetura-hipervisores}.
+O componente de software responsável por criar e gerenciar as máquinas virtuais é denominado hipervisor, ou Monitor de Máquina Virtual (VMM — \textit{Virtual Machine Monitor}) \cite{chawla2025}; \cite{carissimi2008}. O hipervisor é a camada de software que fica entre o hardware e os sistemas operacionais e é responsável por orquestrar o acesso aos recursos físicos e manter o isolamento entre as diferentes VMs \cite{chawla2025}. Os hipervisores são classificados em dois tipos principais, conforme ilustrado na Figura~\ref{fig:arquitetura-hipervisores}.
 
 \begin{figure}[htb]
     \centering
@@ -99,21 +99,21 @@ O componente de software responsável por criar e gerenciar as máquinas virtuai
 \end{figure}
 
 \begin{itemize}
-    \item \emph{Tipo 1 (Bare-metal)}: Executa diretamente sobre o hardware do servidor, atuando como um sistema operacional leve e especializado para executar VMs (\cite{chawla2025}). Exemplos notáveis incluem \textit{Xen}, \textit{VMware ESXi} e \textit{Microsoft Hyper-V} (\cite{chawla2025}; \cite{carissimi2008}). Por ter acesso direto ao hardware, esta arquitetura geralmente oferece maior desempenho e segurança.
-    \item \emph{Tipo 2 (Hosted)}: Opera como uma aplicação de software sobre um sistema operacional convencional (hospedeiro), que gerencia o hardware (\cite{chawla2025}). Exemplos incluem \textit{KVM}, \textit{Oracle VirtualBox} e \textit{VMware Player} (\cite{chawla2025}; \cite{carissimi2008}). Esta abordagem é mais simples de instalar e gerenciar, mas pode introduzir uma sobrecarga de desempenho devido à camada extra do sistema operacional hospedeiro.
+    \item \emph{Tipo 1 (Bare-metal)}: Executa diretamente sobre o hardware do servidor, atuando como um sistema operacional leve e especializado para executar VMs \cite{chawla2025}. Exemplos notáveis incluem \textit{Xen}, \textit{VMware ESXi} e \textit{Microsoft Hyper-V} \cite{chawla2025}; \cite{carissimi2008}. Por ter acesso direto ao hardware, esta arquitetura geralmente oferece maior desempenho e segurança.
+    \item \emph{Tipo 2 (Hosted)}: Opera como uma aplicação de software sobre um sistema operacional convencional (hospedeiro), que gerencia o hardware \cite{chawla2025}. Exemplos incluem \textit{KVM}, \textit{Oracle VirtualBox} e \textit{VMware Player} \cite{chawla2025}; \cite{carissimi2008}. Esta abordagem é mais simples de instalar e gerenciar, mas pode introduzir uma sobrecarga de desempenho devido à camada extra do sistema operacional hospedeiro.
 \end{itemize}
 
 \subsection{Tipos de Virtualização}
-A implementação de máquinas virtuais de sistema pode ser realizada através de duas técnicas principais: a virtualização total e a paravirtualização (\cite{carissimi2008}).
+A implementação de máquinas virtuais de sistema pode ser realizada através de duas técnicas principais: a virtualização total e a paravirtualização \cite{carissimi2008}.
 {{ ... }}
 
 % 2.2.4 – KVM como Solução de Hipervisor
 \subsection{KVM como Solução de Hipervisor}
 
-O \textit{Kernel-based Virtual Machine} (KVM) é a solução de virtualização que integra um hipervisor diretamente ao \textit{kernel} do \textit{Linux} (\cite{carissimi2008}). Embora seja classificado como um hipervisor Tipo 2, pois opera sobre um sistema operacional, sua integração com o \textit{kernel} lhe confere características de desempenho e eficiência que se aproximam de soluções Tipo 1 (\cite{chawla2025}; \cite{kominos2017}). No KVM, cada máquina virtual (VM) é gerenciada como um processo regular do \textit{Linux}, agendado pelo escalonador padrão do sistema, o que otimiza a gestão de recursos e a alocação de memória (\cite{anand2013}).
-Para minimizar a sobrecarga da tradução binária, o KVM explora as extensões de virtualização de hardware presentes nos processadores modernos, como Intel VT-x e AMD-V, (\cite{chawla2025}; \cite{carissimi2008}). Essa abordagem permite que o código do sistema operacional seja executado diretamente no processador, resultando em um desempenho muito próximo ao de uma máquina \textit{bare-metal} (\cite{kominos2017}). Estudos comparativos indicam uma sobrecarga do processador de apenas 4,0\% para o KVM, valor competitivo frente a outras soluções (\cite{chawla2025}). Além disso, em virtude de se integrar com o \textit{kernel} \textit{Linux}, o KVM se favorece das otimizações e avanços do próprio \textit{kernel}, como gerenciamento de memória, escalonamento de processos e suporte a hardware (\cite{anand2013}; \cite{arora2014}).
-Apesar de suas vantagens, a segurança do KVM é intrinsecamente ligada ao kernel Linux, e dessa forma, vulnerabilidades no kernel podem expor o hipervisor a ataques como \textit{VM escape} ou \textit{hyperjacking} (\cite{chawla2025}). Soluções como o \textit{VMware ESXi} e o Xen possuírem um \textit{microkernel} próprio, e consequentemente, apresentam uma superfície de ataque menor. Em função disso, são frequentemente consideradas mais resilientes em ambientes corporativos que exigem conformidade com padrões de segurança rigorosos (\cite{chawla2025}).
-Em contrapartida, a superfície de ataque do KVM está diretamente relacionada ao tamanho e à segurança do \textit{kernel} \textit{Linux}. Vulnerabilidades no \textit{kernel} podem levar a ataques como \textit{VM escape} ou \textit{hyperjacking}. Hipervisores com \textit{microkernel} próprio, como o \textit{VMware ESXi} e o Xen, apresentam uma base de código menor e, consequentemente, área de ataque reduzida, sendo preferidos em ambientes que demandam requisitos de segurança mais rigorosos (\cite{chawla2025}).
+O \textit{Kernel-based Virtual Machine} (KVM) é a solução de virtualização que integra um hipervisor diretamente ao \textit{kernel} do \textit{Linux} \cite{carissimi2008}. Embora seja classificado como um hipervisor Tipo 2, pois opera sobre um sistema operacional, sua integração com o \textit{kernel} lhe confere características de desempenho e eficiência que se aproximam de soluções Tipo 1 \cite{chawla2025}; \cite{kominos2017}. No KVM, cada máquina virtual (VM) é gerenciada como um processo regular do \textit{Linux}, agendado pelo escalonador padrão do sistema, o que otimiza a gestão de recursos e a alocação de memória \cite{anand2013}.
+Para minimizar a sobrecarga da tradução binária, o KVM explora as extensões de virtualização de hardware presentes nos processadores modernos, como Intel VT-x e AMD-V, \cite{chawla2025}; \cite{carissimi2008}. Essa abordagem permite que o código do sistema operacional seja executado diretamente no processador, resultando em um desempenho muito próximo ao de uma máquina \textit{bare-metal} \cite{kominos2017}. Estudos comparativos indicam uma sobrecarga do processador de apenas 4,0\% para o KVM, valor competitivo frente a outras soluções \cite{chawla2025}. Além disso, em virtude de se integrar com o \textit{kernel} \textit{Linux}, o KVM se favorece das otimizações e avanços do próprio \textit{kernel}, como gerenciamento de memória, escalonamento de processos e suporte a hardware \cite{anand2013}; \cite{arora2014}.
+Apesar de suas vantagens, a segurança do KVM é intrinsecamente ligada ao kernel Linux, e dessa forma, vulnerabilidades no kernel podem expor o hipervisor a ataques como \textit{VM escape} ou \textit{hyperjacking} \cite{chawla2025}. Soluções como o \textit{VMware ESXi} e o Xen possuírem um \textit{microkernel} próprio, e consequentemente, apresentam uma superfície de ataque menor. Em função disso, são frequentemente consideradas mais resilientes em ambientes corporativos que exigem conformidade com padrões de segurança rigorosos \cite{chawla2025}.
+Em contrapartida, a superfície de ataque do KVM está diretamente relacionada ao tamanho e à segurança do \textit{kernel} \textit{Linux}. Vulnerabilidades no \textit{kernel} podem levar a ataques como \textit{VM escape} ou \textit{hyperjacking}. Hipervisores com \textit{microkernel} próprio, como o \textit{VMware ESXi} e o Xen, apresentam uma base de código menor e, consequentemente, área de ataque reduzida, sendo preferidos em ambientes que demandam requisitos de segurança mais rigorosos \cite{chawla2025}.
 {{ ... }}
 \section{Máquinas Virtuais \& Imagens}
 
@@ -134,74 +134,74 @@ Por ser um conjunto de projetos de código aberto, o OpenStack oferece uma varie
 
 \begin{itemize}
     \item \emph{Keystone: Serviço de Identidade}\\
-    O \textit{Keystone} é o serviço de identidade do OpenStack, responsável por fornecer autenticação de clientes da API, descoberta de serviços e autorização distribuída multi-inquilino. Ele implementa a API de Identidade do OpenStack \cite{openstack_keystone}.\\
+    O \textit{Keystone} é o serviço de identidade do OpenStack, responsável por fornecer autenticação de clientes da API, descoberta de serviços e autorização distribuída multi-inquilino. Ele implementa a API de Identidade do OpenStack \cite{openstackkeystone}.\\
     Funcionalidades Principais:
     \begin{itemize}
-        \item Autenticação: Gerencia a autenticação de usuários e serviços, permitindo o acesso aos recursos do OpenStack. Suporta diversos métodos de autenticação \cite{openstack_keystone}.
-        \item Autorização: Controla o acesso aos serviços e recursos do OpenStack, definindo permissões para usuários e grupos \cite{openstack_keystone}.
-        \item Catálogo de Serviços: Fornece um catálogo de todos os serviços do OpenStack disponíveis e seus respectivos endpoints (pontos de acesso), facilitando a descoberta de serviços pelos clientes \cite{openstack_keystone}.
-        \item Gerenciamento de Usuários e Grupos (User and Group Management): Permite a criação e gerenciamento de usuários, grupos e projetos (tenants) dentro do ambiente OpenStack \cite{openstack_keystone}.
+        \item Autenticação: Gerencia a autenticação de usuários e serviços, permitindo o acesso aos recursos do OpenStack. Suporta diversos métodos de autenticação \cite{openstackkeystone}.
+        \item Autorização: Controla o acesso aos serviços e recursos do OpenStack, definindo permissões para usuários e grupos \cite{openstackkeystone}.
+        \item Catálogo de Serviços: Fornece um catálogo de todos os serviços do OpenStack disponíveis e seus respectivos endpoints (pontos de acesso), facilitando a descoberta de serviços pelos clientes \cite{openstackkeystone}.
+        \item Gerenciamento de Usuários e Grupos (User and Group Management): Permite a criação e gerenciamento de usuários, grupos e projetos (tenants) dentro do ambiente OpenStack \cite{openstackkeystone}.
     \end{itemize}
 
     \item \emph{Nova: Serviço de Computação}\\
-    O \textit{Nova} é o módulo do OpenStack que provisiona instâncias de servidores virtuais. Ele suporta a criação de VMs e possui suporte para contêineres de sistema. O Nova opera como um conjunto de \textit{daemons} em servidores Linux existentes para fornecer esse serviço \cite{openstack_nova}.\\
+    O \textit{Nova} é o módulo do OpenStack que provisiona instâncias de servidores virtuais. Ele suporta a criação de VMs e possui suporte para contêineres de sistema. O Nova opera como um conjunto de \textit{daemons} em servidores Linux existentes para fornecer esse serviço \cite{openstacknova}.\\
     Funcionalidades Principais:
     \begin{itemize}
-        \item Gerenciamento de Instâncias: Permite a criação, inicialização, parada, reinicialização e exclusão de instâncias de computação \cite{openstack_nova}.
-        \item Agendamento de Recursos: O agendador do Nova determina em qual host de computação uma nova instância deve ser provisionada, com base em critérios como recursos disponíveis e políticas de afinidade \cite{openstack_nova}.
-        \item Gerenciamento de Ciclo de Vida: Gerencia o ciclo de vida completo das instâncias, desde o provisionamento até a terminação \cite{openstack_nova}.
-        \item Integração com Hipervisores: Suporta diversos hipervisores, incluindo KVM, Xen, VMware ESXi e Hyper-V, permitindo a execução de VMs em diferentes tecnologias de virtualização \cite{openstack_nova}.
+        \item Gerenciamento de Instâncias: Permite a criação, inicialização, parada, reinicialização e exclusão de instâncias de computação \cite{openstacknova}.
+        \item Agendamento de Recursos: O agendador do Nova determina em qual host de computação uma nova instância deve ser provisionada, com base em critérios como recursos disponíveis e políticas de afinidade \cite{openstacknova}.
+        \item Gerenciamento de Ciclo de Vida: Gerencia o ciclo de vida completo das instâncias, desde o provisionamento até a terminação \cite{openstacknova}.
+        \item Integração com Hipervisores: Suporta diversos hipervisores, incluindo KVM, Xen, VMware ESXi e Hyper-V, permitindo a execução de VMs em diferentes tecnologias de virtualização \cite{openstacknova}.
     \end{itemize}
 
     \item \emph{Neutron: Serviço de Rede}\\
-    O \textit{Neutron} é o módulo do OpenStack que fornece conectividade de rede entre dispositivos gerenciados pelo OpenStack, implementando uma API de Rede \cite{openstack_neutron}.\\
+    O \textit{Neutron} é o módulo do OpenStack que fornece conectividade de rede entre dispositivos gerenciados pelo OpenStack, implementando uma API de Rede \cite{openstackneutron}.\\
     Funcionalidades Principais:
     \begin{itemize}
-        \item Gerenciamento de Redes (Network Management): Permite a criação e gerenciamento de redes virtuais, sub-redes e portas para as instâncias do OpenStack \cite{openstack_neutron}.
-        \item Roteamento (Routing): Oferece capacidades de roteamento entre redes virtuais e para redes externas \cite{openstack_neutron}.
-        \item Firewall como Serviço (Firewall as a Service - FWaaS): Permite a configuração de regras de firewall para proteger as instâncias e redes virtuais \cite{openstack_neutron}.
-        \item Balanceamento de Carga como Serviço (Load Balancing as a Service - LBaaS): Distribui o tráfego de rede entre múltiplas instâncias para melhorar a disponibilidade e o desempenho \cite{openstack_neutron}.
-        \item Rede Definida por Software (Software-Defined Networking - SDN): Integra-se com diversas tecnologias SDN para fornecer uma infraestrutura de rede flexível e programável \cite{openstack_neutron}.
+        \item Gerenciamento de Redes (Network Management): Permite a criação e gerenciamento de redes virtuais, sub-redes e portas para as instâncias do OpenStack \cite{openstackneutron}.
+        \item Roteamento (Routing): Oferece capacidades de roteamento entre redes virtuais e para redes externas \cite{openstackneutron}.
+        \item Firewall como Serviço (Firewall as a Service - FWaaS): Permite a configuração de regras de firewall para proteger as instâncias e redes virtuais \cite{openstackneutron}.
+        \item Balanceamento de Carga como Serviço (Load Balancing as a Service - LBaaS): Distribui o tráfego de rede entre múltiplas instâncias para melhorar a disponibilidade e o desempenho \cite{openstackneutron}.
+        \item Rede Definida por Software (Software-Defined Networking - SDN): Integra-se com diversas tecnologias SDN para fornecer uma infraestrutura de rede flexível e programável \cite{openstackneutron}.
     \end{itemize}
 
     \item \emph{Horizon: Dashboard}\\
-    O \textit{Horizon} é a interface gráfica (\textit{dashboard}) do OpenStack, que fornece uma visão unificada e uma ferramenta de gerenciamento para todos os serviços da plataforma \cite{openstack_horizon}. Através do Horizon, administradores podem monitorar recursos, criar e gerenciar instâncias, configurar redes, gerenciar volumes de armazenamento e realizar diversas tarefas operacionais de forma intuitiva, facilitando a administração da nuvem.\\
+    O \textit{Horizon} é a interface gráfica (\textit{dashboard}) do OpenStack, que fornece uma visão unificada e uma ferramenta de gerenciamento para todos os serviços da plataforma \cite{openstackhorizon}. Através do Horizon, administradores podem monitorar recursos, criar e gerenciar instâncias, configurar redes, gerenciar volumes de armazenamento e realizar diversas tarefas operacionais de forma intuitiva, facilitando a administração da nuvem.\\
     Funcionalidades Principais:
     \begin{itemize}
-        \item Interface Gráfica: Proporciona uma interface intuitiva para que usuários e administradores possam interagir com os serviços do OpenStack sem a necessidade de usar a linha de comando \cite{openstack_horizon}.
-        \item Gerenciamento de Recursos: Permite gerenciar instâncias, redes, volumes de armazenamento, imagens e usuários de forma visual \cite{openstack_horizon}.
-        \item Monitoramento: Oferece visibilidade sobre o status e o desempenho dos recursos da nuvem \cite{openstack_horizon}.
-        \item Extensibilidade: É uma estrutura extensível, permitindo que desenvolvedores criem novos painéis e funcionalidades para atender a necessidades específicas \cite{openstack_horizon}.
+        \item Interface Gráfica: Proporciona uma interface intuitiva para que usuários e administradores possam interagir com os serviços do OpenStack sem a necessidade de usar a linha de comando \cite{openstackhorizon}.
+        \item Gerenciamento de Recursos: Permite gerenciar instâncias, redes, volumes de armazenamento, imagens e usuários de forma visual \cite{openstackhorizon}.
+        \item Monitoramento: Oferece visibilidade sobre o status e o desempenho dos recursos da nuvem \cite{openstackhorizon}.
+        \item Extensibilidade: É uma estrutura extensível, permitindo que desenvolvedores criem novos painéis e funcionalidades para atender a necessidades específicas \cite{openstackhorizon}.
     \end{itemize}
 
     \item \emph{Glance: Serviço de Imagem}\\
-    O \textit{Glance} atua como um serviço de registro e entrega de imagens de VMs. Ele permite que usuários armazenem e descubram imagens de disco de VM, que podem ser usadas como modelos para lançar novas instâncias \cite{openstack_glance}.\\
+    O \textit{Glance} atua como um serviço de registro e entrega de imagens de VMs. Ele permite que usuários armazenem e descubram imagens de disco de VM, que podem ser usadas como modelos para lançar novas instâncias \cite{openstackglance}.\\
     Funcionalidades Principais:
     \begin{itemize}
-        \item Registro e Entrega de Imagens: Permite o upload, registro e descoberta de imagens de VMs \cite{openstack_glance}.
-        \item Armazenamento de Imagens: Armazena as imagens de VMs como sistemas de arquivos \cite{openstack_glance}.
-        \item Metadados de Imagens: Gerencia metadados associados às imagens, facilitando a busca e categorização \cite{openstack_glance}.
-        \item API RESTful: Oferece uma API RESTful para consulta de metadados de imagens e recuperação das imagens reais \cite{openstack_glance}.
+        \item Registro e Entrega de Imagens: Permite o upload, registro e descoberta de imagens de VMs \cite{openstackglance}.
+        \item Armazenamento de Imagens: Armazena as imagens de VMs como sistemas de arquivos \cite{openstackglance}.
+        \item Metadados de Imagens: Gerencia metadados associados às imagens, facilitando a busca e categorização \cite{openstackglance}.
+        \item API RESTful: Oferece uma API RESTful para consulta de metadados de imagens e recuperação das imagens reais \cite{openstackglance}.
     \end{itemize}
 
     \item \emph{Cinder: Serviço de Armazenamento em Bloco}\\
-    O  \textit{Cinder} fornece armazenamento em bloco persistente para as instâncias OpenStack. Este módulo é crucial para garantir que todas as alterações feitas pelos usuários em suas máquinas virtuais sejam salvas. Cada máquina virtual de usuário teria um volume de boot do Cinder, garantindo que o sistema operacional e os dados do usuário permaneçam intactos mesmo após a VM ser desligada e reiniciada, atendendo ao requisito de ambiente persistente \cite{openstack_cinder}.\\
+    O  \textit{Cinder} fornece armazenamento em bloco persistente para as instâncias OpenStack. Este módulo é crucial para garantir que todas as alterações feitas pelos usuários em suas máquinas virtuais sejam salvas. Cada máquina virtual de usuário teria um volume de boot do Cinder, garantindo que o sistema operacional e os dados do usuário permaneçam intactos mesmo após a VM ser desligada e reiniciada, atendendo ao requisito de ambiente persistente \cite{openstackcinder}.\\
     Funcionalidades Principais:
     \begin{itemize}
-        \item Criação e Gerenciamento de Volumes: Permite criar, anexar, desanexar e excluir volumes de armazenamento para as instâncias \cite{openstack_cinder}.
-        \item Snapshots e Backups: Oferece a capacidade de criar cópias instantâneas(\textit{snapshots}) de volumes para recuperação de dados e cópia de segurança(\textit{backups}) \cite{openstack_cinder}.
-        \item Tipos de Volume: Suporta diferentes tipos de volumes com características de desempenho e redundância variadas, permitindo que os usuários escolham o tipo de armazenamento mais adequado às suas necessidades \cite{openstack_cinder}.
-        \item Integração com  soluções de terceiros: Pode se integrar com uma ampla gama de soluções de armazenamento de terceiros \cite{openstack_cinder}.
+        \item Criação e Gerenciamento de Volumes: Permite criar, anexar, desanexar e excluir volumes de armazenamento para as instâncias \cite{openstackcinder}.
+        \item Snapshots e Backups: Oferece a capacidade de criar cópias instantâneas(\textit{snapshots}) de volumes para recuperação de dados e cópia de segurança(\textit{backups}) \cite{openstackcinder}.
+        \item Tipos de Volume: Suporta diferentes tipos de volumes com características de desempenho e redundância variadas, permitindo que os usuários escolham o tipo de armazenamento mais adequado às suas necessidades \cite{openstackcinder}.
+        \item Integração com  soluções de terceiros: Pode se integrar com uma ampla gama de soluções de armazenamento de terceiros \cite{openstackcinder}.
     \end{itemize}
 
     \item \emph{Swift: Serviço de Armazenamento de Objetos}\\
-    O  \textit{Swift} é um módulo para armazenamento de objetos altamente disponíveis. Organizações podem usar o Swift para armazenar grandes quantidades de dados de forma eficiente, segura e econômica \cite{openstack_swift}.\\
+    O  \textit{Swift} é um módulo para armazenamento de objetos altamente disponíveis. Organizações podem usar o Swift para armazenar grandes quantidades de dados de forma eficiente, segura e econômica \cite{openstackswift}.\\
     Funcionalidades Principais:
     \begin{itemize}
-        \item Armazenamento de Objetos: Permite armazenar e recuperar objetos de dados de forma escalável e durável, sem a estrutura hierárquica de um sistema de arquivos tradicional \cite{openstack_swift}.
-        \item Alta Disponibilidade e Durabilidade: Garante a disponibilidade e a integridade dos dados através da replicação e distribuição de objetos em múltiplos nós de armazenamento  \cite{openstack_swift}.
-        \item Escalabilidade: Projetado para escalar horizontalmente, permitindo adicionar mais capacidade de armazenamento conforme a necessidade  \cite{openstack_swift}.
-        \item API RESTful: Oferece uma API RESTful simples para interagir com o serviço de armazenamento de objetos  \cite{openstack_swift}.
+        \item Armazenamento de Objetos: Permite armazenar e recuperar objetos de dados de forma escalável e durável, sem a estrutura hierárquica de um sistema de arquivos tradicional \cite{openstackswift}.
+        \item Alta Disponibilidade e Durabilidade: Garante a disponibilidade e a integridade dos dados através da replicação e distribuição de objetos em múltiplos nós de armazenamento  \cite{openstackswift}.
+        \item Escalabilidade: Projetado para escalar horizontalmente, permitindo adicionar mais capacidade de armazenamento conforme a necessidade  \cite{openstackswift}.
+        \item API RESTful: Oferece uma API RESTful simples para interagir com o serviço de armazenamento de objetos  \cite{openstackswift}.
     \end{itemize}
 \end{itemize}
 
