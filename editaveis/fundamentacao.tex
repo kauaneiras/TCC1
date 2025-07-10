@@ -29,7 +29,7 @@ Além dessas características essenciais, o NIST também classifica os serviços
     \item[Infraestrutura como Serviço (IaaS)]: disponibiliza recursos fundamentais, como CPU, armazenamento e rede, permitindo ao usuário instalar sistemas operacionais e aplicações com controle limitado de rede \cite{mell2011}.
 \end{description}
 
-\begin{figure}[H]
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\textwidth]{figuras/Figura 1 - Comparação entre os modelos de serviço.png}
 \caption{Comparação entre os modelos de serviço IaaS, PaaS e SaaS}
@@ -65,29 +65,28 @@ A implementação de máquinas virtuais de sistema pode ser realizada através d
 
 Para facilitar o entendimento dos conceitos da Virtualização Total e Paravirtualização, a Tabela~\ref{tab:comparativo_virtualizacao} apresenta um comparativo entre esses dois tipos, destacando suas vantagens e desvantagens:
 
-\begin{table}[H]
+\begin{table}[h]
     \centering
 
     \caption{Comparativo entre Virtualização Total e Paravirtualização}
     \label{tab:comparativo_virtualizacao}
-
-    \begin{tabularx}{\textwidth}{ l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X }
-        \toprule
+    \begin{tabular}{|l|l|l|}
+        \hline
         \textbf{Característica} & \textbf{Virtualização Total} & \textbf{Paravirtualização} \\
-        \midrule
+        \hline
         Visão do \textit{Guest} & Hardware virtual idêntico ao físico. & API/hardware simplificado, exposto pelo hipervisor. \\
-        \addlinespace
+        \hline
         Modificação do SO & Não é necessária. & Sim, o \textit{kernel} precisa de drivers e \textit{hypercalls} especiais. \\
-        \addlinespace
+        \hline
         Instruções Privilegiadas & Interceptadas pelo hipervisor ou tratadas via hardware (\textit{Intel VT-x/AMD-V}). & O \textit{guest} realiza \textit{hypercalls} diretas ao hipervisor. \\
-        \addlinespace
+        \hline
         Desempenho & Historicamente mais lento, mas hoje quase nativo graças à assistência de hardware. & Menor sobrecarga e desempenho superior, especialmente em I/O. \\
-        \addlinespace
+        \hline
         Principal Vantagem & Compatibilidade universal com qualquer sistema operacional. & Velocidade e eficiência, sobretudo antes da popularização do \textit{Intel VT-x}. \\
-        \addlinespace
+        \hline
         Principal Desvantagem & Maior sobrecarga sem assistência de hardware. & Requer suporte e modificação no sistema operacional convidado. \\
-        \bottomrule
-    \end{tabularx}
+        \hline
+    \end{tabular}
 
     \fonte{Elaborado pelo autor, com base em Carissimi (2008).}
 \end{table}
@@ -96,7 +95,7 @@ Para facilitar o entendimento dos conceitos da Virtualização Total e Paravirtu
 \subsection{Definição e tipos de hipervisores}
 O componente de software responsável por criar e gerenciar as máquinas virtuais é denominado hipervisor, ou Monitor de Máquina Virtual (VMM) \cite{chawla2025}; \cite{carissimi2008}. O hipervisor é a camada de software que fica entre o hardware e os sistemas operacionais, e é responsável por orquestrar o acesso aos recursos físicos e manter o isolamento entre as diferentes VMs \cite{chawla2025}; \cite{carissimi2008}. Os hipervisores são classificados em dois tipos principais, conforme ilustrado na Figura 2.
 
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{figuras/Figura 2 - Arquitetura de Hipervisores.png}
     \caption{Arquiteturas de hipervisores do Tipo 1 (bare-metal) e Tipo 2 (hosted).}
@@ -112,27 +111,27 @@ O componente de software responsável por criar e gerenciar as máquinas virtuai
 
 A Tabela~\ref{tab:comparativo_hipervisores} compara, de forma simplificada, as diferenças entre os hipervisores Tipo~1 e Tipo~2, a fim de tornar o entendimento desses conceitos mais claro:
 
-\begin{table}[H]
+\begin{table}[h]
     \centering
     \caption{Comparativo entre Hipervisores Tipo 1 e Tipo 2}
     \label{tab:comparativo_hipervisores}
-    \begin{tabularx}{\textwidth}{ >{\bfseries}l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X }
-        \toprule
+    \begin{tabular}{|l|l|l|}
+        \hline
         & \textbf{Hipervisor Tipo 1 (Bare-Metal)} & \textbf{Hipervisor Tipo 2 (Hosted)} \\
-        \midrule
+        \hline
         Posicionamento Arquitetural & Executa diretamente sobre o hardware físico. & Executa como uma aplicação sobre um Sistema Operacional hospedeiro. \\
-        \addlinespace
+        \hline
         Desempenho & Maior, com menor sobrecarga de virtualização. & Menor, pois há uma camada extra (SO hospedeiro) que pode gerar \textit{overhead}. \\
-        \addlinespace
+        \hline
         Isolamento e Segurança & Considerado mais seguro devido ao acesso direto e controlado ao hardware e menor superfície de ataque. & A segurança depende criticamente do Sistema Operacional hospedeiro subjacente. \\
-        \addlinespace
+        \hline
         Instalação e Gestão & Geralmente mais complexo, exigindo um servidor dedicado para sua instalação. & Instalação simples, similar a qualquer outro software de desktop. \\
-        \addlinespace
+        \hline
         Caso de Uso Principal & Ambientes de produção, \textit{datacenters} e nuvens que exigem alto desempenho e escalabilidade. & Desenvolvimento de software, testes, e uso em \textit{desktops} para executar múltiplos sistemas operacionais. \\
-        \addlinespace
+        \hline
         Exemplos & VMware ESXi, Microsoft Hyper-V, Xen. & Oracle VirtualBox, VMware Player, KVM. \\
-        \bottomrule
-    \end{tabularx}
+        \hline
+    \end{tabular}
     \fonte{Elaborada pelo autor, com base em Chawla et al. (2025), Kominos et al. (2017) e Carissimi (2008).}
 \end{table}
 
@@ -146,19 +145,10 @@ A seleção de um hipervisor é uma decisão crítica que impacta diretamente o 
     \item[\textit{Disk I/O Overhead}]: mede a perda de desempenho nas operações de acesso ao armazenamento. Quando uma VM solicita acesso ao disco, o hipervisor intercepta essa requisição, a traduz e a encaminha ao dispositivo físico, o que introduz latência e reduz o número de operações por segundo. Um \textit{overhead} menor indica um acesso a disco mais rápido e eficiente para as VMs. O \textit{VMware ESXi} se destacou com o menor \textit{overhead} (2,8\%), indicando otimizações avançadas em seu subsistema de armazenamento.
     \item[\textit{Network Overhead}]: mede a queda na taxa de transferência e latência da rede, causada pela camada de virtualização de rede do hipervisor. O processamento de pacotes por essa camada virtual adiciona um pequeno atraso em comparação com uma conexão direta ao hardware. Um valor menor indica uma comunicação de rede mais próxima da velocidade nativa. O \textit{VMware ESXi} apresentou a menor sobrecarga (2,5\%), seguido do KVM (3,5\%).
     \item[Desempenho Geral]: pontuação que representa a média ponderada do desempenho do hipervisor em todos os testes realizados (CPU, memória, E/S e rede). Este índice oferece uma visão simplificada para uma comparação direta, onde uma pontuação mais alta significa um melhor equilíbrio de desempenho e eficiência em diversas cargas de trabalho. Nesse escore, o VMware ESXi foi classificado com o melhor desempenho geral, seguido pelo KVM.
-
-
-
-
-
-
-
-
-
 \end{description}
 
 % Tabela de desempenho de hipervisores
-\begin{table}[H]
+\begin{table}[h]
     \centering
     \renewcommand{\arraystretch}{1.3}
     \caption{Comparação de overhead e desempenho entre hipervisores}
@@ -175,8 +165,9 @@ A seleção de um hipervisor é uma decisão crítica que impacta diretamente o 
     \fonte{Adaptado de Chawla et al. (2025).}
 \end{table}
 
-% Tabela qualitativa de hipervisores
-\begin{table}[H]
+A Tabela 4 resume as principais características, vantagens e desvantagens de cada solução, com foco em sua aplicabilidade em ambientes de nuvem.
+
+\begin{table}[h]
     \centering
     \renewcommand{\arraystretch}{1.3}
     \caption{Comparação entre hipervisores KVM, VMware ESXi e Xen}
@@ -220,24 +211,20 @@ A seleção de um hipervisor é uma decisão crítica que impacta diretamente o 
 
 \subsection{KVM como Solução de Hipervisor}
 
-O \textit{Kernel-based Virtual Machine} (KVM) é a solução de virtualização que integra um hipervisor diretamente ao \textit{kernel} do \textit{Linux} \cite{carissimi2008}. Embora seja classificado como um hipervisor Tipo 2, pois opera sobre um sistema operacional, sua integração com o \textit{kernel} lhe confere características de desempenho e eficiência que se aproximam de soluções Tipo 1 \cite{chawla2025}; \cite{kominos2017}. No KVM, cada máquina virtual (VM) é gerenciada como um processo regular do \textit{Linux}, agendado pelo escalonador padrão do sistema, o que otimiza a gestão de recursos e a alocação de memória \cite{anand2013}.
-Para minimizar a sobrecarga da tradução binária, o KVM explora as extensões de virtualização de hardware presentes nos processadores modernos, como Intel VT-x e AMD-V, \cite{chawla2025}; \cite{carissimi2008}. Essa abordagem permite que o código do sistema operacional seja executado diretamente no processador, resultando em um desempenho muito próximo ao de uma máquina \textit{bare-metal} \cite{kominos2017}. Estudos comparativos indicam uma sobrecarga do processador de apenas 4,0\% para o KVM, valor competitivo frente a outras soluções \cite{chawla2025}. Além disso, em virtude de se integrar com o \textit{kernel} \textit{Linux}, o KVM se favorece das otimizações e avanços do próprio \textit{kernel}, como gerenciamento de memória, escalonamento de processos e suporte a hardware \cite{anand2013}; \cite{arora2014}.
-Apesar de suas vantagens, a segurança do KVM é intrinsecamente ligada ao kernel Linux, e dessa forma, vulnerabilidades no kernel podem expor o hipervisor a ataques como \textit{VM escape} ou \textit{hyperjacking} \cite{chawla2025}. Soluções como o \textit{VMware ESXi} e o Xen possuírem um \textit{microkernel} próprio, e consequentemente, apresentam uma superfície de ataque menor. Em função disso, são frequentemente consideradas mais resilientes em ambientes corporativos que exigem conformidade com padrões de segurança rigorosos \cite{chawla2025}.
-Em contrapartida, a superfície de ataque do KVM está diretamente relacionada ao tamanho e à segurança do \textit{kernel} \textit{Linux}. Vulnerabilidades no \textit{kernel} podem levar a ataques como \textit{VM escape} ou \textit{hyperjacking}. Hipervisores com \textit{microkernel} próprio, como o \textit{VMware ESXi} e o Xen, apresentam uma base de código menor e, consequentemente, área de ataque reduzida, sendo preferidos em ambientes que demandam requisitos de segurança mais rigorosos \cite{chawla2025}.
-{{ ... }}
+O \textit{Kernel-based Virtual Machine} (KVM) é a solução de virtualização que integra um hipervisor diretamente ao \textit{kernel} do Linux \cite{carrisimi2008}. Embora seja classificado como um hipervisor Tipo 2, pois opera sobre um sistema operacional, sua integração com o \textit{kernel} lhe confere características de desempenho e eficiência que se aproximam de soluções Tipo 1 \cite{chawla2025; kominos2017}. No KVM, cada máquina virtual (VM) é gerenciada como um processo regular do Linux, agendado pelo escalonador padrão do sistema, o que otimiza a gestão de recursos e a alocação de memória \cite{anand2013}.
+Para minimizar a sobrecarga da tradução binária, o KVM explora as extensões de virtualização de hardware presentes nos processadores modernos, como Intel VT-x e AMD-V, \cite{chawla2025; carrisimi2008}. Essa abordagem permite que o código do sistema operacional seja executado diretamente no processador, resultando em um desempenho muito próximo ao de uma máquina \textit{bare-metal} (KOMINOS et al., 2017). Estudos comparativos indicam uma sobrecarga do processador de apenas 4,0\% para o KVM, valor competitivo frente a outras soluções \cite{chawla2025}. Além disso, em virtude de se integrar com o \textit{kernel} Linux, o KVM se favorece das otimizações e avanços do próprio \textit{kernel}, como gerenciamento de memória, escalonamento de processos e suporte a \textit{hardware} \cite{anand2013; arora2014}. 
+Apesar de suas vantagens, a segurança do KVM é intrinsecamente ligada ao \textit{kernel} Linux, e dessa forma, vulnerabilidades no \textit{kernel} podem expor o hipervisor a ataques como \textit{VM escape} ou \textit{hyperjacking} \cite{chawla2025}. Soluções como o VMware ESXi e o Xen possuírem um \textit{microkernel} próprio, e consequentemente, apresentam uma superfície de ataque menor. Em função disso, são frequentemente consideradas mais resilientes em ambientes corporativos que exigem conformidade com padrões de segurança rigorosos \cite{chawla2025}.
+
 \section{Máquinas Virtuais \& Imagens}
 
-% 2.3 – OpenStack
 \section{OpenStack}
 
-% 2.3.1 – Definição e Características
 \subsection{Definição e Características}
 
 O  \textit{OpenStack} é uma plataforma de software de código aberto (\textit{open-source}) utilizada para criar e gerenciar nuvens no modelo \textit{IaaS}. Sua história começou em 2010 como um projeto conjunto entre a  \textit{Rackspace Inc.} e a Administração Nacional da Aeronáutica e Espaço dos Estados Unidos \textit{NASA}. A NASA, buscando uma plataforma de nuvem robusta para suas vastas necessidades computacionais e de dados, desenvolveu a plataforma de computação "Nebula". Em paralelo, a Rackspace desenvolveu uma solução de armazenamento de objetos altamente escalável. As duas organizações combinaram suas tecnologias e lançaram o código-fonte como OpenStack sob uma licença  \textit{Apache 2.0}, permitindo que qualquer pessoa o utilizasse, modificasse e distribuísse livremente \cite{nasa2012}, estimulando assim a criação de uma comunidade global de desenvolvedores.
 
 A fama do OpenStack deve-se principalmente à sua natureza aberta, flexibilidade e eficiência de custos. Por ser de código aberto, ele permite que empresas evitem altos custos de licenças proprietárias e dependência tecnológica. Sua arquitetura modular permite que os usuários implantem apenas os componentes desejados, como computação ( \textit{Nova}), armazenamento ( \textit{Swift}), rede ( \textit{Neutron}) e personalizem a infraestrutura para atender a requisitos específicos \cite{grzonka2015}. Essa adaptabilidade, combinada com a capacidade de escalar massivamente e o forte apoio de uma comunidade global e de grandes empresas, tornou o OpenStack a plataforma de escolha para uma vasta gama de organizações, desde data centers e provedores de telecomunicações até instituições de pesquisa como a Organização Europeia para a Investigação Nuclear (CERN) \cite{rousseau2019}.
 
-% 2.3.2 – Módulos para configurações básicos do OpenStack
 \subsection{Módulos para configurações básicos do OpenStack}
 
 Por ser um conjunto de projetos de código aberto, o OpenStack oferece uma variedade de módulos que podem ser incluídos no projeto conforme a necessidade. Porém, alguns módulos básicos costumam aparecer na maior parte das soluções:
