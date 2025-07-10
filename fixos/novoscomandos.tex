@@ -1,3 +1,25 @@
+%%
+%% Customizações do abnTeX2 (http://abnTeX2.googlecode.com) para a Universidade XXXX
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is SEU_NOME, SEU_EMAIL
+%%
+%% Further information about abnTeX2 are available on https://github.com/abntex/abntex2
+%%
+
+% ---
+% INICIO DAS CUSTOMIZACOES PARA A FACULDADE UNB GAMA
+% ---
+
 \newcommand{\curso}[1]{\def\imprimircurso{#1}}
 
 \newcommand{\palavraChaveUm}[1]{\def\imprimirpalavrachaveum{#1}}
@@ -30,12 +52,12 @@
 %		\textbf{\textsc{Trabalho de Conclusão de Curso}}
 %	\end{huge}
 
-    \vspace*{2.7in}
+    \vspace*{2.9in}
 	{\textbf{\large\imprimirinstituicao}}
 	\par
 	{\textbf{\large\imprimircurso}}
 
-	\vspace{0.5in}
+	\vspace{1.5in}
 
     {\ABNTEXchapterfont\bfseries\LARGE\imprimirtitulo}
     \vspace*{\fill}
@@ -51,7 +73,12 @@
     \par
     \textbf{{\large\imprimirdata}}
     
-    \vspace*{2.2in}
+    \vspace*{1in}
   \end{capa}
 }
+
+% ---
+% FIM DAS CUSTOMIZACOES PARA A FACULDADE UNB GAMA
+% ---
+
 
