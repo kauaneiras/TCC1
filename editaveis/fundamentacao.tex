@@ -53,6 +53,8 @@ A implantação de sistemas de computação em nuvem pode ser realizada por meio
 A implantação de sistemas de computação em nuvem pode ser realizada por meio de diferentes modelos, cada qual adequado a cenários específicos. Os modelos mais difundidos são as nuvens pública, privada, comunitária e híbrida, que se diferenciam em nível de controle, segurança, escalabilidade e custo de implantação \cite{mell2011}.
 
 \section{Virtualização e Hipervisores}
+\label{sec:virtualizacao}
+
 A virtualização é uma técnica de grande importância na computação moderna, uma vez  abstrai o hardware de máquinas físicas, agrupando logicamente os recursos de servidores. Esses agrupamentos lógicos, também conhecido como \textit{pools}, permite a criação de máquinas virtuais (VMs) isoladas em um único sistema computacional físico \cite{carissimi2008, kominos2017}. Cada VM funciona como um ambiente de execução completo e autônomo, com sistema operacional próprio, aplicações, configurações e  serviços de rede, como se fosse uma máquina física independente \cite{carissimi2008}. Esta capacidade de particionamento lógico de recursos de hardware é um dos fundamentos da computação em nuvem, viabilizando a elasticidade, a multilocação e a eficiência de custos \cite{chawla2025}.
 
 \subsection{Tipos de Virtualização}
@@ -225,8 +227,11 @@ Para minimizar a sobrecarga da tradução binária, o KVM explora as extensões 
 Apesar de suas vantagens, a segurança do KVM é intrinsecamente ligada ao \textit{kernel} Linux, e dessa forma, vulnerabilidades no \textit{kernel} podem expor o hipervisor a ataques como \textit{VM escape} ou \textit{hyperjacking} \cite{chawla2025}. Soluções como o VMware ESXi e o Xen possuírem um \textit{microkernel} próprio, e consequentemente, apresentam uma superfície de ataque menor. Em função disso, são frequentemente consideradas mais resilientes em ambientes corporativos que exigem conformidade com padrões de segurança rigorosos \cite{chawla2025}.
 
 \section{Máquinas Virtuais \& Imagens}
+\label{sec:máquinas-virtuais}
 
 \section{OpenStack}
+
+\label{sec:openstack}
 
 \subsection{Definição e Características}
 
@@ -319,8 +324,86 @@ O Ubuntu Server oferece um ecossistema abrangente que faz a virtualização util
 Outra vantagem notável é a qualidade e a disponibilidade da documentação do Ubuntu Server. Os guias oficiais abrangem procedimentos de instalação e configuração, além de tópicos avançados, como integração em nuvem e gerenciamento de virtualização. Esse ambiente de documentação bem organizado favorece no desenvolvimento de soluções seguindo boas práticas \cite{ubuntu2025}. Além disso, o Ubuntu Server é suportado por uma comunidade grande e ativa, disponível por meio de fóruns, listas de discussão e inúmeras bases de conhecimento de terceiros. Essa comunidade ajuda a resolver problemas e promove a inovação, garantindo maior suporte para a resolução de problemas que passam vir a surgir.
 
 
-
 \section{Matriz Redundante de Discos Independentes (RAID)}
+
+\label{sec:raid}
+
+A Matriz Redundante de Discos Independentes (RAID, do inglês \textit{Redundant Array of Independent Disks}) é uma tecnologia de virtualização de armazenamento de dados que combina múltiplos discos rígidos físicos em uma única unidade lógica \cite{lee2021}. Seus objetivos principais são: (i) oferecer redundância de dados, aumentando a confiabilidade; (ii) melhorar o desempenho por meio de acesso paralelo; ou (iii) combinar ambos os benefícios \cite{lee2021, techtarget2023}. Para atingir esses objetivos, a tecnologia distribui e replica dados entre os discos de diferentes maneiras, a depender da configuração escolhida.
+
+Diferentes configurações, conhecidas como níveis de RAID, oferecem balanços distintos entre desempenho e confiabilidade. Apesar da ampla adoção, a ausência de um padrão universal para o formato dos dados em disco historicamente dificultou a migração entre sistemas de diferentes fornecedores. Organizações como a Storage Networking Industry Association (SNIA) trabalham em especificações, como o \textit{Common RAID Disk Data Format} (DDF), que definem uma estrutura comum para os metadados de RAID, possibilitando interoperabilidade básica e migração \cite{snia2016}.
+
+\subsection{Níveis de RAID Fundamentais}
+
+Os níveis mais populares e utilizados são o RAID~0, RAID~1, RAID~5, RAID~6 e RAID~10, resumidos na Tabela~\ref{tab:niveis-raid}.
+
+\begin{table}[H]
+  \centering
+  \caption{Comparativo dos níveis de RAID}
+  \label{tab:niveis-raid}
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabular}{|l|p{5.1cm}|p{5.1cm}|c|}
+    \hline
+    \textbf{Nível de RAID} & \textbf{Vantagens Principais} & \textbf{Desvantagens Principais} & \textbf{Mín. Discos} \\
+    \hline
+    RAID~0 & Excelente desempenho de leitura e escrita; custo baixo; 100\% de aproveitamento da capacidade. & Nenhuma tolerância a falhas – a falha de um disco resulta em perda total de dados. & 2 \\
+    \hline
+    RAID~1 & Alta redundância; recuperação de falhas simples e rápida; bom desempenho de leitura. & 50\% de aproveitamento da capacidade; custo por GB mais elevado. & 2 \\
+    \hline
+    RAID~5 & Equilíbrio entre desempenho, capacidade e redundância; suporta falha de um disco. & Desempenho de escrita moderado; reconstrução lenta que degrada a performance. & 3 \\
+    \hline
+    RAID~6 & Alta redundância (falha simultânea de até dois discos); maior segurança para dados críticos. & Desempenho de escrita inferior ao RAID~5; reconstrução ainda mais lenta. & 4 \\
+    \hline
+    RAID~10 & Excelente desempenho geral e alta redundância; reconstrução rápida. & Custo elevado; 50\% de aproveitamento da capacidade. & 4 \\
+    \hline
+  \end{tabular}
+  \fonte{Elaborado pelo autor, com base em \cite{techtarget2023, lee2021, snia2016}.}
+\end{table}
+
+\subsubsection*{RAID~0 (\textit{Stripping})}
+Distribui os dados em blocos (\textit{strips}) por todos os discos do arranjo. Imagine um arquivo grande sendo dividido em várias partes, cada parte salva em um disco diferente simultaneamente.
+
+\textbf{Vantagens}: aumento significativo no desempenho de leitura e escrita devido à paralelização das operações; configuração com melhor performance \cite{techtarget2023}.
+
+\textbf{Desvantagens}: não oferece redundância; a falha de um único disco resulta em perda total dos dados \cite{snia2016}.
+
+\textbf{Mínimo de discos}: 2.
+
+\subsubsection*{RAID~1 (\textit{Mirroring})}
+Duplica (espelha) integralmente os dados em dois ou mais discos – cada gravação é replicada simultaneamente.
+
+\textbf{Vantagens}: alta redundância e tolerância a falhas; desempenho de leitura melhorado, pois leituras podem ser distribuídas \cite{techtarget2023}.
+
+\textbf{Desvantagens}: capacidade útil de apenas 50\%; custo por GB elevado; desempenho de escrita limitado ao disco mais lento \cite{techtarget2023}.
+
+\textbf{Mínimo de discos}: 2.
+
+\subsubsection*{RAID~5 (Paridade Distribuída)}
+Combina distribuição de dados do RAID~0 com sistema de paridade. Dados e informações de paridade são distribuídos rotativamente por todos os discos \cite{snia2016}.
+
+\textbf{Vantagens}: bom equilíbrio entre desempenho, capacidade e redundância; tolera falha de um disco \cite{techtarget2023}.
+
+\textbf{Desvantagens}: desempenho de escrita inferior ao RAID~0 devido ao cálculo de paridade; reconstrução demorada e com impacto na performance \cite{lee2021}.
+
+\textbf{Mínimo de discos}: 3.
+
+\subsubsection*{RAID~6 (Dupla Paridade)}
+Semelhante ao RAID~5, mas utiliza dois blocos de paridade independentes e rotativos \cite{snia2016}.
+
+\textbf{Vantagens}: tolera falha de até dois discos; indicado para sistemas que exigem alta disponibilidade \cite{lee2021, snia2016}.
+
+\textbf{Desvantagens}: desempenho de escrita mais lento que RAID~5; reconstrução ainda mais demorada \cite{lee2021}.
+
+\textbf{Mínimo de discos}: 4.
+
+\subsubsection*{RAID~10 (RAID~1+0)}
+Combina espelhamento (RAID~1) e distribuição (RAID~0), aproveitando as vantagens de ambos. A SNIA classifica esses arranjos combinados como \textit{Secondary RAID Levels} ‎\cite{snia2016}.
+
+\textbf{Vantagens}: altíssimo desempenho de leitura e escrita e excelente redundância; reconstrução rápida, pois apenas o par espelhado afetado precisa ser copiado \cite{techtarget2023}.
+
+\textbf{Desvantagens}: custo mais alto – exige o dobro de discos para a capacidade desejada; utilização efetiva de 50\% \cite{techtarget2023}.
+
+\textbf{Mínimo de discos}: 4.
+
 
 \section{Elasticidade e Provisionamento Dinâmico}
 
