@@ -241,7 +241,7 @@ A fama do OpenStack deve-se principalmente à sua natureza aberta, flexibilidade
 Por ser um conjunto de projetos de código aberto, o OpenStack oferece uma variedade de módulos que podem ser incluídos no projeto conforme a necessidade. Porém, alguns módulos básicos costumam aparecer na maior parte das soluções:
 
 \begin{description}
-    \item \emph{Keystone: Serviço de Identidade}\\
+    \item Keystone: Serviço de Identidade\\
     O \textit{Keystone} é o serviço de identidade do OpenStack, responsável por fornecer autenticação de clientes da API, descoberta de serviços e autorização distribuída multi-inquilino. Ele implementa a API de Identidade do OpenStack \cite{openstackkeystone}.\\
     Funcionalidades Principais:
     \begin{description}
@@ -251,7 +251,7 @@ Por ser um conjunto de projetos de código aberto, o OpenStack oferece uma varie
         \item Gerenciamento de Usuários e Grupos (User and Group Management): Permite a criação e gerenciamento de usuários, grupos e projetos (tenants) dentro do ambiente OpenStack \cite{openstackkeystone}.
     \end{description}
 
-    \item \emph{Nova: Serviço de Computação}\\
+    \item Nova: Serviço de Computação\\
     O \textit{Nova} é o módulo do OpenStack que provisiona instâncias de servidores virtuais. Ele suporta a criação de VMs e possui suporte para contêineres de sistema. O Nova opera como um conjunto de \textit{daemons} em servidores Linux existentes para fornecer esse serviço \cite{openstacknova}.\\
     Funcionalidades Principais:
     \begin{description}
@@ -261,7 +261,7 @@ Por ser um conjunto de projetos de código aberto, o OpenStack oferece uma varie
         \item Integração com Hipervisores: Suporta diversos hipervisores, incluindo KVM, Xen, VMware ESXi e Hyper-V, permitindo a execução de VMs em diferentes tecnologias de virtualização \cite{openstacknova}.
     \end{description}
 
-    \item \emph{Neutron: Serviço de Rede}\\
+    \item Neutron: Serviço de Rede\\
     O \textit{Neutron} é o módulo do OpenStack que fornece conectividade de rede entre dispositivos gerenciados pelo OpenStack, implementando uma API de Rede \cite{openstackneutron}.\\
     Funcionalidades Principais:
     \begin{description}
@@ -272,7 +272,7 @@ Por ser um conjunto de projetos de código aberto, o OpenStack oferece uma varie
         \item Rede Definida por Software (Software-Defined Networking - SDN): Integra-se com diversas tecnologias SDN para fornecer uma infraestrutura de rede flexível e programável \cite{openstackneutron}.
     \end{description}
 
-    \item \emph{Horizon: Dashboard}\\
+    \item Horizon: Dashboard\\
     O \textit{Horizon} é a interface gráfica (\textit{dashboard}) do OpenStack, que fornece uma visão unificada e uma ferramenta de gerenciamento para todos os serviços da plataforma \cite{openstackhorizon}. Através do Horizon, administradores podem monitorar recursos, criar e gerenciar instâncias, configurar redes, gerenciar volumes de armazenamento e realizar diversas tarefas operacionais de forma intuitiva, facilitando a administração da nuvem.\\
     Funcionalidades Principais:
     \begin{description}
@@ -282,7 +282,7 @@ Por ser um conjunto de projetos de código aberto, o OpenStack oferece uma varie
         \item Extensibilidade: É uma estrutura extensível, permitindo que desenvolvedores criem novos painéis e funcionalidades para atender a necessidades específicas \cite{openstackhorizon}.
     \end{description}
 
-    \item \emph{Glance: Serviço de Imagem}\\
+    \item Glance: Serviço de Imagem\\
     O \textit{Glance} atua como um serviço de registro e entrega de imagens de VMs. Ele permite que usuários armazenem e descubram imagens de disco de VM, que podem ser usadas como modelos para lançar novas instâncias \cite{openstackglance}.\\
     Funcionalidades Principais:
     \begin{description}
@@ -292,7 +292,7 @@ Por ser um conjunto de projetos de código aberto, o OpenStack oferece uma varie
         \item API RESTful: Oferece uma API RESTful para consulta de metadados de imagens e recuperação das imagens reais \cite{openstackglance}.
     \end{description}
 
-    \item \emph{Cinder: Serviço de Armazenamento em Bloco}\\
+    \item Cinder: Serviço de Armazenamento em Bloco\\
     O  \textit{Cinder} fornece armazenamento em bloco persistente para as instâncias OpenStack. Este módulo é crucial para garantir que todas as alterações feitas pelos usuários em suas máquinas virtuais sejam salvas. Cada máquina virtual de usuário teria um volume de boot do Cinder, garantindo que o sistema operacional e os dados do usuário permaneçam intactos mesmo após a VM ser desligada e reiniciada, atendendo ao requisito de ambiente persistente \cite{openstackcinder}.\\
     Funcionalidades Principais:
     \begin{description}
@@ -302,7 +302,7 @@ Por ser um conjunto de projetos de código aberto, o OpenStack oferece uma varie
         \item Integração com  soluções de terceiros: Pode se integrar com uma ampla gama de soluções de armazenamento de terceiros \cite{openstackcinder}.
     \end{description}
 
-    \item \emph{Swift: Serviço de Armazenamento de Objetos}\\
+    \item Swift: Serviço de Armazenamento de Objetos\\
     O  \textit{Swift} é um módulo para armazenamento de objetos altamente disponíveis. Organizações podem usar o Swift para armazenar grandes quantidades de dados de forma eficiente, segura e econômica \cite{openstackswift}.\\
     Funcionalidades Principais:
     \begin{description}
