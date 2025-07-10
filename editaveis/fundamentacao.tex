@@ -226,9 +226,6 @@ O \textit{Kernel-based Virtual Machine} (KVM) é a solução de virtualização 
 Para minimizar a sobrecarga da tradução binária, o KVM explora as extensões de virtualização de hardware presentes nos processadores modernos, como Intel VT-x e AMD-V, \cite{chawla2025, carissimi2008}. Essa abordagem permite que o código do sistema operacional seja executado diretamente no processador, resultando em um desempenho muito próximo ao de uma máquina \textit{bare-metal} \cite{kominos2017}. Estudos comparativos indicam uma sobrecarga do processador de apenas 4,0\% para o KVM, valor competitivo frente a outras soluções \cite{chawla2025}. Além disso, em virtude de se integrar com o \textit{kernel} Linux, o KVM se favorece das otimizações e avanços do próprio \textit{kernel}, como gerenciamento de memória, escalonamento de processos e suporte a \textit{hardware} \cite{anand2013, arora2014}. 
 Apesar de suas vantagens, a segurança do KVM é intrinsecamente ligada ao \textit{kernel} Linux, e dessa forma, vulnerabilidades no \textit{kernel} podem expor o hipervisor a ataques como \textit{VM escape} ou \textit{hyperjacking} \cite{chawla2025}. Soluções como o VMware ESXi e o Xen possuírem um \textit{microkernel} próprio, e consequentemente, apresentam uma superfície de ataque menor. Em função disso, são frequentemente consideradas mais resilientes em ambientes corporativos que exigem conformidade com padrões de segurança rigorosos \cite{chawla2025}.
 
-\section{Máquinas Virtuais \& Imagens}
-\label{sec:máquinas-virtuais}
-
 \section{OpenStack}
 
 \label{sec:openstack}

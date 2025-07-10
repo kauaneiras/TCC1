@@ -30,7 +30,7 @@ PowerEdge 2900 & Intel Xeon E5-2650 v3 & 64~GB & 256~GB \\
 \end{tabular}
 \end{table}
 
-Além dos servidores, o laboratório dispõe de \textbf{QUANTIDADE} switches Cisco \textbf{MODELO} com cabos Gigabit, que serão utilizados para a interconexão da infraestrutura de rede da nuvem privada. Para garantir a integridade e a disponibilidade dos dados, será implementada uma configuração de RAID~6 em todos os servidores, proporcionando alta tolerância a falhas e segurança de dados, caso um disco venha a falhar.
+Além dos servidores, o laboratório dispõe de \textbf{QUANTIDADE} switches Cisco \textbf{MODELO} com cabos Gigabit, que serão utilizados para a interconexão da infraestrutura de rede da nuvem privada. Para garantir a integridade e a disponibilidade dos dados, será implementada uma configuração de RAID~6 em todos os servidores, proporcionando alta tolerância a falhas e segurança de dados, caso um disco venha a falhar. A pesar da importancia do desempenho computacional para essa aplicação, a escolha do RAID~6 é justificada pela prioridade de segurança dos dados.
 
 \section{Arquitetura da Nuvem Privada Dinâmica}
 
@@ -62,7 +62,6 @@ A implementação da nuvem privada dinâmica seguirá uma abordagem faseada, gar
  \item \textbf{Configuração de Rede e Armazenamento:} Criação de redes virtuais no Neutron e integração do Cinder com o armazenamento físico configurado em RAID~6.
 \end{enumerate}
 
-% Figura x: Screenshots do Horizon/Neutron
 
 \section{Provisionamento Dinâmico de Recursos}
 
@@ -77,8 +76,6 @@ O provisionamento dinâmico de recursos visa otimizar a utilização da memória
 
 O gerenciamento centralizado de imagens permitirá que os administradores criem e atualizem imagens base, garantindo que todos os usuários tenham acesso às versões mais recentes dos softwares e configurações.
 
-% Figura x: Diagrama do ciclo de vida de uma imagem de VM
-
 \section{Políticas de Escalonamento}
 
 Para garantir que a nuvem privada se adapte dinamicamente às flutuações de demanda, serão implementadas políticas de escalonamento automático (\textit{autoscaling}). As políticas serão baseadas em métricas de desempenho, como uso de CPU e memória RAM.
@@ -90,7 +87,6 @@ Para garantir que a nuvem privada se adapte dinamicamente às flutuações de de
 
 A automatização do gerenciamento de recursos garantirá eficiência operacional e disponibilidade, otimizando o uso dos servidores antigos.
 
-% Figura x: Exemplo de política de escalonamento baseada em uso de CPU
 
 \section{Escalabilidade e Automatização de Configurações}
 
