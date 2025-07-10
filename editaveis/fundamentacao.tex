@@ -37,7 +37,7 @@ Além dessas características essenciais, o NIST também classifica os serviços
 \label{fig:modelos-servico}
 \end{figure}
 
-Para facilitar o entendimento desses serviços, a Figura 1 compara os modelos de serviço da nuvem. Em sistemas de SaaS, o software é hospedado na nuvem e acessível ao usuário pela internet. O usuário não possui nenhum controle sobre a aplicação, nem sobre a infraestrutura. Grande parte dos serviços oferecidos à usuários da internet utilizam esse modelo \cite{rizvi2024}. Dentre eles, pode-se listar, as redes sociais, como o \textit{Instagram}, \textit{TikTok} e \textit{Whatsapp}, e serviços de transmissão contínua de conteúdo multimídia (\textit{streaming}), como o \textit{Youtube}, \textit{Netflix} e \textit{Spotify}. O modelo PaaS, em contrapartida, fornece um ambiente de desenvolvimento e implantação pré-construído na nuvem, onde o usuário tem controle sobre a aplicação, incluindo códigos e bancos de dados. Nesse modelo encontram-se os serviços de desenvolvimento e hospedagem de software, como \textit{Microsoft Azure}, \textit{Google App Engine} e \textit{Heroku} (Rizvi et al., 2024). Já no IaaS, o usuário pode solicitar uma quantidade de recursos, e tem controle sobre o sistema operacional. Nesse modelo estão as máquinas virtuais e serviços de armazenamento, como  \textit{Amazon Web Services (AWS) EC2 e S3},  \textit{Microsoft Azure Virtual Machines} e  \textit{Google Compute Engine}  (Rizvi et al., 2024)
+Para facilitar o entendimento desses serviços, a Figura 1 compara os modelos de serviço da nuvem. Em sistemas de SaaS, o software é hospedado na nuvem e acessível ao usuário pela internet. O usuário não possui nenhum controle sobre a aplicação, nem sobre a infraestrutura. Grande parte dos serviços oferecidos à usuários da internet utilizam esse modelo \cite{rizvi2024}. Dentre eles, pode-se listar, as redes sociais, como o \textit{Instagram}, \textit{TikTok} e \textit{Whatsapp}, e serviços de transmissão contínua de conteúdo multimídia (\textit{streaming}), como o \textit{Youtube}, \textit{Netflix} e \textit{Spotify}. O modelo PaaS, em contrapartida, fornece um ambiente de desenvolvimento e implantação pré-construído na nuvem, onde o usuário tem controle sobre a aplicação, incluindo códigos e bancos de dados. Nesse modelo encontram-se os serviços de desenvolvimento e hospedagem de software, como \textit{Microsoft Azure}, \textit{Google App Engine} e \textit{Heroku} (Rizvi et al., 2024). Já no IaaS, o usuário pode solicitar uma quantidade de recursos, e tem controle sobre o sistema operacional (SO). Nesse modelo estão as máquinas virtuais e serviços de armazenamento, como  \textit{Amazon Web Services (AWS) EC2 e S3},  \textit{Microsoft Azure Virtual Machines} e  \textit{Google Compute Engine}  (Rizvi et al., 2024)
 
 \subsection{Modelos de Implantação}
 
@@ -52,6 +52,8 @@ A implantação de sistemas de computação em nuvem pode ser realizada por meio
 
 \item[Nuvem Híbrida (\textit{Hybrid cloud})]. Essa infraestrutura é uma composição de duas ou mais infraestruturas distintas (privada, comunitária ou pública)  \cite{mell2011}.
 
+\end{itemize}
+
 A implantação de sistemas de computação em nuvem pode ser realizada por meio de diferentes modelos, cada qual adequado a cenários específicos. Os modelos mais difundidos são as nuvens pública, privada, comunitária e híbrida, que se diferenciam em nível de controle, segurança, escalabilidade e custo de implantação \cite{mell2011}.
 
 \section{Virtualização e Hipervisores}
@@ -62,14 +64,43 @@ A implementação de máquinas virtuais de sistema pode ser realizada através d
 
 \begin{itemize}
     \item[Virtualização Total (\textit{Full Virtualization})]: 
-    Também conhecida como \textit{Máquina Virtual de Hardware (HVM)}, esse tipo de virtualização provê uma réplica virtual completa do hardware subjacente. Isso permite rodar qualquer sistema operacional usando sua imagem de instalação padrão (ISO) sem alterar o kernel \cite{carissimi2008}. 
-    O desafio da virtualização total reside no tratamento de comandos que precisam de acesso direto ao hardware, as instruções privilegiadas. Em princípio, a camada de virtualização precisava interceptar e emular essas instruções em software, gerando uma sobrecarga (\textit{overhead}) de desempenho \cite{carissimi2008}.
-    Contudo, a introdução de extensões de hardware pelos fabricantes de processadores, como o \textit{Intel VT-x} e o \textit{AMD-V}, revolucionou essa técnica \cite{carissimi2008}. Essas extensões permitem que o sistema operacional virtualizado execute instruções privilegiadas diretamente no processador de forma segura, eliminando a necessidade de emulação e tornando o desempenho da máquina virtual mais próximo ao do hardware nativo \cite{chawla2025}.
+    Também conhecida como \textit{Máquina Virtual de Hardware (HVM)}, esse tipo de virtualização provê uma réplica virtual completa do hardware subjacente. Isso permite rodar qualquer sistema operacional usando sua imagem de instalação padrão (ISO) sem alterar o kernel \cite{carissimi2008}. O desafio da virtualização total reside no tratamento de comandos que precisam de acesso direto ao hardware, as instruções privilegiadas. Em princípio, a camada de virtualização precisava interceptar e emular essas instruções em software, gerando uma sobrecarga (\textit{overhead}) de desempenho \cite{carissimi2008}. Contudo, a introdução de extensões de hardware pelos fabricantes de processadores, como o \textit{Intel VT-x} e o \textit{AMD-V}, revolucionou essa técnica \cite{carissimi2008}. Essas extensões permitem que o sistema operacional virtualizado execute instruções privilegiadas diretamente no processador de forma segura, eliminando a necessidade de emulação e tornando o desempenho da máquina virtual mais próximo ao do hardware nativo \cite{chawla2025}.
 
     \item[Paravirtualização]: 
-    Essa é a técnica em que o sistema operacional é modificado para melhor se adaptar a um ambiente virtual. O \textit{kernel} do sistema é alterado para incluir \textit{drivers} especiais que realizam chamadas diretas ao hipervisor (hypercalls), em vez de tentar executar instruções privilegiadas, \cite{carissimi2008}.
-    A principal vantagem desta abordagem é o desempenho. Ao eliminar a necessidade de interceptar e emular instruções, a paravirtualização apresenta um \textit{overhead} menor e um desempenho superior em comparação à virtualização total sem assistência de hardware \cite{carissimi2008}.
+    Essa é a técnica em que o sistema operacional é modificado para melhor se adaptar a um ambiente virtual. O \textit{kernel} do sistema é alterado para incluir \textit{drivers} especiais que realizam chamadas diretas ao hipervisor (hypercalls), em vez de tentar executar instruções privilegiadas, \cite{carissimi2008}. A principal vantagem desta abordagem é o desempenho. Ao eliminar a necessidade de interceptar e emular instruções, a paravirtualização apresenta um \textit{overhead} menor e um desempenho superior em comparação à virtualização total sem assistência de hardware \cite{carissimi2008}.
 \end{itemize}
+
+Para facilitar o entendimento dos conceitos da Virtualização Total e Paravirtualização, a Tabela~\ref{tab:comparativo_virtualizacao} apresenta um comparativo entre esses dois tipos, destacando suas vantagens e desvantagens:
+
+\begin{table}[htb]
+    \centering
+
+    \caption{Comparativo entre Virtualização Total e Paravirtualização}
+    \label{tab:comparativo_virtualizacao}
+
+    \begin{tabularx}{\textwidth}{ l >{\RaggedRight}X >{\RaggedRight}X }
+        \toprule
+        \textbf{Característica} & \textbf{Virtualização Total} & \textbf{Paravirtualização} \\
+        \midrule
+        Visão do \textit{Guest} & Hardware virtual idêntico ao físico. & API/hardware simplificado, exposto pelo hipervisor. \\
+        \addlinespace
+        Modificação do SO & Não é necessária. & Sim, o \textit{kernel} precisa de drivers e \textit{hypercalls} especiais. \\
+        \addlinespace
+        Instruções Privilegiadas & Interceptadas pelo hipervisor ou tratadas via hardware (\textit{Intel VT-x/AMD-V}). & O \textit{guest} realiza \textit{hypercalls} diretas ao hipervisor. \\
+        \addlinespace
+        Desempenho & Historicamente mais lento, mas hoje quase nativo graças à assistência de hardware. & Menor sobrecarga e desempenho superior, especialmente em I/O. \\
+        \addlinespace
+        Principal Vantagem & Compatibilidade universal com qualquer sistema operacional. & Velocidade e eficiência, sobretudo antes da popularização do \textit{Intel VT-x}. \\
+        \addlinespace
+        Principal Desvantagem & Maior sobrecarga sem assistência de hardware. & Requer suporte e modificação no sistema operacional convidado. \\
+        \bottomrule
+    \end{tabularx}
+
+    \fonte{Elaborado pelo autor, com base em Carissimi (2008).}
+\end{table}
+
+\subsection{Definição e tipos de hipervisores}
+O componente de software responsável por criar e gerenciar as máquinas virtuais é denominado hipervisor, ou Monitor de Máquina Virtual (VMM) \cite{chawla2025}; \cite{carissimi2008}. O hipervisor é a camada de software que fica entre o hardware e os sistemas operacionais, e é responsável por orquestrar o acesso aos recursos físicos e manter o isolamento entre as diferentes VMs \cite{chawla2025}; \cite{carissimi2008}. Os hipervisores são classificados em dois tipos principais, conforme ilustrado na Figura 2.
 
 \begin{figure}[htb]
     \centering
@@ -80,15 +111,118 @@ A implementação de máquinas virtuais de sistema pode ser realizada através d
 \end{figure}
 
 \begin{itemize}
-    \item \emph{Tipo 1 (Bare-metal)}: Executa diretamente sobre o hardware do servidor, atuando como um sistema operacional leve e especializado para executar VMs \cite{chawla2025}. Exemplos notáveis incluem \textit{Xen}, \textit{VMware ESXi} e \textit{Microsoft Hyper-V} \cite{chawla2025}; \cite{carissimi2008}. Por ter acesso direto ao hardware, esta arquitetura geralmente oferece maior desempenho e segurança.
-    \item \emph{Tipo 2 (Hosted)}: Opera como uma aplicação de software sobre um sistema operacional convencional (hospedeiro), que gerencia o hardware \cite{chawla2025}. Exemplos incluem \textit{KVM}, \textit{Oracle VirtualBox} e \textit{VMware Player} \cite{chawla2025}; \cite{carissimi2008}. Esta abordagem é mais simples de instalar e gerenciar, mas pode introduzir uma sobrecarga de desempenho devido à camada extra do sistema operacional hospedeiro.
+    \item[Tipo 1 (\textit{Bare-metal})]: Executa diretamente sobre o hardware do servidor, atuando como um sistema operacional leve e especializado para executar VMs \cite{chawla2025}. Exemplos notáveis incluem \textit{Xen}, \textit{VMware ESXi} e \textit{Microsoft Hyper-V} \cite{chawla2025}; \cite{carissimi2008}. Por ter acesso direto ao hardware, esta arquitetura geralmente oferece maior desempenho e segurança.
+    \item[Tipo 2 (\textit{Hosted})]: Opera como uma aplicação de software sobre um sistema operacional convencional (hospedeiro), que gerencia o hardware \cite{chawla2025}. Exemplos incluem \textit{KVM}, \textit{Oracle VirtualBox} e \textit{VMware Player} \cite{chawla2025}; \cite{carissimi2008}. Esta abordagem é mais simples de instalar e gerenciar, mas pode introduzir uma sobrecarga de desempenho devido à camada extra do sistema operacional hospedeiro.
 \end{itemize}
 
-\subsection{Tipos de Virtualização}
-A implementação de máquinas virtuais de sistema pode ser realizada através de duas técnicas principais: a virtualização total e a paravirtualização \cite{carissimi2008}.
-{{ ... }}
+A Tabela~\ref{tab:comparativo_hipervisores} compara, de forma simplificada, as diferenças entre os hipervisores Tipo~1 e Tipo~2, a fim de tornar o entendimento desses conceitos mais claro:
 
-% 2.2.4 – KVM como Solução de Hipervisor
+\begin{table}[htb]
+    \centering
+    \caption{Comparativo entre Hipervisores Tipo 1 e Tipo 2}
+    \label{tab:comparativo_hipervisores}
+    \begin{tabularx}{\textwidth}{ >{\bfseries}l >{\RaggedRight}X >{\RaggedRight}X }
+        \toprule
+        & \textbf{Hipervisor Tipo 1 (Bare-Metal)} & \textbf{Hipervisor Tipo 2 (Hosted)} \\
+        \midrule
+        Posicionamento Arquitetural & Executa diretamente sobre o hardware físico. & Executa como uma aplicação sobre um Sistema Operacional hospedeiro. \\
+        \addlinespace
+        Desempenho & Maior, com menor sobrecarga de virtualização. & Menor, pois há uma camada extra (SO hospedeiro) que pode gerar \textit{overhead}. \\
+        \addlinespace
+        Isolamento e Segurança & Considerado mais seguro devido ao acesso direto e controlado ao hardware e menor superfície de ataque. & A segurança depende criticamente do Sistema Operacional hospedeiro subjacente. \\
+        \addlinespace
+        Instalação e Gestão & Geralmente mais complexo, exigindo um servidor dedicado para sua instalação. & Instalação simples, similar a qualquer outro software de desktop. \\
+        \addlinespace
+        Caso de Uso Principal & Ambientes de produção, \textit{datacenters} e nuvens que exigem alto desempenho e escalabilidade. & Desenvolvimento de software, testes, e uso em \textit{desktops} para executar múltiplos sistemas operacionais. \\
+        \addlinespace
+        Exemplos & VMware ESXi, Microsoft Hyper-V, Xen. & Oracle VirtualBox, VMware Player, KVM. \\
+        \bottomrule
+    \end{tabularx}
+    \fonte{Elaborada pelo autor, com base em Chawla et al. (2025), Kominos et al. (2017) e Carissimi (2008).}
+\end{table}
+
+
+\subsection{Análise Comparativa de Hipervisores}
+A seleção de um hipervisor é uma decisão crítica que impacta diretamente o desempenho, a segurança e a escalabilidade de uma infraestrutura de nuvem. A Tabela 3 apresenta uma comparação entre os principais hipervisores do mercado, destacando suas características de desempenho dentro das seguintes métricas:
+
+\begin{itemize}
+    \item[\textit{CPU Overhead}]:  mede a porcentagem de ciclos que são consumidos no processador pelo hipervisor durante o gerenciamento das VMs. Essa sobrecarga é particularmente notável em cargas de trabalho intensivas em Entrada/Saída (E/S), pois o hipervisor precisa de poder de processamento para gerenciar as solicitações de rede e disco das VMs. Um valor menor é melhor, indicando que mais poder de CPU está disponível para as aplicações. O \textit{VMware ESXi} apresentou o menor.
+    \item[\textit{Memory Overhead}]:  mede a quantidade de memória RAM que o hipervisor reserva para seu próprio funcionamento e para gerenciar o mapeamento de memória das máquinas virtuais. Um \textit{overhead} menor significa que uma porção maior da RAM física pode ser alocada diretamente para as cargas de trabalho. Neste quesito, \textit{VMware ESXi} e \textit{KVM} demonstram alta eficiência, com sobrecargas de 2,9\% e 3,0\%, respectivamente.
+    \item[\textit{Disk I/O Overhead}]: mede a perda de desempenho nas operações de acesso ao armazenamento. Quando uma VM solicita acesso ao disco, o hipervisor intercepta essa requisição, a traduz e a encaminha ao dispositivo físico, o que introduz latência e reduz o número de operações por segundo. Um \textit{overhead} menor indica um acesso a disco mais rápido e eficiente para as VMs. O \textit{VMware ESXi} se destacou com o menor \textit{overhead} (2,8\%), indicando otimizações avançadas em seu subsistema de armazenamento.
+    \item[\textit{Network Overhead}]: mede a queda na taxa de transferência e latência da rede, causada pela camada de virtualização de rede do hipervisor. O processamento de pacotes por essa camada virtual adiciona um pequeno atraso em comparação com uma conexão direta ao hardware. Um valor menor indica uma comunicação de rede mais próxima da velocidade nativa. O \textit{VMware ESXi} apresentou a menor sobrecarga (2,5\%), seguido do KVM (3,5\%).
+    \item[Desempenho Geral]: pontuação que representa a média ponderada do desempenho do hipervisor em todos os testes realizados (CPU, memória, E/S e rede). Este índice oferece uma visão simplificada para uma comparação direta, onde uma pontuação mais alta significa um melhor equilíbrio de desempenho e eficiência em diversas cargas de trabalho. Nesse escore, o VMware ESXi foi classificado com o melhor desempenho geral, seguido pelo KVM.
+
+
+
+
+
+
+
+    
+
+\end{itemize}
+
+% Tabela de desempenho de hipervisores
+\begin{table}[htb]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Comparação de overhead e desempenho entre hipervisores}
+    \label{tab:overhead}
+    \begin{tabularx}{\textwidth}{| >{\raggedright\arraybackslash}p{4cm} | >{\centering\arraybackslash}p{2.5cm} | >{\centering\arraybackslash}p{2.5cm} | >{\centering\arraybackslash}p{2.5cm} | >{\centering\arraybackslash}p{2.5cm} |}
+        \hline
+        \textbf{Métrica} & \textbf{KVM} & \textbf{VMware ESXi} & \textbf{Xen} & \textbf{Hyper-V} \\ \hline
+        CPU Overhead (\%) & 4.0 & 2.5 & 6.5 & 9.5 \\ \hline
+        Memory Overhead (\%) & 3.0 & 2.9 & 6.8 & -- \\ \hline
+        Disk I/O Overhead (\%) & 4.2 & 2.8 & 7.1 & 9.5 \\ \hline
+        Network Overhead (\%) & 3.5 & 2.5 & 6.2 & 9.0 \\ \hline
+        Desempenho Geral (Score) & 9.2/10 & 9.6/10 & 8.4/10 & 7.9/10 \\ \hline
+    \end{tabularx}
+    \fonte{Adaptado de Chawla et al. (2025).}
+\end{table}
+
+% Tabela qualitativa de hipervisores
+\begin{table}[htb]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \caption{Comparação entre hipervisores KVM, VMware ESXi e Xen}
+    \label{tab:hipervisores}
+    \begin{tabularx}{\textwidth}{| >{\raggedright\arraybackslash}p{3cm} | X | X | X |}
+        \hline
+        \textbf{Característica} & \textbf{KVM} & \textbf{VMware ESXi} & \textbf{Xen} \\ \hline
+        \textbf{Tipo} & Tipo 2, mas com comportamento de Tipo 1 & Tipo 1 & Tipo 1 \\ \hline
+        \textbf{Licença} & Código Aberto & Proprietário & Código Aberto \\ \hline
+        \textbf{Vantagens} &
+        \begin{itemize}
+            \item Desempenho próximo ao nativo.
+            \item Custo zero de licenciamento.
+            \item Amplo suporte da comunidade \textit{open-source}.
+        \end{itemize} &
+        \begin{itemize}
+            \item Desempenho de E/S superior.
+            \item Ecossistema de gerenciamento maduro.
+            \item Segurança robusta.
+        \end{itemize} &
+        \begin{itemize}
+            \item Arquitetura de segurança superior.
+            \item Bom isolamento entre VMs.
+            \item Ampla adoção em nuvens públicas (AWS).
+        \end{itemize} \\ \hline
+        \textbf{Desvantagens} &
+        \begin{itemize}
+            \item A segurança depende do \textit{kernel} Linux.
+            \item Gerenciamento menos centralizado que outras soluções.
+        \end{itemize} &
+        \begin{itemize}
+            \item Custo de licenciamento elevado.
+        \end{itemize} &
+        \begin{itemize}
+            \item Maior sobrecarga de desempenho em alguns cenários.
+            \item Configuração pode ser mais complexa.
+        \end{itemize} \\ \hline
+    \end{tabularx}
+    \fonte{Baseado em Chawla et al. (2025), Kominos et al. (2017) e Arora et al. (2014).}
+\end{table}
+
 \subsection{KVM como Solução de Hipervisor}
 
 O \textit{Kernel-based Virtual Machine} (KVM) é a solução de virtualização que integra um hipervisor diretamente ao \textit{kernel} do \textit{Linux} \cite{carissimi2008}. Embora seja classificado como um hipervisor Tipo 2, pois opera sobre um sistema operacional, sua integração com o \textit{kernel} lhe confere características de desempenho e eficiência que se aproximam de soluções Tipo 1 \cite{chawla2025}; \cite{kominos2017}. No KVM, cada máquina virtual (VM) é gerenciada como um processo regular do \textit{Linux}, agendado pelo escalonador padrão do sistema, o que otimiza a gestão de recursos e a alocação de memória \cite{anand2013}.
