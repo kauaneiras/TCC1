@@ -65,28 +65,30 @@ A implementação de máquinas virtuais de sistema pode ser realizada através d
 
 Para facilitar o entendimento dos conceitos da Virtualização Total e Paravirtualização, a Tabela~\ref{tab:comparativo_virtualizacao} apresenta um comparativo entre esses dois tipos, destacando suas vantagens e desvantagens:
 
+
 \begin{table}[h]
     \centering
-
     \caption{Comparativo entre Virtualização Total e Paravirtualização}
     \label{tab:comparativo_virtualizacao}
-    \begin{tabular}{|l|l|l|}
+    \begin{tabular}{|>{\raggedright\arraybackslash}p{0.24\textwidth}|
+                    >{\raggedright\arraybackslash}p{0.35\textwidth}|
+                    >{\raggedright\arraybackslash}p{0.35\textwidth}|}
         \hline
-        \textbf{Característica} & \textbf{Virtualização Total} & \textbf{Paravirtualização} \\
-        \hline
-        Visão do \textit{Guest} & Hardware virtual idêntico ao físico. & API/hardware simplificado, exposto pelo hipervisor. \\
-        \hline
-        Modificação do SO & Não é necessária. & Sim, o \textit{kernel} precisa de drivers e \textit{hypercalls} especiais. \\
-        \hline
-        Instruções Privilegiadas & Interceptadas pelo hipervisor ou tratadas via hardware (\textit{Intel VT-x/AMD-V}). & O \textit{guest} realiza \textit{hypercalls} diretas ao hipervisor. \\
-        \hline
-        Desempenho & Historicamente mais lento, mas hoje quase nativo graças à assistência de hardware. & Menor sobrecarga e desempenho superior, especialmente em E/S. \\
-        \hline
-        Principal Vantagem & Compatibilidade universal com qualquer sistema operacional. & Velocidade e eficiência, sobretudo antes da popularização do \textit{Intel VT-x}. \\
-        \hline
-        Principal Desvantagem & Maior sobrecarga sem assistência de hardware. & Requer suporte e modificação no sistema operacional convidado. \\
-        \hline
+        \textbf{Característica} & \textbf{Virtualização Total} & \textbf{Paravirtualização} \\ \hline
+        Visão do \textit{Guest} & Hardware virtual idêntico ao físico. 
+                                & API/hardware simplificado, exposto pelo hipervisor. \\ \hline
+        Modificação do SO       & Não é necessária. 
+                                & Sim, o \textit{kernel} precisa de drivers e \textit{hypercalls} especiais. \\ \hline
+        Instruções Privilegiadas & Interceptadas pelo hipervisor ou tratadas via hardware (\textit{Intel VT-x/AMD-V}). 
+                                & O \textit{guest} realiza \textit{hypercalls} diretas ao hipervisor. \\ \hline
+        Desempenho              & Historicamente mais lento, mas hoje quase nativo graças à assistência de hardware. 
+                                & Menor sobrecarga e desempenho superior, especialmente em E/S. \\ \hline
+        Principal Vantagem      & Compatibilidade universal com qualquer sistema operacional. 
+                                & Velocidade e eficiência, sobretudo antes da popularização do \textit{Intel VT-x}. \\ \hline
+        Principal Desvantagem   & Maior sobrecarga sem assistência de hardware. 
+                                & Requer suporte e modificação no sistema operacional convidado. \\ \hline
     \end{tabular}
+\end{table}
 
     \fonte{Elaborado pelo autor, com base em Carissimi (2008).}
 \end{table}
