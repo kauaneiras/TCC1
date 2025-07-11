@@ -7,9 +7,7 @@
 % ---------------------------------------------------------------------------
 
 \chapter{Metodologia}
-% Reinicia numeração de tabelas para este capítulo, caso o template o exija
 \setcounter{table}{0}
-
 Este capítulo apresenta o delineamento metodológico utilizado para planejar, executar e avaliar a implantação da nuvem privada dinâmica proposta no Capítulo 3. A metodologia foi estruturada para assegurar a reprodutibilidade dos procedimentos, a validade dos resultados.
 
 \section{Tipo de Pesquisa}
@@ -55,6 +53,3 @@ Para a avaliação do provisionamento dinâmico e da eficácia da solução, as 
 \item Tempo de resposta das aplicações: Avaliação da responsividade das aplicações dentro das VMs sob diferentes cargas, refletindo a qualidade de serviço;
 \item Taxa de falhas de provisionamento: Percentual de tentativas de provisionamento de VMs que resultam em falha, indicando a robustez do sistema.
 \end{itemize}
-
-\section{Coleta e Armazenamento de Dados}
-Os dados de desempenho foram coletados pelo Prometheus e armazenados em séries temporais, enquanto \textit{logs} de eventos do OpenStack foram consolidados no ElasticSearch. As tabelas resultantes estão disponibilizadas no Apêndice~\ref{apendice:logs}.

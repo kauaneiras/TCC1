@@ -12,9 +12,55 @@ Este cenário inspirou o desenvolvimento deste trabalho, que busca a otimizaçã
 
 \section{Recursos Disponíveis}
 
-A solução proposta será implementada utilizando a infraestrutura de hardware existente e subutilizada no laboratório da UnB. Os recursos disponíveis consistem em 10 servidores Dell antigos, mas capazes de atender às necessidades de virtualização e computação em nuvem. Os modelos de servidores, incluem: PowerEdge~2950, PowerEdge~2900, PowerEdge~1950 e PowerEdge~R900. Embora sejam modelos antigos, esses servidores, caso estejam em boas condições, possuem capacidade de processamento e memória RAM que, quando combinadas e virtualizadas, podem oferecer um ambiente robusto para as simulações exigidas.
+A solução proposta será implementada utilizando a infraestrutura de hardware existente e subutilizada no Lab Telecom. Os recursos disponíveis consistem em 10 servidores Dell capazes de atender às necessidades de virtualização e computação em nuvem. Os modelos de servidores, levantados na Tabela \ref{tab:lab_equipamentos_parados} incluem: PowerEdge 1950 1U, PowerEdge R610 1U, PowerEdge 2950 2U, PowerEdge 2900 4U, PowerEdge R900 4U. Embora sejam modelos antigos, esses servidores podem ser reativados e possuem capacidade de processamento e memória RAM que, quando combinadas e virtualizadas, podem oferecer um ambiente robusto para as simulações exigidas.
 
-Além dos servidores, o laboratório dispõe de 3 switches Cisco com cabos que permitem taxas de transferência de dados de até 1 Gigabit por segundo (1 Gbps), que serão utilizados para a interconexão da infraestrutura de rede da nuvem privada. Para garantir a integridade e a disponibilidade dos dados, será implementada uma configuração de RAID~6 em todos os servidores, proporcionando alta tolerância a falhas e segurança de dados, caso um disco venha a falhar. A pesar da importancia do desempenho computacional para essa aplicação, a escolha do RAID~6 é justificada pela prioridade de segurança dos dados.
+\begin{table}[h]
+    \centering
+    \caption{Levantamento dos equipamentos em desuso no Laboratório}
+    \label{tab:lab_equipamentos_parados}
+    \begin{tabular}{|l|c|p{6cm}|}
+        \hline
+        \textbf{Equipamento} & \textbf{Qtde} & \textbf{Especificações e Descrição} \\ \hline \hline
+        Dell PowerEdge 1950 1U & 1 & Processador Intel Xeon; suporte a DDR2/DDR3. \\ \hline
+        Dell PowerEdge R610 1U & 2 & Processador Intel Xeon; suporte a DDR2/DDR3. \\ \hline
+        Dell PowerEdge 2950 2U & 1 & Processador Intel Xeon; suporte a DDR2/DDR3. \\ \hline
+        Dell PowerEdge 2900 4U & 3 & Processador Intel Xeon; suporte a DDR2/DDR3. \\ \hline
+        Dell PowerEdge R900 4U & 3 & Processador Intel Xeon; suporte a DDR2/DDR3. \\ \hline
+    \end{tabular}
+\end{table}
+
+Além dos servidores, o laboratório dispõe de 3 switches Cisco com cabos que permitem taxas de transferência de dados de até 1 Gigabit por segundo (1 Gbps), que serão utilizados para a interconexão da infraestrutura de rede da nuvem privada. Para garantir a integridade e a disponibilidade dos dados, será implementada uma configuração de RAID~6 em todos os servidores, proporcionando alta tolerância a falhas e segurança de dados, caso um disco venha a falhar. A pesar da importância do desempenho computacional para essa aplicação, a escolha do RAID~6 é justificada pela prioridade de segurança dos dados.
+
+\section{Requisitos do Projeto}
+Para assegurar que a arquitetura sugerida seja capaz de atender às demandas dos discentes e pesquisadores do Lab Telecom, foram estabelecidos requisitos técnicos:
+
+\subsection{Requisitos Funcionais}
+Os requisitos funcionais definem as funcionalidades essenciais que o sistema deve oferecer. Com base nas necessidades levantadas por meio de entrevistas com o coordenador e discentes do Lab Telecom, a plataforma de nuvem a ser implementada deverá ser capaz de:
+
+\begin{enumerate}
+\item Provisionar de Máquinas Virtuais (VMs) - Permitir que os alunos do laboratório criem instâncias de máquinas virtuais de forma autônoma e sob demanda, apenas inserindo seus dados em uma API. 
+\item Painel de Controle (Self-Service) - Fornecer um painel de controle intuitivo onde administradores do sistema possam realizar o ciclo de vida completo de suas VMs: criar, iniciar, pausar, reiniciar e excluir.
+\item Acesso a Recursos Externos - As VMs devem ser capazes de acessar a internet.
+\item Suporte a Sistemas Operacionais: Garantir a instalação e o funcionamento de sistemas operacionais Microsoft Windows de 64 bits e distribuições do Linux.
+\item Suportar Softwares de Simulação - A infraestrutura deve suportar a execução satisfatória de softwares de simulação utilizados pelo laboretório, sendo eles: Ansys HFSS, Keysight ADS, SolidWorks e Altium Designer 24.
+\item Catálogo de Imagens de VM - Deve haver um catálogo de imagens pré-configuradas e otimizadas.
+\item Armazenamento de Dados Persistente - O sistema deve permitir que os alunos criem e gerenciem volumes de armazenamento (discos virtuais) persistentes. Esses volumes devem poder ser anexados e desanexados das VMs, garantindo que os dados de projeto do aluno não sejam perdidos quando uma VM é encerrada ou recriada.
+\item Perfis de Acesso Diferenciados - O sistema deve suportar diferentes níveis de permissão (roles), como "administrador", "professor" e "aluno", cada um com acesso a diferentes funcionalidades do painel de controle
+\item Escalonamento de recursos automático - As máquinas virtuais devem receber CPU e RAM conforme a demanda, e devolver esse recurso quando não estiverem mais em uso.
+\end{enumerate}
+
+\subsection{Requisitos Não-Funcionais}
+Os requisitos não-funcionais estabelecem os padrões de qualidade, as restrições operacionais e as características de desempenho do sistema.
+
+\begin{enumerate}
+\item Latência de Provisionamento: O tempo decorrido entre a solicitação de criação de uma nova VM por um aluno e o momento em que ela se torna totalmente acessível (via RDP/SSH) não deve exceder 5 minutos para imagens pré-configuradas.
+\item Tolerância a Falhas: A falha de um único nó de computação (servidor que hospeda as VMs) não deve derrubar o serviço como um todo. O painel de controle deve permanecer acessível, e os alunos devem ser capazes de iniciar novas VMs nos nós restantes.
+\item Recuperabilidade (Backup e Restore): O sistema deve ter uma rotina de backup automatizada para os componentes críticos da infraestrutura.
+\item Isolamento de usuários: O sistema deve impor um isolamento de rede e recursos estrito entre os projetos de cada aluno, prevenindo que um usuário possa acessar, intencionalmente ou não, os dados e as VMs de outro.
+\item Escalabilidade Horizontal: A arquitetura deve permitir a adição de novos servidores de computação à nuvem de forma simplificada, através da execução dos scripts Ansible, sem a necessidade de uma reconfiguração complexa ou tempo de inatividade prolongado.
+\item Atualizações de Software: Deve ser possível aplicar atualizações de segurança e novas versões de pacotes nos servidores da infraestrutura de maneira simples e para todos os usuários através da imagem base.
+\item Recuperabilidade: O sistema deve ter uma rotina diária de cópia de segurança (\textit{backup}) automatizada.
+\end{enumerate}
 
 \section{Arquitetura da Nuvem Privada Dinâmica}
 
@@ -49,7 +95,13 @@ A implementação da nuvem privada dinâmica seguirá uma abordagem faseada, gar
 
 \section{Provisionamento Dinâmico de Recursos}
 
-O provisionamento dinâmico de recursos visa otimizar a utilização da memória RAM e do processamento (CPU) nos servidores físicos, garantindo que os recursos sejam alocados e redistribuídos de forma eficiente conforme a demanda dos usuários.
+O objetivo do provisionamento dinâmico é maximizar a eficiência dos servidores físicos, ajustando continuamente a alocação de memória RAM e capacidade de CPU, garantindo que aplicações recebam os recursos necessários conforme sua demanda. No caso do Lab Telecom, o principal uso do hardware é para simulações complexas e programas de alto desempenho, como Ansys, Cadence e SolidWorks. Ainda sim, a variação de uso do hardware é muito alta, já que podem haver apenas um aluno ativo ou vários. Por isso, é necessário implementar um sistema de provisionamento dinâmico que possa ajustar a alocação de recursos de forma automática, garantindo quando apenas um usuário estiver ativo, ele receba o máximo de recursos, e quando houver muitos usuários, os recursos sejam distribuídos de forma equitativa entre todos os usuários.
+
+\begin{itemize}
+\item \textbf{Ballooning} - Um driver de \textit{ballooning} será executado dentro de cada máquina virtual (VM). Quando um servidor físico começa a ter escassez de memória, ele infla o "balão" nas VMs que estão com memória ociosa, forçando-as a liberar essa memória para as VMs que mais precisam.
+
+\item \textbf{Fair-Share Scheduling} - O hipervisor garantirá uma distribuição justa de ciclos de CPU entre todas as VMs. VMs com maior prioridade ou demanda receberão mais tempo de processamento, mas nenhuma VM será completamente privada de recursos.
+\end{itemize}
 
 \subsection{Gerenciamento de Imagens de VMs}
 
