@@ -12,25 +12,9 @@ Este cenário inspirou o desenvolvimento deste trabalho, que busca a otimizaçã
 
 \section{Recursos Disponíveis}
 
-A solução proposta será implementada utilizando a infraestrutura de hardware existente e subutilizada no laboratório da UnB. Os recursos disponíveis consistem em 10 servidores Dell antigos, mas capazes de atender às necessidades de virtualização e computação em nuvem. Os modelos de servidores, listados na Tabela~\ref{tab:servidores}, incluem: PowerEdge~2950, PowerEdge~2900, PowerEdge~1950 e PowerEdge~R900. Embora sejam modelos mais antigos, esses servidores possuem capacidade de processamento e memória RAM que, quando combinadas e virtualizadas, podem oferecer um ambiente robusto para as simulações exigidas.
+A solução proposta será implementada utilizando a infraestrutura de hardware existente e subutilizada no laboratório da UnB. Os recursos disponíveis consistem em 10 servidores Dell antigos, mas capazes de atender às necessidades de virtualização e computação em nuvem. Os modelos de servidores, incluem: PowerEdge~2950, PowerEdge~2900, PowerEdge~1950 e PowerEdge~R900. Embora sejam modelos antigos, esses servidores, caso estejam em boas condições, possuem capacidade de processamento e memória RAM que, quando combinadas e virtualizadas, podem oferecer um ambiente robusto para as simulações exigidas.
 
-\begin{table}[htb]
-\centering
-\caption{Modelos de Servidores Disponíveis}
-\label{tab:servidores}
-\begin{tabular}{l l l l}
-\toprule
-Modelo & Processador & Memória RAM & Armazenamento\\ \midrule
-PowerEdge 2950 & Intel Xeon E5-2650 v3 & 24~GB & 4~TB \\
-PowerEdge 2900 & Intel Xeon E5-2650 v3 & 64~GB & 1{,}088~TB \\
-PowerEdge 1950 & Intel Xeon E5-2650 v3 & 64~GB & 256~GB \\
-PowerEdge R900 & Intel Xeon E5-2650 v3 & 64~GB & 256~GB \\
-PowerEdge 2900 & Intel Xeon E5-2650 v3 & 64~GB & 256~GB \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Além dos servidores, o laboratório dispõe de \textbf{QUANTIDADE} switches Cisco \textbf{MODELO} com cabos Gigabit, que serão utilizados para a interconexão da infraestrutura de rede da nuvem privada. Para garantir a integridade e a disponibilidade dos dados, será implementada uma configuração de RAID~6 em todos os servidores, proporcionando alta tolerância a falhas e segurança de dados, caso um disco venha a falhar. A pesar da importancia do desempenho computacional para essa aplicação, a escolha do RAID~6 é justificada pela prioridade de segurança dos dados.
+Além dos servidores, o laboratório dispõe de 3 switches Cisco com cabos que permitem taxas de transferência de dados de até 1 Gigabit por segundo (1 Gbps), que serão utilizados para a interconexão da infraestrutura de rede da nuvem privada. Para garantir a integridade e a disponibilidade dos dados, será implementada uma configuração de RAID~6 em todos os servidores, proporcionando alta tolerância a falhas e segurança de dados, caso um disco venha a falhar. A pesar da importancia do desempenho computacional para essa aplicação, a escolha do RAID~6 é justificada pela prioridade de segurança dos dados.
 
 \section{Arquitetura da Nuvem Privada Dinâmica}
 
@@ -75,30 +59,3 @@ O provisionamento dinâmico de recursos visa otimizar a utilização da memória
 \end{enumerate}
 
 O gerenciamento centralizado de imagens permitirá que os administradores criem e atualizem imagens base, garantindo que todos os usuários tenham acesso às versões mais recentes dos softwares e configurações.
-
-\section{Políticas de Escalonamento}
-
-Para garantir que a nuvem privada se adapte dinamicamente às flutuações de demanda, serão implementadas políticas de escalonamento automático (\textit{autoscaling}). As políticas serão baseadas em métricas de desempenho, como uso de CPU e memória RAM.
-
-\begin{itemize}
- \item \textbf{Escalonamento Vertical:} Aumento ou diminuição de CPU/RAM alocados a uma VM existente.
- \item \textbf{Escalonamento Horizontal:} Inicialização de novas VMs a partir de imagens pré-configuradas ou parada de VMs ociosas.
-\end{itemize}
-
-A automatização do gerenciamento de recursos garantirá eficiência operacional e disponibilidade, otimizando o uso dos servidores antigos.
-
-
-\section{Escalabilidade e Automatização de Configurações}
-
-Recursos como Ansible e Terraform podem ser empregados para automatizar a configuração e facilitar a adição de novos servidores à nuvem privada.
-
-
-Este capítulo descreve detalhadamente a solução proposta, apresentando a arquitetura da nuvem privada dinâmica, os componentes envolvidos, os fluxos de provisionamento automático de VMs e as políticas de escalonamento adotadas.
-
-\section{Arquitetura da Nuvem Privada Dinâmica}
-
-\section{Componentes da Solução}
-
-\section{Fluxos de Provisionamento Automático}
-
-\section{Políticas de Escalonamento}
