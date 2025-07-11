@@ -1,14 +1,124 @@
 \chapter{Implementação da Infraestrutura}
 
-Este capítulo explica a implementação prática da infraestrutura no LabTelcom, incluindo a preparação dos servidores físicos, a instalação e configuração dos serviços do OpenStack e a criação das redes, imagens e flavours utilizados.
+Este capítulo explica a implementação prática da infraestrutura no Lab Telecom, iniciando com a preparação dos servidores físicos, a instalação e configuração dos serviços do OpenStack e terminando com o planejamento para as proximas etapas de implementação da nuvem privada.
 
 \section{Preparação dos Servidores Físicos}
 
+A primeira etapa da implementação consistiu na reativação e preparação da infraestrutura de hardware legada do Lab Telecom. Os servidores utilizados estavam inativos há vários anos, o que exigiu uma avaliação criteriosa de seus componentes. O processo envolveu testes individuais de fontes de alimentação, módulos de memória RAM e processadores para garantir para identificar os componentes defeituosos e substituí-los. Além disso, foi necessário realizar uma limpeza no hardware e substituição de pasta termica, afim de evitar aquecimento excessivo.
+
+Ao longo do processo, poram encontradas diversas situações adversas, como fontes de alimentação defeituosas e incompatibilidade de alguns módulos de memória. Após um processo de substituição de peças e testes, foi possível restaurar cinco servidores para um estado operacional confiável. As especificações técnicas finais dos servidores estão detalhadas na Tabela~\ref{tab:hardware_final}.
+
+\begin{table}[H]
+    \centering
+    \caption{Especificações Técnicas dos Servidores Utilizados na Nuvem Privada}
+    \label{tab:hardware_final}
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{|l|l|c|c|l|}
+        \hline
+        \textbf{Papel} & \textbf{Hostname} & \textbf{Modelo da CPU} & \textbf{Núcleos} & \textbf{RAM Total} \\ \hline \hline
+        \begin{tabular}[c]{@{}l@{}}Nó de \\ Controle\end{tabular} & lab103 & \begin{tabular}[c]{@{}l@{}}Intel Xeon E5410 \\ @ 2.33GHz\end{tabular} & 4 & 16 GiB \\ \hline
+        \begin{tabular}[c]{@{}l@{}}Nó de \\ Computação\end{tabular} & lab100 & \begin{tabular}[c]{@{}l@{}}Intel Xeon E5410 \\ @ 2.33GHz\end{tabular} & 4 & 24 GiB \\ \hline
+        \begin{tabular}[c]{@{}l@{}}Nó de \\ Computação\end{tabular} & lab101 & \begin{tabular}[c]{@{}l@{}}Intel Xeon E5410 \\ @ 2.33GHz\end{tabular} & 4 & 48 GiB \\ \hline
+        \begin{tabular}[c]{@{}l@{}}Nó de \\ Computação\end{tabular} & lab102 & \begin{tabular}[c]{@{}l@{}}Intel Xeon E5410 \\ @ 2.33GHz\end{tabular} & 4 & 32 GiB \\ \hline
+        \begin{tabular}[c]{@{}l@{}}Nó de \\ Computação\end{tabular} & lab104 & \begin{tabular}[c]{@{}l@{}}Intel Xeon E7430 \\ @ 2.13GHz\end{tabular} & 1 & 54 GiB \\ \hline
+    \end{tabular}
+\end{table}
+
+Com o hardware validado, procedeu-se com a configuração do armazenamento e a instalação do sistema operacional.
+
+\subsubsection*{Configuração de RAID}
+Para garantir a integridade e a disponibilidade dos dados, foi implementada uma configuração de RAID em todos os servidores. A escolha do nível de RAID foi guiada pela prioridade na segurança dos dados e pela quantidade de discos disponíveis em cada servidor.
+
+\begin{itemize}
+    \item \textbf{RAID~6:} Foi a escolha padrão para quatro dos cinco servidores. Conforme discutido na Seção~\ref{sec:raid}, o RAID~6 oferece alta tolerância a falhas ao suportar a perda de até dois discos simultaneamente. Embora essa configuração imponha uma sobrecarga de desempenho na escrita, ela foi considerada a mais adequada para proteger os dados do ambiente de simulação.
+    \item \textbf{RAID~1:} O servidor \texttt{lab102} (PowerEdge 1950) foi configurado com RAID~1 (espelhamento), pois dispunha de apenas dois discos rígidos compatíveis. Esta foi a única opção viável para prover redundância de dados nesta máquina.
+\end{itemize}
+
+\subsubsection*{Instalação do Sistema Operacional e Configuração de Rede}
+O sistema operacional escolhido para todos os nós foi o \textbf{Ubuntu Server 22.04 LTS}. A decisão por esta versão se baseia em seu status de \textit{Long-Term Support} (LTS), que garante atualizações de segurança e manutenção por um período estendido, um fator crucial para a estabilidade de uma infraestrutura de nuvem.
+
+Uma rede estável com endereçamento IP consistente é fundamental para o OpenStack. Para isso, uma abordagem dupla foi adotada:
+
+\begin{enumerate}
+    \item \textbf{Configuração de IP Fixo nos Servidores:} Cada servidor foi configurado manualmente para utilizar um endereço IP estático em sua interface de rede principal. Isso garante que cada nó seja sempre acessível pelo mesmo endereço na rede de gerenciamento.
+    \item \textbf{Reserva de IP no Firewall:} Para adicionar uma camada de robustez, foram criadas reservas de endereço no servidor DHCP no sistema de segurança da rede (\textit{firewall}) laboratório, que opera em FreeBSD. Este procedimento vincula o endereço MAC de cada servidor ao seu IP estático correspondente, garantindo que, mesmo em caso de uma solicitação DHCP, o servidor sempre receba o endereço IP correto. O processo envolveu a edição do arquivo \texttt{/usr/local/etc/dhcpd.conf} e a adição de blocos de configuração, como no exemplo abaixo:
+\end{enumerate}
+
+\begin{verbatim}
+# Exemplo de reservas de IP no servidor DHCP
+host lab101 {
+  hardware ethernet 00:22:ww:xx:yy:zz;
+  fixed-address 192.168.1.101;
+}
+host lab102 {
+  hardware ethernet 00:22:ww:xx:yy:zz;
+  fixed-address 192.168.1.102;
+}
+# ... (entradas para os outros hosts)
+\end{verbatim}
+
+Após a configuração, o serviço DHCP foi reiniciado para aplicar as novas regras, confirmando a correta atribuição dos endereços.
 
 \section{Instalação e Configuração do OpenStack}
 
-\section{Criação de Redes}
+A instalação do OpenStack foi realizada inicialmente utilizando a ferramenta de automação Ansible, que simplifica a implantação de serviços complexos em múltiplos nós. O primeiro passo para a automação é a definição de um inventário de hosts, que mapeia os servidores e seus papéis na arquitetura da nuvem.
 
-\section{Desenvolvimento de Imagens}
+\subsubsection*{Definição do Inventário de Hosts}
+O servidor \texttt{lab103}, com IP \texttt{192.168.1.103} foi designado como \textbf{nó de controle}. A escolha foi motivada por ser o servidor com a configuração de processamento mais robusta entre os disponíveis, um PowerEdge 2900 com processadores Xeon e 15 GiB de RAM. Embora não possua a maior capacidade de armazenamento, seu poder de processamento é ideal para gerenciar os serviços centrais do OpenStack (Keystone, Nova, Glance, etc.) sem se tornar um gargalo. Esta configuração inicial é capaz de suportar a carga da nuvem e oferece capacidade de expansão caso novos nós de computação sejam adicionados futuramente. Os demais quatro servidores foram designados como \textbf{nós de computação}, responsáveis por executar as máquinas virtuais dos usuários.
 
-\section{Definição de Flavours}
+Apesar da instalação do OpenStack ter sido bem sucedida, ainda há falhas na configuração do Keystone, Nova e Glance, que impede a criação das máquinas virtuais.
+
+\section{Próximas Etapas}
+
+Com a infraestrutura de hardware e o sistema operacional base devidamente preparados, o foco agora se volta para a estabilização da plataforma OpenStack e a execução dos experimentos planejados. O cronograma a seguir detalha as metas e os resultados esperados para os próximos meses, concluindo a entrega final do trabalho no início de dezembro.
+
+\begin{description}
+    \item[Agosto: Estabilização da Infraestrutura Core do OpenStack]
+    \begin{itemize}
+        \item \textbf{Objetivo:} Resolver as falhas de configuração nos serviços essenciais do OpenStack para obter um ambiente funcional, capaz de criar, gerenciar e acessar máquinas virtuais.
+        \item \textbf{Tarefas:}
+        \begin{enumerate}
+            \item Diagnóstico e correção das falhas nos serviços Keystone (autenticação), Nova (computação) e Glance (imagens).
+            \item Validação da comunicação entre o nó de controle e os nós de computação.
+            \item Upload de uma imagem de teste (ex: Windows 10 ou Ubuntu) para o Glance e provisionamento da primeira VM com sucesso.
+        \end{enumerate}
+        \item \textbf{Resultado Esperado:} Ambiente OpenStack estável com as funcionalidades básicas de IaaS (Infraestrutura como Serviço) operacionais.
+    \end{itemize}
+
+    \item[Setembro: Implementação dos Serviços de Suporte e Rede]
+    \begin{itemize}
+        \item \textbf{Objetivo:} Configurar os serviços de rede, armazenamento e o catálogo de recursos para os usuários.
+        \item \textbf{Tarefas:}
+        \begin{enumerate}
+            \item Configuração do Neutron para criar as redes virtuais (rede de gerenciamento, rede privada para VMs e rede de acesso externo).
+            \item Configuração do Cinder para prover volumes de armazenamento persistentes, utilizando os arranjos RAID dos servidores.
+            \item Desenvolvimento de imagens base customizadas (ex: Windows 10 com Ansys) e definição dos perfis de VM (\textit{flavours}).
+        \end{enumerate}
+        \item \textbf{Resultado Esperado:} Nuvem privada totalmente configurada, com rede funcional, armazenamento persistente e um catálogo de imagens e \textit{flavours} pronto para uso.
+    \end{itemize}
+
+    \item[Outubro: Execução dos Experimentos e Implementação das Políticas Avançadas]
+    \begin{itemize}
+        \item \textbf{Objetivo:} Implementar as políticas de gerenciamento dinâmico e executar os experimentos definidos na metodologia para validar a solução.
+        \item \textbf{Tarefas:}
+        \begin{enumerate}
+            \item Implementação e configuração das políticas de \textit{Fair-Share} para CPU e \textit{Ballooning} para memória.
+            \item Configuração do Prometheus e Grafana para coletar as métricas de desempenho (uso de CPU/RAM, tempo de provisionamento, etc.).
+            \item Execução dos três cenários de carga (baixa, média e alta) descritos na metodologia, coletando os dados de forma sistemática.
+        \end{enumerate}
+        \item \textbf{Resultado Esperado:} Conjunto de dados brutos coletados dos experimentos, permitindo a análise quantitativa da eficácia da nuvem e das políticas de alocação de recursos.
+    \end{itemize}
+
+    \item[Novembro: Análise de Resultados e Redação Final]
+    \begin{itemize}
+        \item \textbf{Objetivo:} Analisar os dados coletados, interpretar os resultados e finalizar a redação do documento do TCC.
+        \item \textbf{Tarefas:}
+        \begin{enumerate}
+            \item Tratamento e análise estatística dos dados coletados.
+            \item Geração de gráficos e tabelas para ilustrar os resultados no capítulo correspondente.
+            \item Redação dos capítulos de "Resultados e Discussão" e "Conclusão".
+            \item Revisão geral do texto, verificação de referências, formatação final e preparação do documento para a entrega.
+        \end{enumerate}
+        \item \textbf{Resultado Esperado:} Versão final do TCC concluída e pronta para submissão no início de dezembro.
+    \end{itemize}
+\end{description}
