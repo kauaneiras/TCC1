@@ -1,11 +1,30 @@
 \chapter{Conclusões}
 
-Este capítulo encerra o trabalho com as conclusões gerais, revisita o atendimento dos objetivos, aponta as principais contribuições e sugere possíveis melhorias e extensões para pesquisas futuras.
+Este capítulo encerra a primeira fase deste Trabalho de Conclusão de Curso, apresentando uma síntese dos resultados alcançados, uma análise do cumprimento dos objetivos propostos e uma visão clara sobre os próximos passos que serão executados na segunda fase do projeto.
 
 \section{Síntese dos Resultados Alcançados}
 
+O presente trabalho partiu do desafio de otimizar o uso de recursos computacionais no Lab Telecom por meio da reativação de hardware legado para a criação de uma nuvem privada. A fase inicial do projeto, documentada neste trabalho, concentrou-se na construção da fundação essencial para a infraestrutura de nuvem.
+
+O principal resultado alcançado foi a reativação e preparação bem-sucedida de cinco servidores Dell, que estavam inativos. Este processo envolveu uma criteriosa avaliação de hardware, substituição de componentes defeituosos, instalação do sistema operacional Ubuntu Server 22.04 LTS e a configuração de arranjos RAID para garantir a resiliência dos dados. Adicionalmente, toda a infraestrutura de rede foi configurada com endereçamento IP estático e reservas no firewall do laboratório, garantindo uma base de comunicação estável para os serviços distribuídos.
+
+Finalmente, foi realizada a instalação inicial da plataforma OpenStack, com a designação dos papéis de nó de controle e nós de computação. Embora a instalação tenha sido concluída, foram identificadas falhas de configuração nos serviços essenciais que impedem, no momento, o provisionamento de máquinas virtuais, estabelecendo o principal desafio a ser superado na próxima etapa.
+
 \section{Atendimento dos Objetivos}
+
+O objetivo geral de implementar uma nuvem privada flexível foi parcialmente alcançado nesta primeira fase. A análise dos objetivos específicos revela o seguinte progresso:
+
+\begin{itemize}
+    \item \textbf{Reativar o hardware:} Objetivo \textbf{concluído}. Os servidores foram inventariados, restaurados e configurados com RAID.
+    \item \textbf{Implantar a plataforma de virtualização:} Objetivo \textbf{em andamento}. A base do OpenStack foi instalada, mas a configuração dos serviços core (Keystone, Nova, Glance) ainda requer ajustes para se tornar operacional.
+    \item \textbf{Padronizar imagens, Automatizar o ciclo de vida das VMs, Gerir recursos de forma elástica e Monitorar desempenho:} Objetivos \textbf{não iniciados}. Estas são etapas subsequentes que dependem da estabilização da plataforma.
+    \item \textbf{Planejar a expansão futura:} Objetivo \textbf{não iniciados}. Essa etapa envolve constuir documentação e manuais para o gerenciamento e a expansão da nuvem privada. Será realizada ao fim das etapas de implementação.
+\end{itemize}
 
 \section{Principais Contribuições}
 
+A principal contribuição deste TCC 1 é a criação de uma base de infraestrutura sólida e documentada, transformando hardware obsoleto em poder computacional com potencial de agregar valor ao laboratório. A reativação dos servidores representam um avanço significativo, que por si só já prepara o ambiente para a continuação do projeto.
+
 \section{Melhorias e Trabalhos Futuros}
+
+Este trabalho estabelece a fundação para o Trabalho de Conclusão de Curso 2, que dará continuidade direta à implementação e validação da nuvem privada. Espera-se que, ao final do TCC 2, a nuvem privada esteja plenamente operacional, atendendo a todos os objetivos propostos e servindo como uma ferramenta valiosa para os alunos e pesquisadores do Lab Telecom.

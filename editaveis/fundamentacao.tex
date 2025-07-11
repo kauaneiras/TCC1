@@ -37,7 +37,7 @@ Além dessas características essenciais, o NIST também classifica os serviços
 \label{fig:modelos-servico}
 \end{figure}
 
-Para facilitar o entendimento desses serviços, a Figura 1 compara os modelos de serviço da nuvem. Em sistemas de SaaS, o software é hospedado na nuvem e acessível ao usuário pela internet. O usuário não possui nenhum controle sobre a aplicação, nem sobre a infraestrutura. Grande parte dos serviços oferecidos à usuários da internet utilizam esse modelo \cite{rizvi2024}. Dentre eles, pode-se listar, as redes sociais, como o \textit{Instagram}, \textit{TikTok} e \textit{Whatsapp}, e serviços de transmissão contínua de conteúdo multimídia (\textit{streaming}), como o \textit{Youtube}, \textit{Netflix} e \textit{Spotify}. O modelo PaaS, em contrapartida, fornece um ambiente de desenvolvimento e implantação pré-construído na nuvem, onde o usuário tem controle sobre a aplicação, incluindo códigos e bancos de dados. Nesse modelo encontram-se os serviços de desenvolvimento e hospedagem de software, como \textit{Microsoft Azure}, \textit{Google App Engine} e \textit{Heroku} (Rizvi et al., 2024). Já no IaaS, o usuário pode solicitar uma quantidade de recursos, e tem controle sobre o sistema operacional (SO). Nesse modelo estão as máquinas virtuais e serviços de armazenamento, como  \textit{Amazon Web Services (AWS) EC2 e S3},  \textit{Microsoft Azure Virtual Machines} e  \textit{Google Compute Engine}  (Rizvi et al., 2024)
+Para facilitar o entendimento desses serviços, a Figura~\ref{fig:modelos-servico} compara os modelos de serviço da nuvem. Em sistemas de SaaS, o software é hospedado na nuvem e acessível ao usuário pela internet. O usuário não possui nenhum controle sobre a aplicação, nem sobre a infraestrutura. Grande parte dos serviços oferecidos à usuários da internet utilizam esse modelo \cite{rizvi2024}. Dentre eles, pode-se listar, as redes sociais, como o \textit{Instagram}, \textit{TikTok} e \textit{Whatsapp}, e serviços de transmissão contínua de conteúdo multimídia (\textit{streaming}), como o \textit{Youtube}, \textit{Netflix} e \textit{Spotify}. O modelo PaaS, em contrapartida, fornece um ambiente de desenvolvimento e implantação pré-construído na nuvem, onde o usuário tem controle sobre a aplicação, incluindo códigos e bancos de dados. Nesse modelo encontram-se os serviços de desenvolvimento e hospedagem de software, como \textit{Microsoft Azure}, \textit{Google App Engine} e \textit{Heroku} (Rizvi et al., 2024). Já no IaaS, o usuário pode solicitar uma quantidade de recursos, e tem controle sobre o sistema operacional (SO). Nesse modelo estão as máquinas virtuais e serviços de armazenamento, como  \textit{Amazon Web Services (AWS) EC2 e S3},  \textit{Microsoft Azure Virtual Machines} e  \textit{Google Compute Engine}  (Rizvi et al., 2024)
 
 \subsection{Modelos de Implantação}
 
@@ -90,7 +90,7 @@ Para facilitar o entendimento dos conceitos da Virtualização Total e Paravirtu
     \end{tabular}
     \fonte{Elaborado pelo autor, com base em Carissimi (2008).}
 \end{table}
-O componente de software responsável por criar e gerenciar as máquinas virtuais é denominado hipervisor, ou Monitor de Máquina Virtual (VMM) \cite{chawla2025}; \cite{carissimi2008}. O hipervisor é a camada de software que fica entre o hardware e os sistemas operacionais, e é responsável por orquestrar o acesso aos recursos físicos e manter o isolamento entre as diferentes VMs \cite{chawla2025}; \cite{carissimi2008}. Os hipervisores são classificados em dois tipos principais, conforme ilustrado na Figura 2.
+O componente de software responsável por criar e gerenciar as máquinas virtuais é denominado hipervisor, ou Monitor de Máquina Virtual (VMM) \cite{chawla2025}; \cite{carissimi2008}. O hipervisor é a camada de software que fica entre o hardware e os sistemas operacionais, e é responsável por orquestrar o acesso aos recursos físicos e manter o isolamento entre as diferentes VMs \cite{chawla2025}; \cite{carissimi2008}. Os hipervisores são classificados em dois tipos principais, conforme ilustrado na Figura~\ref{fig:arquitetura-hipervisores}.
 
 \begin{figure}[H]
     \centering
@@ -147,7 +147,7 @@ A Tabela~\ref{tab:comparativo_hipervisores} compara, de forma simplificada, as d
 
 
 \subsection{Análise Comparativa de Hipervisores}
-A seleção de um hipervisor é uma decisão crítica que impacta diretamente o desempenho, a segurança e a escalabilidade de uma infraestrutura de nuvem. A Tabela 3 apresenta uma comparação entre os principais hipervisores do mercado, destacando suas características de desempenho dentro das seguintes métricas:
+A seleção de um hipervisor é uma decisão crítica que impacta diretamente o desempenho, a segurança e a escalabilidade de uma infraestrutura de nuvem. A Tabela~\ref{tab:overhead} apresenta uma comparação entre os principais hipervisores do mercado, destacando suas características de desempenho dentro das seguintes métricas:
 
 \begin{description}
     \item[\textit{CPU Overhead}]:  mede a porcentagem de ciclos que são consumidos no processador pelo hipervisor durante o gerenciamento das VMs. Essa sobrecarga é particularmente notável em cargas de trabalho intensivas em Entrada/Saída (E/S), pois o hipervisor precisa de poder de processamento para gerenciar as solicitações de rede e disco das VMs. Um valor menor é melhor, indicando que mais poder de CPU está disponível para as aplicações. O \textit{VMware ESXi} apresentou o menor.
@@ -157,7 +157,6 @@ A seleção de um hipervisor é uma decisão crítica que impacta diretamente o 
     \item[Desempenho Geral]: pontuação que representa a média ponderada do desempenho do hipervisor em todos os testes realizados (CPU, memória, E/S e rede). Este índice oferece uma visão simplificada para uma comparação direta, onde uma pontuação mais alta significa um melhor equilíbrio de desempenho e eficiência em diversas cargas de trabalho. Nesse escore, o VMware ESXi foi classificado com o melhor desempenho geral, seguido pelo KVM.
 \end{description}
 
-% Tabela de desempenho de hipervisores
 \begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3}
@@ -175,14 +174,13 @@ A seleção de um hipervisor é uma decisão crítica que impacta diretamente o 
     \fonte{Adaptado de Chawla et al. (2025).}
 \end{table}
 
-A Tabela 4 resume as principais características, vantagens e desvantagens de cada solução, com foco em sua aplicabilidade em ambientes de nuvem.
+A Tabela~\ref{tab:hipervisores} resume as principais características, vantagens e desvantagens de cada solução, com foco em sua aplicabilidade em ambientes de nuvem.
 
 \begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.3}
     \caption{Comparação entre hipervisores KVM, VMware ESXi e Xen}
     \label{tab:hipervisores}
-    % Colunas flexíveis que aceitam vários parágrafos/listas
     \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{3cm}|X|X|X|}
         \hline
         \textbf{Característica} & \textbf{KVM} & \textbf{VMware ESXi} & \textbf{Xen} \\ \hline
